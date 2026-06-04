@@ -1,0 +1,5 @@
+.vscode/**
+**/*.map
+.gitignore
+vsc-extension-quickstart.md
+**/.DS_Store

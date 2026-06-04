@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="licensePlates">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="colorConfigurations" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="colorConfiguration" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="color" type="g_color">
+                                        <xs:annotation><xs:documentation xml:lang="en">Color values</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="isDefault" type="g_bool">
+                                        <xs:annotation><xs:documentation xml:lang="en">Color is default selected</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name" type="g_l10n_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Name of color to display</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="defaultColorIndex" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">Default selected color</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="defaultColorMaxBrightness" type="g_float" default="0.55">
+                            <xs:annotation><xs:documentation xml:lang="en">Default colors with higher brightness will be skipped</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="materialName" type="g_string" default="licensePlateColored_mat">
+                            <xs:annotation><xs:documentation xml:lang="en">Name of colored license plate material</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderParameterCharacters" type="g_string" default="colorSale">
+                            <xs:annotation><xs:documentation xml:lang="en">Color shader parameter of characters</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="useDefaultColors" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">License plate can be colored with all available default colors</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="font" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="name" type="g_string" default="GENERIC">
+                            <xs:annotation><xs:documentation xml:lang="en">License plate font name</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="licensePlate" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="font" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="scaleX" type="g_float" default="1">
+                                        <xs:annotation><xs:documentation xml:lang="en">Additional scaling of font X</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="scaleY" type="g_float" default="1">
+                                        <xs:annotation><xs:documentation xml:lang="en">Additional scaling of font Y</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="size" type="g_float" default="0.1">
+                                        <xs:annotation><xs:documentation xml:lang="en">Size of font</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="useNormalMap" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Use normal map for the characters</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="frame" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="heightOffsetBot" type="g_float" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Height of frame at bottom</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="heightOffsetTop" type="g_float" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Height of frame on top</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="node" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Frame node that can be toggled</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="widthOffset" type="g_float" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Width of frame on each side</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="variations" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="variation" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="material" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="clearCoat" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="intensity" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Intensity of clear coat</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="smoothness" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Smoothness of clear coat</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="colorScale" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="value" type="g_string">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Material color if it should not be used from configuration (can also be a different material template, from which then ONLY the color is taken)</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="detail" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="diffuse" type="g_filename">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Path to detail diffuse texture</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="normal" type="g_filename">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Path to detail normal texture</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="specular" type="g_filename">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Path to detail specular texture</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="metalness" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="value" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Metalness value</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="smoothness" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="value" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Smoothness value</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="textures" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="diffuse" type="g_filename">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Path to diffuse texture</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="normal" type="g_filename">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Path to normal texture</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="specular" type="g_filename">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Path to specular texture</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:all>
+                                                            <xs:attribute name="materialSlotName" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Material slot name in the i3d file</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="materialTemplateName" type="g_string">
+                                                                <xs:annotation>
+                                                                    <xs:documentation xml:lang="en">Name of template to apply (all attributes will be used from template)</xs:documentation>
+                                                                    <xs:appinfo>
+                                                                        <typeStr>String</typeStr>
+                                                                        <giantsAutoCompletion sourceFile="$data/shared/brandMaterialTemplates.xml" prefix="">
+                                                                            <path>templates.template#name</path>
+                                                                        </giantsAutoCompletion>
+                                                                    </xs:appinfo>
+                                                                </xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="materialTemplateUseColorOnly" type="g_bool" default="false">
+                                                                <xs:annotation><xs:documentation xml:lang="en">If &apos;true&apos;, only the color is used from the material template. The rest from the i3d file.</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="position" type="g_string" default="ANY">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value will be hidden of position differs from placement position</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="alphabetical" type="g_bool" default="false">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Node supports alphabetical characters</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="character" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Pre defined character of node</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="isStatic" type="g_bool">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Node is only static without applying of characters</xs:documentation><xs:appinfo><defaultStr>is static if &apos;numerical&apos; and &apos;alphabetical&apos; are both on false and no fixed character is given</defaultStr></xs:appinfo></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="locked" type="g_bool">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Character value can not be changed</xs:documentation><xs:appinfo><defaultStr>locked when character is defined</defaultStr></xs:appinfo></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="nextSection" type="g_bool" default="false">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Is start character for next section</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="node" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value mesh index</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="numerical" type="g_bool" default="false">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Node supports numeric characters</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="position" type="g_string" default="ANY">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value will be hidden of position differs from placement position</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="posX" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">X translation of value node</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="posY" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Y translation of value node</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="posZ" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Z translation of value node</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="special" type="g_bool" default="false">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Node supports special characters</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="filename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">License plate i3d filename</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="height" type="g_float" default="0.2">
+                            <xs:annotation><xs:documentation xml:lang="en">Height of license plate</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">License plate node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="type" type="g_string" default="ELONGATED">
+                            <xs:annotation><xs:documentation xml:lang="en">License plate type &apos;SQUARISH&apos; or &apos;ELONGATED&apos;</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="width" type="g_float" default="1">
+                            <xs:annotation><xs:documentation xml:lang="en">Width of license plate</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="placement" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="defaultType" type="g_string" default="both">
+                            <xs:annotation><xs:documentation xml:lang="en">Default type of placement (none/both/back_only)</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

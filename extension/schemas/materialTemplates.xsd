@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="fs25_brand">
+    <xs:annotation><xs:documentation>Brand id — 260 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ABI"/>
+      <xs:enumeration value="AEBI"/>
+      <xs:enumeration value="AGI"/>
+      <xs:enumeration value="AGIWESTFIELD"/>
+      <xs:enumeration value="AGIBATCO"/>
+      <xs:enumeration value="AGINECO"/>
+      <xs:enumeration value="AGIWESTEEL"/>
+      <xs:enumeration value="AGISTORM"/>
+      <xs:enumeration value="AGISENTINEL"/>
+      <xs:enumeration value="AGCO"/>
+      <xs:enumeration value="AGRIFAC"/>
+      <xs:enumeration value="AGRIO"/>
+      <xs:enumeration value="AGRISEM"/>
+      <xs:enumeration value="AGRISPREAD"/>
+      <xs:enumeration value="AGROMASZ"/>
+      <xs:enumeration value="ALBUTT"/>
+      <xs:enumeration value="ALDI"/>
+      <xs:enumeration value="ALLIANCE"/>
+      <xs:enumeration value="ALPEGO"/>
+      <xs:enumeration value="AMAZONE"/>
+      <xs:enumeration value="AMITYTECH"/>
+      <xs:enumeration value="ANDERSONGROUP"/>
+      <xs:enumeration value="ANNABURGER"/>
+      <xs:enumeration value="APV"/>
+      <xs:enumeration value="ANTONIOCARRARO"/>
+      <xs:enumeration value="APE"/>
+      <xs:enumeration value="APRILIA"/>
+      <xs:enumeration value="ARCUSIN"/>
+      <xs:enumeration value="ARMATRAC"/>
+      <xs:enumeration value="BEDNAR"/>
+      <xs:enumeration value="BERGMANN"/>
+      <xs:enumeration value="BERTHOUD"/>
+      <xs:enumeration value="BKT"/>
+      <xs:enumeration value="BOECKMANN"/>
+      <xs:enumeration value="BOMECH"/>
+      <xs:enumeration value="BOURGAULT"/>
+      <xs:enumeration value="BRANDT"/>
+      <xs:enumeration value="BRANTNER"/>
+      <xs:enumeration value="BREDAL"/>
+      <xs:enumeration value="BREMER"/>
+      <xs:enumeration value="BRIELMAIER"/>
+      <xs:enumeration value="BRIRI"/>
+      <xs:enumeration value="BUEHRER"/>
+      <xs:enumeration value="BUNNING"/>
+      <xs:enumeration value="CANAM"/>
+      <xs:enumeration value="CAPELLO"/>
+      <xs:enumeration value="CASEIH"/>
+      <xs:enumeration value="CHALLENGER"/>
+      <xs:enumeration value="CLAAS"/>
+      <xs:enumeration value="CONTINENTAL"/>
+      <xs:enumeration value="CONVEYALL"/>
+      <xs:enumeration value="CORTEVA"/>
+      <xs:enumeration value="DALBO"/>
+      <xs:enumeration value="DAMCON"/>
+      <xs:enumeration value="DAMMANN"/>
+      <xs:enumeration value="DEGELMAN"/>
+      <xs:enumeration value="DEMCO"/>
+      <xs:enumeration value="DEUTZFAHR"/>
+      <xs:enumeration value="DEWULF"/>
+      <xs:enumeration value="DFM"/>
+      <xs:enumeration value="DUEVELSDORF"/>
+      <xs:enumeration value="EASYSHEDS"/>
+      <xs:enumeration value="EINBOECK"/>
+      <xs:enumeration value="ELHO"/>
+      <xs:enumeration value="ELMERSMFG"/>
+      <xs:enumeration value="EVERSAGRO"/>
+      <xs:enumeration value="SKODA"/>
+      <xs:enumeration value="STRAUSS"/>
+      <xs:enumeration value="ELTEN"/>
+      <xs:enumeration value="ERO"/>
+      <xs:enumeration value="FARESIN"/>
+      <xs:enumeration value="FARMAX"/>
+      <xs:enumeration value="FARMET"/>
+      <xs:enumeration value="FARMTECH"/>
+      <xs:enumeration value="FENDT"/>
+      <xs:enumeration value="FIAT"/>
+      <xs:enumeration value="FLEXICOIL"/>
+      <xs:enumeration value="FLIEGL"/>
+      <xs:enumeration value="FMZ"/>
+      <xs:enumeration value="FORD"/>
+      <xs:enumeration value="FORTSCHRITT"/>
+      <xs:enumeration value="FORTUNA"/>
+      <xs:enumeration value="FSI"/>
+      <xs:enumeration value="FUHRMANN"/>
+      <xs:enumeration value="GALAXY"/>
+      <xs:enumeration value="GEA"/>
+      <xs:enumeration value="GERINGHOFF"/>
+      <xs:enumeration value="GESSNER"/>
+      <xs:enumeration value="GIANTS"/>
+      <xs:enumeration value="GOEWEIL"/>
+      <xs:enumeration value="GOLDHOFER"/>
+      <xs:enumeration value="GORENC"/>
+      <xs:enumeration value="GREATPLAINS"/>
+      <xs:enumeration value="GREGOIRE"/>
+      <xs:enumeration value="GREGOIREBESSON"/>
+      <xs:enumeration value="GRIMME"/>
+      <xs:enumeration value="GROHA"/>
+      <xs:enumeration value="HARDI"/>
+      <xs:enumeration value="HATZENBICHLER"/>
+      <xs:enumeration value="HAUER"/>
+      <xs:enumeration value="HAWE"/>
+      <xs:enumeration value="HEIZOMAT"/>
+      <xs:enumeration value="HELM"/>
+      <xs:enumeration value="HOLARAS"/>
+      <xs:enumeration value="HOLMER"/>
+      <xs:enumeration value="HORSCH"/>
+      <xs:enumeration value="HUSQVARNA"/>
+      <xs:enumeration value="IMPEX"/>
+      <xs:enumeration value="INTERNATIONAL"/>
+      <xs:enumeration value="ISEKI"/>
+      <xs:enumeration value="JCB"/>
+      <xs:enumeration value="JENZ"/>
+      <xs:enumeration value="JMMANUFACTURING"/>
+      <xs:enumeration value="JOHNDEERE"/>
+      <xs:enumeration value="JONSERED"/>
+      <xs:enumeration value="JOSKIN"/>
+      <xs:enumeration value="JUNGHEINRICH"/>
+      <xs:enumeration value="KAERCHER"/>
+      <xs:enumeration value="KAWECO"/>
+      <xs:enumeration value="KESLA"/>
+      <xs:enumeration value="KEMPER"/>
+      <xs:enumeration value="KINGSTON"/>
+      <xs:enumeration value="KINZE"/>
+      <xs:enumeration value="KLINE"/>
+      <xs:enumeration value="KNOCHE"/>
+      <xs:enumeration value="KOCKERLING"/>
+      <xs:enumeration value="KOLLER"/>
+      <xs:enumeration value="KOMATSU"/>
+      <xs:enumeration value="KONGSKILDE"/>
+      <xs:enumeration value="KOTSCHENREUTHER"/>
+      <xs:enumeration value="KOTTE"/>
+      <xs:enumeration value="KRAMER"/>
+      <xs:enumeration value="KRAMPE"/>
+      <xs:enumeration value="KROEGER"/>
+      <xs:enumeration value="KRONE"/>
+      <xs:enumeration value="KRONETRAILER"/>
+      <xs:enumeration value="KUBOTA"/>
+      <xs:enumeration value="KUHN"/>
+      <xs:enumeration value="KVERNELAND"/>
+      <xs:enumeration value="LACOTEC"/>
+      <xs:enumeration value="LANDINI"/>
+      <xs:enumeration value="LELY"/>
+      <xs:enumeration value="LEMKEN"/>
+      <xs:enumeration value="LINDNER"/>
+      <xs:enumeration value="LIZARD"/>
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="LODEKING"/>
+      <xs:enumeration value="MACDON"/>
+      <xs:enumeration value="MACK"/>
+      <xs:enumeration value="MAGSI"/>
+      <xs:enumeration value="MAHINDRA"/>
+      <xs:enumeration value="MAN"/>
+      <xs:enumeration value="MANITOU"/>
+      <xs:enumeration value="MASSEYFERGUSON"/>
+      <xs:enumeration value="MCCORMACK"/>
+      <xs:enumeration value="MCCORMICK"/>
+      <xs:enumeration value="MCCULLOCH"/>
+      <xs:enumeration value="MERCEDESBENZTRUCKS"/>
+      <xs:enumeration value="MERIDIAN"/>
+      <xs:enumeration value="MERLO"/>
+      <xs:enumeration value="MICHELIN"/>
+      <xs:enumeration value="MICHIELETTO"/>
+      <xs:enumeration value="MITAS"/>
+      <xs:enumeration value="MONOSEM"/>
+      <xs:enumeration value="MZURI"/>
+      <xs:enumeration value="NARDI"/>
+      <xs:enumeration value="NEUERO"/>
+      <xs:enumeration value="NEWHOLLAND"/>
+      <xs:enumeration value="NEXAT"/>
+      <xs:enumeration value="NOKIAN"/>
+      <xs:enumeration value="NORDSTEN"/>
+      <xs:enumeration value="NOVAG"/>
+      <xs:enumeration value="OLOFSFORS"/>
+      <xs:enumeration value="OXBO"/>
+      <xs:enumeration value="PALADIN"/>
+      <xs:enumeration value="PESSLINSTRUMENTS"/>
+      <xs:enumeration value="PFANZELT"/>
+      <xs:enumeration value="PIONEER"/>
+      <xs:enumeration value="PLANET"/>
+      <xs:enumeration value="PLOEGER"/>
+      <xs:enumeration value="POETTINGER"/>
+      <xs:enumeration value="PONSSE"/>
+      <xs:enumeration value="PORSCHEDIESEL"/>
+      <xs:enumeration value="PRINOTH"/>
+      <xs:enumeration value="PROVITIS"/>
+      <xs:enumeration value="QUICKE"/>
+      <xs:enumeration value="RABE"/>
+      <xs:enumeration value="RANDON"/>
+      <xs:enumeration value="RANIPLAST"/>
+      <xs:enumeration value="RAU"/>
+      <xs:enumeration value="REITER"/>
+      <xs:enumeration value="RIEDLER"/>
+      <xs:enumeration value="RIGITRAC"/>
+      <xs:enumeration value="RISUTEC"/>
+      <xs:enumeration value="ROPA"/>
+      <xs:enumeration value="ROSTSELMASH"/>
+      <xs:enumeration value="ROTTNE"/>
+      <xs:enumeration value="RUDOLFHOERMANN"/>
+      <xs:enumeration value="RUDOLPH"/>
+      <xs:enumeration value="SALEK"/>
+      <xs:enumeration value="SALFORD"/>
+      <xs:enumeration value="SAMASZ"/>
+      <xs:enumeration value="SAME"/>
+      <xs:enumeration value="SAMPOROSENLEW"/>
+      <xs:enumeration value="SAMSONAGRO"/>
+      <xs:enumeration value="SCHAEFFER"/>
+      <xs:enumeration value="SCHOUTEN"/>
+      <xs:enumeration value="SCHUITEMAKER"/>
+      <xs:enumeration value="SCHWARZMUELLER"/>
+      <xs:enumeration value="SENNEBOGEN"/>
+      <xs:enumeration value="SEPPKNUSEL"/>
+      <xs:enumeration value="SILOKING"/>
+      <xs:enumeration value="SIP"/>
+      <xs:enumeration value="SIRCH"/>
+      <xs:enumeration value="STADIA"/>
+      <xs:enumeration value="STARA"/>
+      <xs:enumeration value="STARKINDUSTRIES"/>
+      <xs:enumeration value="STEMA"/>
+      <xs:enumeration value="STEPA"/>
+      <xs:enumeration value="STEYR"/>
+      <xs:enumeration value="STIHL"/>
+      <xs:enumeration value="STOLL"/>
+      <xs:enumeration value="STRAUTMANN"/>
+      <xs:enumeration value="STREUMASTER"/>
+      <xs:enumeration value="SUER"/>
+      <xs:enumeration value="SUMMERSMFG"/>
+      <xs:enumeration value="TAJFUN"/>
+      <xs:enumeration value="TATRA"/>
+      <xs:enumeration value="TENWINKEL"/>
+      <xs:enumeration value="THUERINGERAGRAR"/>
+      <xs:enumeration value="THUNDERCREEK"/>
+      <xs:enumeration value="TMCCANCELA"/>
+      <xs:enumeration value="TREFFLER"/>
+      <xs:enumeration value="TRELLEBORG"/>
+      <xs:enumeration value="TROUTRIVER"/>
+      <xs:enumeration value="TT"/>
+      <xs:enumeration value="UNIA"/>
+      <xs:enumeration value="UNVERFERTH"/>
+      <xs:enumeration value="VAEDERSTAD"/>
+      <xs:enumeration value="VALTRA"/>
+      <xs:enumeration value="VEENHUIS"/>
+      <xs:enumeration value="VERMEER"/>
+      <xs:enumeration value="VERSATILE"/>
+      <xs:enumeration value="VERVAET"/>
+      <xs:enumeration value="VICON"/>
+      <xs:enumeration value="VOLVO"/>
+      <xs:enumeration value="VREDESTEIN"/>
+      <xs:enumeration value="VREDO"/>
+      <xs:enumeration value="PITTSTRAILERS"/>
+      <xs:enumeration value="WALKABOUT"/>
+      <xs:enumeration value="WARZEE"/>
+      <xs:enumeration value="WEBERMT"/>
+      <xs:enumeration value="WELGER"/>
+      <xs:enumeration value="WESTTECH"/>
+      <xs:enumeration value="WIFO"/>
+      <xs:enumeration value="WILSON"/>
+      <xs:enumeration value="WIENHOFF"/>
+      <xs:enumeration value="ZETOR"/>
+      <xs:enumeration value="ZIEGLER"/>
+      <xs:enumeration value="ZUNHAMMER"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="fs25_storeCategory">
+    <xs:annotation><xs:documentation>Shop category — 147 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="tractorsS"/>
+      <xs:enumeration value="tractorsM"/>
+      <xs:enumeration value="tractorsL"/>
+      <xs:enumeration value="trucks"/>
+      <xs:enumeration value="cars"/>
+      <xs:enumeration value="miscDrivables"/>
+      <xs:enumeration value="frontLoaderVehicles"/>
+      <xs:enumeration value="frontLoaders"/>
+      <xs:enumeration value="frontLoaderTools"/>
+      <xs:enumeration value="teleLoaderVehicles"/>
+      <xs:enumeration value="teleLoaderTools"/>
+      <xs:enumeration value="wheelLoaderVehicles"/>
+      <xs:enumeration value="wheelLoaderTools"/>
+      <xs:enumeration value="skidSteerVehicles"/>
+      <xs:enumeration value="skidSteerTools"/>
+      <xs:enumeration value="forklifts"/>
+      <xs:enumeration value="trailers"/>
+      <xs:enumeration value="augerWagons"/>
+      <xs:enumeration value="trailersChangingSystem"/>
+      <xs:enumeration value="trailersFlatbed"/>
+      <xs:enumeration value="lowloaders"/>
+      <xs:enumeration value="trailersSemi"/>
+      <xs:enumeration value="plows"/>
+      <xs:enumeration value="cultivators"/>
+      <xs:enumeration value="discHarrows"/>
+      <xs:enumeration value="powerHarrows"/>
+      <xs:enumeration value="subsoilers"/>
+      <xs:enumeration value="mulchers"/>
+      <xs:enumeration value="spaders"/>
+      <xs:enumeration value="stonePickers"/>
+      <xs:enumeration value="seeders"/>
+      <xs:enumeration value="planters"/>
+      <xs:enumeration value="seedTanks"/>
+      <xs:enumeration value="palletSeeds"/>
+      <xs:enumeration value="sprayers"/>
+      <xs:enumeration value="manureSpreaders"/>
+      <xs:enumeration value="fertilizerSpreaders"/>
+      <xs:enumeration value="slurryTanks"/>
+      <xs:enumeration value="slurryTools"/>
+      <xs:enumeration value="slurryTransport"/>
+      <xs:enumeration value="weeders"/>
+      <xs:enumeration value="rollers"/>
+      <xs:enumeration value="palletFertilizerHerbicide"/>
+      <xs:enumeration value="harvesters"/>
+      <xs:enumeration value="cutters"/>
+      <xs:enumeration value="cornHeaders"/>
+      <xs:enumeration value="specialHeaders"/>
+      <xs:enumeration value="cutterTrailers"/>
+      <xs:enumeration value="combineWindrower"/>
+      <xs:enumeration value="forageHarvesters"/>
+      <xs:enumeration value="forageHarvesterCutters"/>
+      <xs:enumeration value="forageHarvesterCutterTrailers"/>
+      <xs:enumeration value="leveler"/>
+      <xs:enumeration value="silocompaction"/>
+      <xs:enumeration value="palletSilage"/>
+      <xs:enumeration value="mowers"/>
+      <xs:enumeration value="tedders"/>
+      <xs:enumeration value="windrowers"/>
+      <xs:enumeration value="loaderWagons"/>
+      <xs:enumeration value="grasslandCare"/>
+      <xs:enumeration value="palletGrassland"/>
+      <xs:enumeration value="balersSquare"/>
+      <xs:enumeration value="balersRound"/>
+      <xs:enumeration value="baleLoaders"/>
+      <xs:enumeration value="baleWrappers"/>
+      <xs:enumeration value="balingMisc"/>
+      <xs:enumeration value="palletBaling"/>
+      <xs:enumeration value="forageMixers"/>
+      <xs:enumeration value="barrels"/>
+      <xs:enumeration value="animalTransport"/>
+      <xs:enumeration value="strawBlowers"/>
+      <xs:enumeration value="palletAnimals"/>
+      <xs:enumeration value="beetHarvesters"/>
+      <xs:enumeration value="beetHarvesterCutters"/>
+      <xs:enumeration value="beetLoading"/>
+      <xs:enumeration value="potatoPlanting"/>
+      <xs:enumeration value="potatoHarvesting"/>
+      <xs:enumeration value="palletSeedsRootcrops"/>
+      <xs:enumeration value="vegetablePlanters"/>
+      <xs:enumeration value="vegetableHarvesters"/>
+      <xs:enumeration value="spinachHarvesters"/>
+      <xs:enumeration value="greenBeanHarvesters"/>
+      <xs:enumeration value="peaHarvesters"/>
+      <xs:enumeration value="palletVegetables"/>
+      <xs:enumeration value="ricePlanters"/>
+      <xs:enumeration value="riceHarvesters"/>
+      <xs:enumeration value="sugarcanePlanters"/>
+      <xs:enumeration value="sugarcaneHarvesters"/>
+      <xs:enumeration value="sugarcaneTransport"/>
+      <xs:enumeration value="cottonHarvesters"/>
+      <xs:enumeration value="cottonTransport"/>
+      <xs:enumeration value="specialCropsPallets"/>
+      <xs:enumeration value="oliveHarvesters"/>
+      <xs:enumeration value="grapeHarvesters"/>
+      <xs:enumeration value="grapeTrailers"/>
+      <xs:enumeration value="grapeTools"/>
+      <xs:enumeration value="forestryHarvesters"/>
+      <xs:enumeration value="forestryForwarders"/>
+      <xs:enumeration value="forestryExcavators"/>
+      <xs:enumeration value="forestryExcavatorTools"/>
+      <xs:enumeration value="woodTransport"/>
+      <xs:enumeration value="woodChippers"/>
+      <xs:enumeration value="forestryMulchers"/>
+      <xs:enumeration value="forestryWinches"/>
+      <xs:enumeration value="forestryPlanters"/>
+      <xs:enumeration value="forestryStumpCutters"/>
+      <xs:enumeration value="forestryMisc"/>
+      <xs:enumeration value="palletForestry"/>
+      <xs:enumeration value="weights"/>
+      <xs:enumeration value="belts"/>
+      <xs:enumeration value="winterEquipment"/>
+      <xs:enumeration value="carTrailers"/>
+      <xs:enumeration value="misc"/>
+      <xs:enumeration value="bigbags"/>
+      <xs:enumeration value="bigbagPallets"/>
+      <xs:enumeration value="ibc"/>
+      <xs:enumeration value="pallets"/>
+      <xs:enumeration value="bales"/>
+      <xs:enumeration value="shippingContainers"/>
+      <xs:enumeration value="objectAnimal"/>
+      <xs:enumeration value="objectMisc"/>
+      <xs:enumeration value="chainsaws"/>
+      <xs:enumeration value="shovels"/>
+      <xs:enumeration value="flashlights"/>
+      <xs:enumeration value="markingSpray"/>
+      <xs:enumeration value="handtoolsAnimals"/>
+      <xs:enumeration value="handtoolsMisc"/>
+      <xs:enumeration value="animalpens"/>
+      <xs:enumeration value="fences"/>
+      <xs:enumeration value="trees"/>
+      <xs:enumeration value="storages"/>
+      <xs:enumeration value="containers"/>
+      <xs:enumeration value="dieselTanks"/>
+      <xs:enumeration value="waterTanks"/>
+      <xs:enumeration value="fillableTanks"/>
+      <xs:enumeration value="silos"/>
+      <xs:enumeration value="siloExtensions"/>
+      <xs:enumeration value="sheds"/>
+      <xs:enumeration value="gardenSheds"/>
+      <xs:enumeration value="farmhouses"/>
+      <xs:enumeration value="beeHives"/>
+      <xs:enumeration value="generators"/>
+      <xs:enumeration value="floodLighting"/>
+      <xs:enumeration value="decoration"/>
+      <xs:enumeration value="productionPoints"/>
+      <xs:enumeration value="sellingPoints"/>
+      <xs:enumeration value="placeableMisc"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="templates">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="template" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="colorScan" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="channelB" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Calibrate blue channel</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="channelG" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Calibrate green channel</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="channelMetalness" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Calibrate metalness</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="channelR" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Calibrate red channel</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="channelSmoothness" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Calibrate smoothness</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="filename" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to scan reference</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="brand" type="fs25_brand">
+                            <xs:annotation><xs:documentation xml:lang="en">Brand identifier</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="category" type="fs25_storeCategory">
+                            <xs:annotation><xs:documentation xml:lang="en">Category name (Used by DCC Tool)</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="clearCoatIntensity" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="clearCoatSmoothness" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="colorScale" type="g_vector_3">
+                            <xs:annotation><xs:documentation xml:lang="en">Color values (sRGB)</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="description" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Descrpition text of the template</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="detailDiffuse" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Detail diffuse texture</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="detailNormal" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Detail normal texture</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="detailSpecular" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Detail specular texture</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="iconFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Icon filename (Used by DCC Tool)</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="metalnessScale" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="name" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Name of template</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="parentTemplate" type="g_string" default="templates#parentTemplateDefault">
+                            <xs:annotation><xs:documentation xml:lang="en">Name of parent template</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="porosity" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="smoothnessScale" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="title" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Name of the color to display in the shop</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="usage" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">Usage of the color</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+            <xs:attribute name="id" type="g_string">
+                <xs:annotation><xs:documentation xml:lang="en">File Identifier</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="name" type="g_string">
+                <xs:annotation><xs:documentation xml:lang="en">File Name</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="parentTemplateDefault" type="g_string">
+                <xs:annotation><xs:documentation xml:lang="en">Name of default parent template</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="parentTemplateFilename" type="g_string">
+                <xs:annotation><xs:documentation xml:lang="en">Path to parent template file</xs:documentation></xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

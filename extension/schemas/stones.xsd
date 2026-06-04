@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="stones" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="general" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="firstChannel" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Stone first channel</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="numChannels" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Stone num channels</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="growth" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="update" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="period" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Stone update period</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="sourceState" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Stone update source state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="targetState" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Stone update target state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="mapColors" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="mapColor" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="colorBlind" type="g_vector_4">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Color blind map colors</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="default" type="g_vector_4">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Default map colors</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="states" type="g_vector_n" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Map color states</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="picking" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="litersPerSqm" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Stone liters per sqm</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="maskValue" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Stone mask value</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="maxValue" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Stone max value</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="minValue" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Stone min value</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="pickedValue" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Stone picked value</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="wear" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="type" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="multiplier1" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Multiplier in stone state 1</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="multiplier2" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Multiplier in stone state 2</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="multiplier3" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Multiplier in stone state 3</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="name" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Vehicle type name</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="name" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Stone layer name</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="title" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Stone title</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

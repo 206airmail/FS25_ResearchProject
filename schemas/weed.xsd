@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="fs25_fruitType">
+    <xs:annotation><xs:documentation>Fruit/crop type (case-insensitive) — 25 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="wheat"/>
+      <xs:enumeration value="barley"/>
+      <xs:enumeration value="canola"/>
+      <xs:enumeration value="oat"/>
+      <xs:enumeration value="maize"/>
+      <xs:enumeration value="sunflower"/>
+      <xs:enumeration value="soybean"/>
+      <xs:enumeration value="potato"/>
+      <xs:enumeration value="rice"/>
+      <xs:enumeration value="riceLongGrain"/>
+      <xs:enumeration value="sugarBeet"/>
+      <xs:enumeration value="sugarCane"/>
+      <xs:enumeration value="cotton"/>
+      <xs:enumeration value="sorghum"/>
+      <xs:enumeration value="grape"/>
+      <xs:enumeration value="olive"/>
+      <xs:enumeration value="poplar"/>
+      <xs:enumeration value="beetRoot"/>
+      <xs:enumeration value="carrot"/>
+      <xs:enumeration value="parsnip"/>
+      <xs:enumeration value="greenBean"/>
+      <xs:enumeration value="pea"/>
+      <xs:enumeration value="spinach"/>
+      <xs:enumeration value="grass"/>
+      <xs:enumeration value="oilseedRadish"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="replacements" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="herbicide" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="replacements" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="replacement" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="sourceState" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Herbicide replacement source state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="targetState" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Herbicide replacement target state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="fruitType" type="fs25_fruitType">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Replacement fruittype. If undefined weed is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="mulcher" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="replacements" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="replacement" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="sourceState" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Mulcher replacement source state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="targetState" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Mulcher replacement target state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="fruitType" type="fs25_fruitType">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Replacement fruittype. If undefined weed is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="weeder" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="replacements" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="replacement" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="sourceState" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Weeder replacement source state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="targetState" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Weeder replacement target state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="fruitType" type="fs25_fruitType">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Replacement fruittype. If undefined weed is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="weederHoe" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="replacements" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="replacement" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="sourceState" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Weeder hoe replacement source state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="targetState" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Weeder hoe replacement target state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="fruitType" type="fs25_fruitType">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Replacement fruittype. If undefined weed is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="weed" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="factors" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="factor" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="state" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed factor state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed factor</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="fieldInfoStates" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="fieldInfoState" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="state" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Field info weed state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="title" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Field info weed state title</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="general" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="firstChannel" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Weed first channel</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="numChannels" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Weed num channels</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="growth" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="update" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="sourceState" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed update source state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="targetState" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed update target state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="infoLayer" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="blockingState" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="firstChannel" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed info layer blocking first channel</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="numChannels" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed info layer blocking num channels</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed info layer blocking value</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="filename" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Weed info layer filename</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="firstChannel" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Weed info layer first channel</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="numChannels" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Weed info layer num channels</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="mapColors" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="mapColor" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="colorBlind" type="g_vector_4">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Color blind map colors</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="default" type="g_vector_4">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Default map colors</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="states" type="g_vector_n" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Map color states</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="states" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="denseStart" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="value" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed sparse state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="sparseStart" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="value" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed sparse state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="name" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Weed layer name</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="title" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Weed title</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

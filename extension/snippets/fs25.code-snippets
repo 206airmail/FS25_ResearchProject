@@ -1,0 +1,63 @@
+{
+  "FS25 modDesc": {
+    "prefix": "fs25-moddesc",
+    "body": [
+      "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>",
+      "<modDesc descVersion=\"109\">",
+      "\t<author>${1:Author}</author>",
+      "\t<version>${2:1.0.0.0}</version>",
+      "\t<title>",
+      "\t\t<en>${3:Title}</en>",
+      "\t</title>",
+      "\t<description>",
+      "\t\t<en>${4:Description}</en>",
+      "\t</description>",
+      "\t<iconFilename>modIcon.dds</iconFilename>",
+      "\t<extraSourceFiles>",
+      "\t\t<sourceFile filename=\"scripts/${5:Main}.lua\"/>",
+      "\t</extraSourceFiles>",
+      "\t<l10n filenamePrefix=\"translations/translation\"/>",
+      "</modDesc>"
+    ],
+    "description": "FS25 modDesc.xml skeleton (descVersion 109)"
+  },
+  "FS25 attacherJoint": {
+    "prefix": "fs25-attacherjoint",
+    "body": [
+      "<attacherJoint index=\"${1:0>}\" jointType=\"${2|implement,trailer,trailerLow,trailerSaddled,telehandler,frontloader,loaderFork,semitrailer,wheelLoader,cutter,hookLift|}\" lowerRotLimit=\"${3:20 20 20}\" lowerDistanceToGround=\"${4:0.5}\" upperDistanceToGround=\"${5:0.9}\"/>"
+    ],
+    "description": "FS25 attacherJoint with jointType choices"
+  },
+  "FS25 inputAttacherJoint": {
+    "prefix": "fs25-inputattacherjoint",
+    "body": [
+      "<inputAttacherJoint index=\"${1:0>}\" jointType=\"${2|implement,trailer,trailerLow,cutter,cutterHarvester,telehandler,wheelLoader|}\" lowerRotationOffset=\"${3:0}\" needsToolbarSelection=\"${4:false}\"/>"
+    ],
+    "description": "FS25 inputAttacherJoint with jointType choices"
+  },
+  "FS25 fillUnit": {
+    "prefix": "fs25-fillunit",
+    "body": [
+      "<fillUnit unitIndex=\"${1:1}\" fillType=\"${2:WHEAT}\" capacity=\"${3:10000}\" showOnHud=\"${4:true}\"/>"
+    ],
+    "description": "FS25 fillUnit"
+  },
+  "FS25 storeData": {
+    "prefix": "fs25-storedata",
+    "body": [
+      "<storeData>",
+      "\t<name>${1:Name}</name>",
+      "\t<functions>",
+      "\t\t<function>${2:Function}</function>",
+      "\t</functions>",
+      "\t<image>store_${3:item}.png</image>",
+      "\t<price>${4:10000}</price>",
+      "\t<lifetime>${5:600}</lifetime>",
+      "\t<brand>${6:LIZARD}</brand>",
+      "\t<category>${7:tractorsM}</category>",
+      "\t<vehicleTypeName>${8:baseVehicle}</vehicleTypeName>",
+      "</storeData>"
+    ],
+    "description": "FS25 storeData block"
+  }
+}

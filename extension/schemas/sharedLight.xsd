@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="light">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="baseMaterial" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="clearCoat" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="intensity" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Intensity of clear coat</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="smoothness" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Smoothness of clear coat</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="colorScale" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="value" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Material color if it should not be used from configuration (can also be a different material template, from which then ONLY the color is taken)</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="detail" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="diffuse" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to detail diffuse texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="normal" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to detail normal texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="specular" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to detail specular texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="metalness" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="value" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Metalness value</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="smoothness" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="value" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Smoothness value</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="textures" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="diffuse" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to diffuse texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="normal" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to normal texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="specular" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to specular texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="materialSlotName" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Material slot name in the i3d file</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="materialTemplateName" type="g_string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="en">Name of template to apply (all attributes will be used from template)</xs:documentation>
+                                <xs:appinfo>
+                                    <typeStr>String</typeStr>
+                                    <giantsAutoCompletion sourceFile="$data/shared/brandMaterialTemplates.xml" prefix="">
+                                        <path>templates.template#name</path>
+                                    </giantsAutoCompletion>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="materialTemplateUseColorOnly" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">If &apos;true&apos;, only the color is used from the material template. The rest from the i3d file.</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="bottomLight" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="excludedLightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Excluded light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="intensity" type="g_float" default="5">
+                            <xs:annotation><xs:documentation xml:lang="en">Intensity</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="lightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Visual light node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="toggleVisibility" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Toggle visibility</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="uvSlotIndex" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">UV slot if vehicleShader with &apos;lightIds&apos; shader parameter is used (slot 1-16)</xs:documentation><xs:appinfo><defaultStr>if not defined, all slots will be set equally</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="brakeLight" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="excludedLightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Excluded light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="intensity" type="g_float" default="5">
+                            <xs:annotation><xs:documentation xml:lang="en">Intensity</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="lightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Visual light node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="toggleVisibility" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Toggle visibility</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="uvSlotIndex" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">UV slot if vehicleShader with &apos;lightIds&apos; shader parameter is used (slot 1-16)</xs:documentation><xs:appinfo><defaultStr>if not defined, all slots will be set equally</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dayTimeLight" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="excludedLightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Excluded light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="intensity" type="g_float" default="5">
+                            <xs:annotation><xs:documentation xml:lang="en">Intensity</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="lightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Visual light node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="toggleVisibility" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Toggle visibility</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="uvSlotIndex" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">UV slot if vehicleShader with &apos;lightIds&apos; shader parameter is used (slot 1-16)</xs:documentation><xs:appinfo><defaultStr>if not defined, all slots will be set equally</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="defaultLight" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="excludedLightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Excluded light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="intensity" type="g_float" default="5">
+                            <xs:annotation><xs:documentation xml:lang="en">Intensity</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="lightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Visual light node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="toggleVisibility" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Toggle visibility</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="uvSlotIndex" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">UV slot if vehicleShader with &apos;lightIds&apos; shader parameter is used (slot 1-16)</xs:documentation><xs:appinfo><defaultStr>if not defined, all slots will be set equally</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="filename" type="g_string" minOccurs="1">
+                    <xs:annotation><xs:documentation xml:lang="en">Path to i3d file</xs:documentation></xs:annotation>
+                </xs:element>
+                <xs:element name="glassMaterial" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="clearCoat" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="intensity" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Intensity of clear coat</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="smoothness" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Smoothness of clear coat</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="colorScale" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="value" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Material color if it should not be used from configuration (can also be a different material template, from which then ONLY the color is taken)</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="detail" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="diffuse" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to detail diffuse texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="normal" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to detail normal texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="specular" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to detail specular texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="metalness" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="value" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Metalness value</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="smoothness" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="value" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Smoothness value</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="textures" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="diffuse" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to diffuse texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="normal" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to normal texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="specular" type="g_filename">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to specular texture</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="materialSlotName" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Material slot name in the i3d file</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="materialTemplateName" type="g_string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="en">Name of template to apply (all attributes will be used from template)</xs:documentation>
+                                <xs:appinfo>
+                                    <typeStr>String</typeStr>
+                                    <giantsAutoCompletion sourceFile="$data/shared/brandMaterialTemplates.xml" prefix="">
+                                        <path>templates.template#name</path>
+                                    </giantsAutoCompletion>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="materialTemplateUseColorOnly" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">If &apos;true&apos;, only the color is used from the material template. The rest from the i3d file.</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="reverseLight" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="excludedLightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Excluded light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="intensity" type="g_float" default="5">
+                            <xs:annotation><xs:documentation xml:lang="en">Intensity</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="lightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Visual light node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="toggleVisibility" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Toggle visibility</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="uvSlotIndex" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">UV slot if vehicleShader with &apos;lightIds&apos; shader parameter is used (slot 1-16)</xs:documentation><xs:appinfo><defaultStr>if not defined, all slots will be set equally</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="rootNode" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Node index</xs:documentation><xs:appinfo><defaultStr>0</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="rotationNode" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="name" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Name for reference in vehicle xml</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="staticLightCompound" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="function" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="intensityScale" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Custom intensity scale for this light type (is multiplied by the intensity defined in the node)</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="lightType">
+                                        <xs:simpleType>
+                                            <xs:annotation><xs:documentation xml:lang="en">Name of the light type to use</xs:documentation></xs:annotation>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="BLINKING" />
+                                                <xs:enumeration value="MULTI_BLINK" />
+                                                <xs:enumeration value="SLIDE" />
+                                                <xs:enumeration value="STATIC" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="name">
+                                        <xs:simpleType>
+                                            <xs:annotation><xs:documentation xml:lang="en">Function name</xs:documentation></xs:annotation>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="BACK_BRAKE_LIGHT" />
+                                                <xs:enumeration value="BACK_LIGHT" />
+                                                <xs:enumeration value="BOTTOM_LIGHT" />
+                                                <xs:enumeration value="BRAKE_LIGHT" />
+                                                <xs:enumeration value="DAY_TIME_RUNNING_LIGHT" />
+                                                <xs:enumeration value="DEFAULT_LIGHT" />
+                                                <xs:enumeration value="DEFAULT_LIGHT_HIGH_BEAM" />
+                                                <xs:enumeration value="HIGH_BEAM" />
+                                                <xs:enumeration value="REVERSE_LIGHT" />
+                                                <xs:enumeration value="TOP_LIGHT" />
+                                                <xs:enumeration value="TURN_LIGHT_LEFT" />
+                                                <xs:enumeration value="TURN_LIGHT_RIGHT" />
+                                                <xs:enumeration value="WORK_LIGHT_ADDITIONAL" />
+                                                <xs:enumeration value="WORK_LIGHT_ADDITIONAL2" />
+                                                <xs:enumeration value="WORK_LIGHT_BACK" />
+                                                <xs:enumeration value="WORK_LIGHT_FRONT" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                    <xs:attribute name="uvOffset" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Vertical UV offset that is used while this light function is active (value range: 0-64 -&gt;; this represents the height of the texture with a resolution of 1/64). This is used for double usage of certain lights with different colors.</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="uvSlotIndex" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Custom UV slot index to assign the defined function name</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="node" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="intensity" type="g_float" default="5">
+                                        <xs:annotation><xs:documentation xml:lang="en">Intensity for all lights in this node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="lightTypeBitMask" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Custom light type bit mask</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="node" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Static light node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="useSliderTurnLights" type="g_bool" default="false">
+                                        <xs:annotation><xs:documentation xml:lang="en">Turn lights will work as sliders if set to &apos;true&apos;</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="bottomLightAsHighBeam" type="g_bool" default="true">
+                            <xs:annotation><xs:documentation xml:lang="en">Use bottom light as high beam as well</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="lightTypeBitMask" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">Custom light type bit mask</xs:documentation><xs:appinfo><defaultStr>Default mask is &apos;20480&apos; with blinking type set for turn light slots 7 &amp; 8</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="topLightAsHighBeam" type="g_bool" default="true">
+                            <xs:annotation><xs:documentation xml:lang="en">Use top light as high beam as well</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="useSliderTurnLights" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Turn lights will work as sliders if set to &apos;true&apos;</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="topLight" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="excludedLightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Excluded light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="intensity" type="g_float" default="5">
+                            <xs:annotation><xs:documentation xml:lang="en">Intensity</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="lightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Visual light node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="toggleVisibility" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Toggle visibility</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="uvSlotIndex" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">UV slot if vehicleShader with &apos;lightIds&apos; shader parameter is used (slot 1-16)</xs:documentation><xs:appinfo><defaultStr>if not defined, all slots will be set equally</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="turnLightLeft" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="excludedLightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Excluded light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="intensity" type="g_float" default="5">
+                            <xs:annotation><xs:documentation xml:lang="en">Intensity</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="lightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Visual light node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="toggleVisibility" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Toggle visibility</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="uvSlotIndex" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">UV slot if vehicleShader with &apos;lightIds&apos; shader parameter is used (slot 1-16)</xs:documentation><xs:appinfo><defaultStr>if not defined, all slots will be set equally</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="turnLightRight" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="excludedLightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Excluded light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="intensity" type="g_float" default="5">
+                            <xs:annotation><xs:documentation xml:lang="en">Intensity</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="lightTypes" type="g_vector_n">
+                            <xs:annotation><xs:documentation xml:lang="en">Light types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Visual light node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="toggleVisibility" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Toggle visibility</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="uvSlotIndex" type="g_int">
+                            <xs:annotation><xs:documentation xml:lang="en">UV slot if vehicleShader with &apos;lightIds&apos; shader parameter is used (slot 1-16)</xs:documentation><xs:appinfo><defaultStr>if not defined, all slots will be set equally</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="species">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="annotation" type="g_string" minOccurs="0">
+                    <xs:annotation><xs:documentation xml:lang="en">Copyright annotation</xs:documentation></xs:annotation>
+                </xs:element>
+                <xs:element name="asset" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="animations" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="animation" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="name" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The name of the state required for the animation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="opcode" type="g_int" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The op code for the animation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="speed" type="g_float" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The speed for the animation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="transitionTime" type="g_float" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The transition time for the animation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="shaderNode" type="g_string" use="required">
+                                        <xs:annotation><xs:documentation xml:lang="en">The index of the shader node within the file</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="filename" type="g_string" use="required">
+                            <xs:annotation><xs:documentation xml:lang="en">The filename of the i3d file</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_string" use="required">
+                            <xs:annotation><xs:documentation xml:lang="en">The filename of the i3d file</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="behavior" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="flee" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="distance" type="g_float" default="6">
+                                        <xs:annotation><xs:documentation xml:lang="en">The range at which the species will run from the player</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="moveSpeed" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">How fast the instance moves while fleeing</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="patienceLossPerMove" type="g_float" default="45">
+                                        <xs:annotation><xs:documentation xml:lang="en">How many points of patience are lost every time this speies has to flee</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="patiencePerSecond" type="g_float" default="5">
+                                        <xs:annotation><xs:documentation xml:lang="en">How many points of patience are restored per second</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="follow" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="frequency" type="g_vector_2">
+                                        <xs:annotation><xs:documentation xml:lang="en">The range of seconds that the instance will wait between going to a position around the target</xs:documentation><xs:appinfo><defaultStr>min: 120.00, max: 360.00</defaultStr></xs:appinfo></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="maximumDistance" type="g_float" default="6">
+                                        <xs:annotation><xs:documentation xml:lang="en">The maximum range before the instance will force find a target to the leader</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="targetRange" type="g_vector_2">
+                                        <xs:annotation><xs:documentation xml:lang="en">The range of radii where the instance can set a target</xs:documentation><xs:appinfo><defaultStr>min: 2.00, max: 4.00</defaultStr></xs:appinfo></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="idle" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="attentionDuration" type="g_vector_2">
+                                        <xs:annotation><xs:documentation xml:lang="en">The range of durations in which the wildlife will look for danger</xs:documentation><xs:appinfo><defaultStr>min: 1.00, max: 2.00</defaultStr></xs:appinfo></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="eatDuration" type="g_vector_2">
+                                        <xs:annotation><xs:documentation xml:lang="en">The range of durations in which the wildlife will eat</xs:documentation><xs:appinfo><defaultStr>min: 1.00, max: 2.00</defaultStr></xs:appinfo></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="wander" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="fly" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="chance" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The chance that this species will fly rather than walk to its target</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="range" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The minimum and maximum range that this species will fly</xs:documentation><xs:appinfo><defaultStr>nil</defaultStr></xs:appinfo></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="swim" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="range" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The minimum and maximum range that this species will swim</xs:documentation><xs:appinfo><defaultStr>nil</defaultStr></xs:appinfo></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="walk" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="range" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The minimum and maximum range that this species will walk</xs:documentation><xs:appinfo><defaultStr>min: 1.00, max: 2.00</defaultStr></xs:appinfo></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="frequency" type="g_vector_2">
+                                        <xs:annotation><xs:documentation xml:lang="en">The minimum and maximum frequency that this species will want to move somewhere else. Every time the species moves, a value between these values will be generated</xs:documentation><xs:appinfo><defaultStr>min: 120.00, max: 360.00</defaultStr></xs:appinfo></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="class" type="g_string" minOccurs="1">
+                    <xs:annotation><xs:documentation xml:lang="en">The controller class of the wildlife species</xs:documentation></xs:annotation>
+                </xs:element>
+                <xs:element name="companion" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="animation" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="states" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="state" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:element name="animation" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:choice maxOccurs="unbounded">
+                                                                            <xs:element name="trigger" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="name" type="g_string">
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="t" type="g_float">
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="type" type="g_string">
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:choice>
+                                                                        <xs:attribute name="clip" type="g_string">
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="clipLeft" type="g_string">
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="clipRight" type="g_string">
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="distance" type="g_float">
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="id" type="g_string" use="required">
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="rotation" type="g_float">
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="speed" type="g_float">
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="startTime" type="g_float">
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="weight" type="g_float">
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:choice>
+                                                            <xs:attribute name="id" type="g_string" use="required">
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="transitions" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="transition" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="animationIdFrom" type="g_string">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="animationIdTo" type="g_string">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="blendTime" type="g_float">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="clip" type="g_string">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="sourceTime" type="g_float">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="targetTime" type="g_float">
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="defaultBlendTime" type="g_float">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="asset" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="texture" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="mirrorV" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">If texture should be mirrored in V</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="multi" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">If texture is a multi texture atlas</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="numTilesU" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Texture num tiles U</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="numTilesV" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Texture num tiles V</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="tileU" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Texture tile U</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="tileV" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Texture tile V</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="fetchAttachNode" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Fetch attach node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="filename" type="g_string" use="required">
+                                        <xs:annotation><xs:documentation xml:lang="en">I3d filename of the animal</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="meshNode" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Mesh node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="playerInteractionTriggerNode" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Player Trigger node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="skeletonNode" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Skeleton node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="behavior" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="ranges" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="range" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="max" type="g_float">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="min" type="g_float">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="name" type="g_string">
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="values" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="name" type="g_string">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="value" type="g_float">
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="sound" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="soundGroup" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="sample" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="filename" type="g_string">
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="indoorVolume" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="innerRange" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="name" type="g_string">
+                                                </xs:attribute>
+                                                <xs:attribute name="pitch" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="pitchRandMax" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="pitchRandMin" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="range" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="volume" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="volumeRandMax" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="volumeRandMin" type="g_float">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="maxNumAnimalsPerInstance" type="g_int">
+                        </xs:attribute>
+                        <xs:attribute name="randomSpawnRadius" type="g_float" default="1">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="flyBy" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="asset" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="animations" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="animation" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="name" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The name of the state required for the animation</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="opcode" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The op code for the animation</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="speed" type="g_float" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The speed for the animation</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="transitionTime" type="g_float" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The transition time for the animation</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="shaderNode" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The index of the shader node within the file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="filename" type="g_string" use="required">
+                                        <xs:annotation><xs:documentation xml:lang="en">The filename of the i3d file</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="node" type="g_string" use="required">
+                                        <xs:annotation><xs:documentation xml:lang="en">The filename of the i3d file</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="group" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxRadius" type="g_float">
+                                    </xs:attribute>
+                                    <xs:attribute name="minRadius" type="g_float">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="climbPerMeter" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="fallPerMeter" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="maxNumAnimalsPerInstance" type="g_int">
+                        </xs:attribute>
+                        <xs:attribute name="minDistanceToGround" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="minNumAnimalsPerInstance" type="g_int">
+                        </xs:attribute>
+                        <xs:attribute name="speedKmH" type="g_float">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="movement" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="canIdleInWater" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Is true if this species can set a movement target in a body of water; otherwise false</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="climbSpeed" type="g_float" default="1">
+                            <xs:annotation><xs:documentation xml:lang="en">The average movement speed of the species flying upwards</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="flyHeight" type="g_vector_2">
+                            <xs:annotation><xs:documentation xml:lang="en">The range of fly heights of the species in the air</xs:documentation><xs:appinfo><defaultStr>nil</defaultStr></xs:appinfo></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="flySpeed" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">The average movement speed of the species in the air</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="swimSpeed" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">The average movement speed of the species in the water</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="wadeDepth" type="g_float" default="0">
+                            <xs:annotation><xs:documentation xml:lang="en">How far into water the instance can walk</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="walkSpeed" type="g_float" default="1">
+                            <xs:annotation><xs:documentation xml:lang="en">The average movement speed of the species on foot</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="name" type="g_string" minOccurs="1">
+                    <xs:annotation><xs:documentation xml:lang="en">The name of the wildlife species</xs:documentation></xs:annotation>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="settings" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="despawn" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="radius" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Distance to player after a instance will despawn</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="foliageBending" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxX" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max. width</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="maxZ" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max. length</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="minX" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min. width</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="minZ" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min. length</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="yOffset" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Y translation offset</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="spawn" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="radiusMax" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">A instance cannot spawn if distance is greater than max radius</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="radiusMin" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">A instance cannot spawn within the min radius</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="spawnTimer" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxSeconds" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max time need to pass by to spawn a new instance</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="minSeconds" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min time need to pass by to spawn a new instance</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="retryMaxSeconds" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max time need to pass by to try spawning a new instance after a spawn failure</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="retryMinSeconds" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min time need to pass by to try spawning a new instance after a spawn failure</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="time" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="from" type="g_day_time">
+                                        <xs:annotation><xs:documentation xml:lang="en">Start day time</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="to" type="g_day_time">
+                                        <xs:annotation><xs:documentation xml:lang="en">End day time</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="treeCheck" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="height" type="g_float">
+                                    </xs:attribute>
+                                    <xs:attribute name="minNumTrees" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="radius" type="g_float">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="costPerAnimal" type="g_float" use="required">
+                            <xs:annotation><xs:documentation xml:lang="en">The spawn cost of the wildlife species</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="fleeDistance" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">Flee distance</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="maxNumInstances" type="g_int" use="required">
+                            <xs:annotation><xs:documentation xml:lang="en">Max number of instances per species</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sounds" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="sound" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="chance" type="g_float" default="1">
+                                        <xs:annotation><xs:documentation xml:lang="en">The chance of the sound playing</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="cooldown" type="g_float" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">The time in seconds in which the same sound group cannot be played more than once</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name" type="g_string" use="required">
+                                        <xs:annotation><xs:documentation xml:lang="en">The name of the sound group</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

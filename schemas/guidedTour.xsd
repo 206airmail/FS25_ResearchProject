@@ -1,0 +1,1589 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="fs25_fruitType">
+    <xs:annotation><xs:documentation>Fruit/crop type (case-insensitive) — 25 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="wheat"/>
+      <xs:enumeration value="barley"/>
+      <xs:enumeration value="canola"/>
+      <xs:enumeration value="oat"/>
+      <xs:enumeration value="maize"/>
+      <xs:enumeration value="sunflower"/>
+      <xs:enumeration value="soybean"/>
+      <xs:enumeration value="potato"/>
+      <xs:enumeration value="rice"/>
+      <xs:enumeration value="riceLongGrain"/>
+      <xs:enumeration value="sugarBeet"/>
+      <xs:enumeration value="sugarCane"/>
+      <xs:enumeration value="cotton"/>
+      <xs:enumeration value="sorghum"/>
+      <xs:enumeration value="grape"/>
+      <xs:enumeration value="olive"/>
+      <xs:enumeration value="poplar"/>
+      <xs:enumeration value="beetRoot"/>
+      <xs:enumeration value="carrot"/>
+      <xs:enumeration value="parsnip"/>
+      <xs:enumeration value="greenBean"/>
+      <xs:enumeration value="pea"/>
+      <xs:enumeration value="spinach"/>
+      <xs:enumeration value="grass"/>
+      <xs:enumeration value="oilseedRadish"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="fs25_groundType">
+    <xs:annotation><xs:documentation>Ground type (groundTypes.xml) — 12 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="dirt"/>
+      <xs:enumeration value="asphalt"/>
+      <xs:enumeration value="gravel"/>
+      <xs:enumeration value="grass"/>
+      <xs:enumeration value="sand"/>
+      <xs:enumeration value="animalMud"/>
+      <xs:enumeration value="concrete"/>
+      <xs:enumeration value="plates"/>
+      <xs:enumeration value="cobblestones"/>
+      <xs:enumeration value="flagstones"/>
+      <xs:enumeration value="forestGround"/>
+      <xs:enumeration value="rock"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="guidedTour">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="class" type="g_string" minOccurs="0">
+                    <xs:annotation><xs:documentation xml:lang="en">Class name of the guided tour controller</xs:documentation></xs:annotation>
+                </xs:element>
+                <xs:element name="finish" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="actions" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="farmlandSetFarm" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="farmId" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The owner farm id of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="farmlandId" type="g_int" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Id of the farmland</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="fieldUpdate" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element name="area" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="circle" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="numSegments" type="g_int" default="5">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Number of circle segments</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="radius" type="g_float" default="5">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Circle radius</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="worldPositionXZ" type="g_vector_2">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Circle center world position (x,z)</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="parallelogram" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="heightXZ" type="g_vector_2">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Parallelogram world height size (x,z)</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="widthXZ" type="g_vector_2">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Parallelogram world width size (x,z)</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="worldHeightXZ" type="g_vector_2">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Parallelogram world height position (x,z)</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="worldStartXZ" type="g_vector_2">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Parallelogram world start position (x,z)</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="worldWidthXZ" type="g_vector_2">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Parallelogram world width position (x,z)</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="polygon" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:choice maxOccurs="unbounded">
+                                                                            <xs:element name="point" type="g_vector_2" minOccurs="0">
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Polygon point world position (x,z)</xs:documentation></xs:annotation>
+                                                                            </xs:element>
+                                                                        </xs:choice>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:all>
+                                                            <xs:attribute name="currentMaxY" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Current polygon minY clip region</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="currentMinY" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Current polygon minY clip region</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="fruit" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="growthState" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Growthstate of the fruit type</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="type" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the fruit type</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="ground" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="angle" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Angle of the ground</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="type">
+                                                                <xs:simpleType>
+                                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the ground type</xs:documentation></xs:annotation>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="CULTIVATED" />
+                                                                        <xs:enumeration value="DIRECT_SOWN" />
+                                                                        <xs:enumeration value="GRASS" />
+                                                                        <xs:enumeration value="GRASS_CUT" />
+                                                                        <xs:enumeration value="HARVEST_READY" />
+                                                                        <xs:enumeration value="HARVEST_READY_OTHER" />
+                                                                        <xs:enumeration value="NONE" />
+                                                                        <xs:enumeration value="PLANTED" />
+                                                                        <xs:enumeration value="PLOWED" />
+                                                                        <xs:enumeration value="RIDGE" />
+                                                                        <xs:enumeration value="RIDGE_SOWN" />
+                                                                        <xs:enumeration value="ROLLED_SEEDBED" />
+                                                                        <xs:enumeration value="ROLLER_LINES" />
+                                                                        <xs:enumeration value="SEEDBED" />
+                                                                        <xs:enumeration value="SOWN" />
+                                                                        <xs:enumeration value="STUBBLE_TILLAGE" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="spray" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="level" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Level of the spray</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="type">
+                                                                <xs:simpleType>
+                                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the spray type</xs:documentation></xs:annotation>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="FERTILIZER" />
+                                                                        <xs:enumeration value="LIME" />
+                                                                        <xs:enumeration value="LIQUID_MANURE" />
+                                                                        <xs:enumeration value="MANURE" />
+                                                                        <xs:enumeration value="NONE" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:all>
+                                                <xs:attribute name="clearHeight" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Clear tip anything</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="customName" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Custom name of the task</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="fieldId" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Id of the field</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="fieldType">
+                                                    <xs:simpleType>
+                                                        <xs:annotation><xs:documentation xml:lang="en">Name of the field type</xs:documentation></xs:annotation>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="DEFAULT" />
+                                                            <xs:enumeration value="RICE" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="limeLevel" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Lime level</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="plowLevel" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Plow level</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="rollerLevel" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Roller level</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="status" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Status of the task</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="stoneLevel" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Stone level</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="stubbleShredLevel" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Stubbleshred level</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="weedState" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Weed state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="ingameMap" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="state" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the state</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="navigationMarker" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isActive" type="g_bool" default="true">
+                                                    <xs:annotation><xs:documentation xml:lang="en">If the marker should be active</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="terrainOffsetY" type="g_float" default="0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Y terrain offset</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="worldPosition" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">World position of the marker</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="npcMove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="alignToTerrain" type="g_bool" default="false">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The npc position will be aligned to the terrain</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="npc" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the npc</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="offset" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target position of the npc (offset to rootnode or vehicle)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="offsetRotation" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target rotation of the npc (offset rotation to rootnode or vehicle)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="reset" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">If NPC should be reset</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle the npc position should be offset to</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="npcStartConversation" minOccurs="1">
+                                            <xs:annotation><xs:documentation xml:lang="en">Filename of the conversation</xs:documentation></xs:annotation>
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="g_string">
+                                                        <xs:attribute name="isPhoneConversation" type="g_bool">
+                                                            <xs:annotation><xs:documentation xml:lang="en">If the conversation should is a phone conversation</xs:documentation></xs:annotation>
+                                                        </xs:attribute>
+                                                        <xs:attribute name="npc" type="g_string" use="required">
+                                                            <xs:annotation><xs:documentation xml:lang="en">Name of the npc</xs:documentation></xs:annotation>
+                                                        </xs:attribute>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="placeableSetFarm" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="farmId" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The owner farm id of the placeable</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="placeable" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the placeable</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="playerSetSpawnPosition" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="reset" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">If true current settings will be reset</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The spawn vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="worldPosition" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target position of the npc</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="yaw" type="g_angle">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The yaw of the player</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="showProgress" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isVisible" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">If the progress bar is visible</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleAttach" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="attacherJointIndex" type="g_int" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of the vehicle attacher joint</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="attachment" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Identifier of the attachment</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="inputAttacherJointIndex" type="g_int" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of the attachment input attacher joint index</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleBlockAIStart" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value if ai start is blocked or not</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleBlockAIStop" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value if ai start is blocked or not</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleBlockAttacherJoint" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="attacherJointIndex" type="g_int" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of the attacher joint</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value if detaching is blocked or not</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleBlockDetaching" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value if detaching is blocked or not</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleBlockDischarge" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value if discharge is blocked or not</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleBlockFolding" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value if folding is blocked or not</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleBlockLeaving" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value if leaving is blocked or not</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleBlockPipeChange" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value if folding is blocked or not</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleBlockToggleSeeds" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value if toggle seeds is blocked or not</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleCustomBrake" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="brakeForce" type="g_float" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Value of the custom brake force</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleDetach" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="vehicle" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleDismissHelper" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="vehicle" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleReset" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="offset" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Offset of the vehicle to the target vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="rotationY" type="g_angle" default="0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Y-rotation of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="targetVehicle" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the target vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="worldPosition" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Reset position of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleSetFarm" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="farmId" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The owner farm id of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="vehicleSetFillLevel" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="fillLevel" type="g_float" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target filllevel</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="fillUnitIndex" type="g_int" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Affected fillunit index</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="vehicle" type="g_string" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="steps" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="step" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="actions" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="farmlandSetFarm" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="farmId" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The owner farm id of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="farmlandId" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Id of the farmland</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="fieldUpdate" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="area" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:all>
+                                                                            <xs:element name="circle" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="numSegments" type="g_int" default="5">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Number of circle segments</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="radius" type="g_float" default="5">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Circle radius</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldPositionXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Circle center world position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="parallelogram" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="heightXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world height size (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="widthXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world width size (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldHeightXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world height position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldStartXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world start position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldWidthXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world width position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="polygon" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:choice maxOccurs="unbounded">
+                                                                                        <xs:element name="point" type="g_vector_2" minOccurs="0">
+                                                                                            <xs:annotation><xs:documentation xml:lang="en">Polygon point world position (x,z)</xs:documentation></xs:annotation>
+                                                                                        </xs:element>
+                                                                                    </xs:choice>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:all>
+                                                                        <xs:attribute name="currentMaxY" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Current polygon minY clip region</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="currentMinY" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Current polygon minY clip region</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="fruit" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="growthState" type="g_string">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Growthstate of the fruit type</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="type" type="g_string">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Name of the fruit type</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="ground" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="angle" type="g_int">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Angle of the ground</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="type">
+                                                                            <xs:simpleType>
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the ground type</xs:documentation></xs:annotation>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:enumeration value="CULTIVATED" />
+                                                                                    <xs:enumeration value="DIRECT_SOWN" />
+                                                                                    <xs:enumeration value="GRASS" />
+                                                                                    <xs:enumeration value="GRASS_CUT" />
+                                                                                    <xs:enumeration value="HARVEST_READY" />
+                                                                                    <xs:enumeration value="HARVEST_READY_OTHER" />
+                                                                                    <xs:enumeration value="NONE" />
+                                                                                    <xs:enumeration value="PLANTED" />
+                                                                                    <xs:enumeration value="PLOWED" />
+                                                                                    <xs:enumeration value="RIDGE" />
+                                                                                    <xs:enumeration value="RIDGE_SOWN" />
+                                                                                    <xs:enumeration value="ROLLED_SEEDBED" />
+                                                                                    <xs:enumeration value="ROLLER_LINES" />
+                                                                                    <xs:enumeration value="SEEDBED" />
+                                                                                    <xs:enumeration value="SOWN" />
+                                                                                    <xs:enumeration value="STUBBLE_TILLAGE" />
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="spray" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="level" type="g_int">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Level of the spray</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="type">
+                                                                            <xs:simpleType>
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the spray type</xs:documentation></xs:annotation>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:enumeration value="FERTILIZER" />
+                                                                                    <xs:enumeration value="LIME" />
+                                                                                    <xs:enumeration value="LIQUID_MANURE" />
+                                                                                    <xs:enumeration value="MANURE" />
+                                                                                    <xs:enumeration value="NONE" />
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:all>
+                                                            <xs:attribute name="clearHeight" type="g_bool">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Clear tip anything</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="customName" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Custom name of the task</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="fieldId" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Id of the field</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="fieldType">
+                                                                <xs:simpleType>
+                                                                    <xs:annotation><xs:documentation xml:lang="en">Name of the field type</xs:documentation></xs:annotation>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="DEFAULT" />
+                                                                        <xs:enumeration value="RICE" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="limeLevel" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Lime level</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="plowLevel" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Plow level</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="rollerLevel" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Roller level</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="status" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Status of the task</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="stoneLevel" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Stone level</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="stubbleShredLevel" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Stubbleshred level</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="weedState" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Weed state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="ingameMap" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="state" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="navigationMarker" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isActive" type="g_bool" default="true">
+                                                                <xs:annotation><xs:documentation xml:lang="en">If the marker should be active</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="terrainOffsetY" type="g_float" default="0">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Y terrain offset</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="worldPosition" type="g_vector_2">
+                                                                <xs:annotation><xs:documentation xml:lang="en">World position of the marker</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="npcMove" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="alignToTerrain" type="g_bool" default="false">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The npc position will be aligned to the terrain</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="npc" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the npc</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="offset" type="g_vector_trans">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Target position of the npc (offset to rootnode or vehicle)</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="offsetRotation" type="g_vector_rot">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Target rotation of the npc (offset rotation to rootnode or vehicle)</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="reset" type="g_bool">
+                                                                <xs:annotation><xs:documentation xml:lang="en">If NPC should be reset</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle the npc position should be offset to</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="npcStartConversation" minOccurs="1">
+                                                        <xs:annotation><xs:documentation xml:lang="en">Filename of the conversation</xs:documentation></xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="g_string">
+                                                                    <xs:attribute name="isPhoneConversation" type="g_bool">
+                                                                        <xs:annotation><xs:documentation xml:lang="en">If the conversation should is a phone conversation</xs:documentation></xs:annotation>
+                                                                    </xs:attribute>
+                                                                    <xs:attribute name="npc" type="g_string" use="required">
+                                                                        <xs:annotation><xs:documentation xml:lang="en">Name of the npc</xs:documentation></xs:annotation>
+                                                                    </xs:attribute>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="placeableSetFarm" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="farmId" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The owner farm id of the placeable</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="placeable" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the placeable</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="playerSetSpawnPosition" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="reset" type="g_bool">
+                                                                <xs:annotation><xs:documentation xml:lang="en">If true current settings will be reset</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The spawn vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="worldPosition" type="g_vector_trans">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Target position of the npc</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="yaw" type="g_angle">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The yaw of the player</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="showProgress" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isVisible" type="g_bool">
+                                                                <xs:annotation><xs:documentation xml:lang="en">If the progress bar is visible</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleAttach" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="attacherJointIndex" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Index of the vehicle attacher joint</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="attachment" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the attachment</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="inputAttacherJointIndex" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Index of the attachment input attacher joint index</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleBlockAIStart" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value if ai start is blocked or not</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleBlockAIStop" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value if ai start is blocked or not</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleBlockAttacherJoint" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="attacherJointIndex" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Index of the attacher joint</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value if detaching is blocked or not</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleBlockDetaching" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value if detaching is blocked or not</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleBlockDischarge" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value if discharge is blocked or not</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleBlockFolding" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value if folding is blocked or not</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleBlockLeaving" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value if leaving is blocked or not</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleBlockPipeChange" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value if folding is blocked or not</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleBlockToggleSeeds" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isBlocked" type="g_bool" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value if toggle seeds is blocked or not</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleCustomBrake" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="brakeForce" type="g_float" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Value of the custom brake force</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle. If not defined the current vehicle is used</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleDetach" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleDismissHelper" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleReset" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="offset" type="g_vector_2">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Offset of the vehicle to the target vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="rotationY" type="g_angle" default="0">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Y-rotation of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="targetVehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the target vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="worldPosition" type="g_vector_2">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Reset position of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleSetFarm" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="farmId" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">The owner farm id of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleSetFillLevel" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="fillLevel" type="g_float" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Target filllevel</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="fillUnitIndex" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Affected fillunit index</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="class" type="g_string" minOccurs="0">
+                                            <xs:annotation><xs:documentation xml:lang="en">Controller class of the step</xs:documentation></xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="goals" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="dialogShown" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:element name="input" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="gamepadOnly" type="g_bool" default="false">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">If the input should only be visible if gamepad input is active</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="keyboardOnly" type="g_bool" default="false">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">If the input should only be visible if keyboard input is active</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="name" type="g_string">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Name of the input action</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="name2" type="g_string">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Name of the second input action</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="text" type="g_l10n_string">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Text of the action</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:choice>
+                                                            <xs:attribute name="text" type="g_l10n_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Text of the dialog</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="title" type="g_l10n_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Title of the dialog</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="introductionHelpShown" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="blockInput" type="g_bool" default="true">
+                                                                <xs:annotation><xs:documentation xml:lang="en">If the input should be blocked</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="id" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Id of the introduction help item</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="text" type="g_l10n_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">A custom text that should be displayed</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="npcConversationFinished" minOccurs="1">
+                                                        <xs:annotation><xs:documentation xml:lang="en">Filename to the conversation</xs:documentation></xs:annotation>
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="g_string">
+                                                                    <xs:attribute name="npc" type="g_string" use="required">
+                                                                        <xs:annotation><xs:documentation xml:lang="en">Name of the npc</xs:documentation></xs:annotation>
+                                                                    </xs:attribute>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="npcInRange" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="npc" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the npc</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="showMarker" type="g_bool" default="true">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Show navigation marker</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="playerInTrigger" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="npc" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the npc the position should be offset to</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="offset" type="g_vector_2" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">If vehicle is given offset is local to vehicle rootnode, else world positions are assumed. X and Z values only</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="offsetY" type="g_float" default="0">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Local y offset if vehicle is given, else terrain offset</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="radius" type="g_float" default="2">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Trigger distance</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="showMarker" type="g_bool" default="true">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Show navigation marker</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle the position should be offset to</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="progress" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="minProgress" type="g_float" default="0.2">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Min progress (0-1)</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="progressIndex" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Id of the progress</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleAttachedTo" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="attachment" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the attachment</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleDetached" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleFillLevel" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="above" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Filllevel of the vehicle (above)</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="below" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Filllevel of the vehicle (below)</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="fillUnit" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Fillunit index of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleInAttachRange" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="attacherJointIndex" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Index of the vehicle attacher joint</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="attachment" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the attachment</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="inputAttacherJointIndex" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Index of the attachment input attacher joint index</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleInFillRange" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleInRange" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="exactFillRootNodeIndex" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Index of the fill rootnode</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="height" type="g_float" default="10">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Trigger height</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="offset" type="g_vector_2" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Offset from target vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="radius" type="g_float" default="2">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Trigger distance</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="showMarker" type="g_bool" default="true">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Show navigation marker</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="targetVehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the target vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleInTipTrigger" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleInTrigger" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="height" type="g_float" default="10">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Trigger height</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="radius" type="g_float" default="2">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Trigger distance</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="showMarker" type="g_bool" default="true">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Show navigation marker</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="terrainOffsetY" type="g_float" default="0">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Navigation marker terrain offset</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="worldPosition" type="g_vector_2" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">World position of trigger. X and Z values only</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="worldPositionY" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">World y position. If defined the y position will not be calculated based on the terrain</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="worldRotationY" type="g_angle">
+                                                                <xs:annotation><xs:documentation xml:lang="en">World rotation y</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleIsAIActive" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleIsControlled" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isControlled" type="g_bool" default="true">
+                                                                <xs:annotation><xs:documentation xml:lang="en">If vehicle should be controlled</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleIsLowered" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleIsSeedTypeSelected" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="seedTypeName" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the seedtype</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleIsTurnedOn" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehicleIsUnfolded" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="vehiclePipeState" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="pipeState" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Target pipe state value</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="vehicle" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Identifier of the vehicle</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="info" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="input" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="name" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the input action</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="name2" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the second input action</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="text" type="g_l10n_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Text of the action</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="text" type="g_l10n_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The info text of the current task</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="progresses" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="fieldFruit" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="area" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:all>
+                                                                            <xs:element name="circle" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="numSegments" type="g_int" default="5">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Number of circle segments</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="radius" type="g_float" default="5">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Circle radius</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldPositionXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Circle center world position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="parallelogram" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="heightXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world height size (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="widthXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world width size (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldHeightXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world height position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldStartXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world start position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldWidthXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world width position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="polygon" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:choice maxOccurs="unbounded">
+                                                                                        <xs:element name="point" type="g_vector_2" minOccurs="0">
+                                                                                            <xs:annotation><xs:documentation xml:lang="en">Polygon point world position (x,z)</xs:documentation></xs:annotation>
+                                                                                        </xs:element>
+                                                                                    </xs:choice>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:all>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:all>
+                                                            <xs:attribute name="description" type="g_l10n_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Desciption of the progress</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="fieldId" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Id of the field</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="fruitType" type="fs25_fruitType" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the fruit type</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="growthState" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the growth state</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="title" type="g_l10n_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Title of the progress</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="fieldGround" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="area" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:all>
+                                                                            <xs:element name="circle" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="numSegments" type="g_int" default="5">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Number of circle segments</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="radius" type="g_float" default="5">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Circle radius</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldPositionXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Circle center world position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="parallelogram" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="heightXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world height size (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="widthXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world width size (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldHeightXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world height position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldStartXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world start position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="worldWidthXZ" type="g_vector_2">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Parallelogram world width position (x,z)</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="polygon" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:choice maxOccurs="unbounded">
+                                                                                        <xs:element name="point" type="g_vector_2" minOccurs="0">
+                                                                                            <xs:annotation><xs:documentation xml:lang="en">Polygon point world position (x,z)</xs:documentation></xs:annotation>
+                                                                                        </xs:element>
+                                                                                    </xs:choice>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:all>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:all>
+                                                            <xs:attribute name="description" type="g_l10n_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Desciption of the progress</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="fieldId" type="g_int" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Id of the field</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="groundType" type="fs25_groundType" default="CULTIVATED">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the ground type</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="title" type="g_l10n_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Title of the progress</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="taskDescription" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="text" type="g_l10n_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">The description text of the current task</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="showProgress" type="g_bool">
+                                        <xs:annotation><xs:documentation xml:lang="en">Hide or show the current tour progress bar</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="title" type="g_l10n_string" minOccurs="0">
+                    <xs:annotation><xs:documentation xml:lang="en">Title of the guided tour</xs:documentation></xs:annotation>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

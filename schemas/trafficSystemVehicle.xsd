@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="vehicle">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="assets" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="collisionGeometry" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="height" type="g_float">
+                                    </xs:attribute>
+                                    <xs:attribute name="node" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">transform group where the collision trigger will be dynamically created at runtime</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="width" type="g_float">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="colors" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="availableColors" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="color" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="rgb" type="g_vector_3">
+                                                                <xs:annotation><xs:documentation xml:lang="en">triplet of rgb color with range [0..1]</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="colorNodes" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="colorNode" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="node" type="g_node_index">
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="maxDirt" type="g_float">
+                                    </xs:attribute>
+                                    <xs:attribute name="minDirt" type="g_float">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="drivers" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="driver" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="node" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">driver node, hidden when vehicle is parked. Use if more than one driver is supposed to be defined and delete &apos;vehicle.assets#driverNode&apos; entry</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="licensePlates" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="backNode" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">node where license plates from i3d file defined in trafficSystem xml file are linked to</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="frontNode" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">node where license plates from i3d file defined in trafficSystem xml file are linked to</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="lights" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="brake" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="decoration" type="g_node_index">
+                                                </xs:attribute>
+                                                <xs:attribute name="intensity" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="regularIntensity" type="g_float">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="light" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="decoration" type="g_node_index">
+                                                </xs:attribute>
+                                                <xs:attribute name="highProfile" type="g_node_index">
+                                                </xs:attribute>
+                                                <xs:attribute name="intensity" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="lowProfile" type="g_node_index">
+                                                </xs:attribute>
+                                                <xs:attribute name="node" type="g_node_index">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="turnLeft" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="decoration" type="g_node_index">
+                                                </xs:attribute>
+                                                <xs:attribute name="intensity" type="g_float">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="turnRight" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="decoration" type="g_node_index">
+                                                </xs:attribute>
+                                                <xs:attribute name="intensity" type="g_float">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="sounds" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="honk" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="filename" type="g_string">
+                                                </xs:attribute>
+                                                <xs:attribute name="indoorLowpassCutoffFrequency" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="indoorLowpassGain" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="indoorLowpassResonance" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="indoorVolume" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="innerRange" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="outdoorLowpassCutoffFrequency" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="outdoorLowpassGain" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="outdoorLowpassResonance" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="outdoorVolume" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="range" type="g_float">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="motor" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="pitch" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="pitchOffset" type="g_float">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="pitchScale" type="g_float">
+                                                            </xs:attribute>
+                                                            <xs:attribute name="velocity" type="g_float">
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="filename" type="g_string">
+                                                </xs:attribute>
+                                                <xs:attribute name="indoorLowpassCutoffFrequency" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="indoorLowpassGain" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="indoorLowpassResonance" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="indoorVolume" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="innerRange" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="outdoorLowpassCutoffFrequency" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="outdoorLowpassGain" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="outdoorLowpassResonance" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="outdoorVolume" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="pitchMax" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="pitchMin" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="range" type="g_float">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="wheels" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="wheel" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="distToRotCenter" type="g_float" use="required">
+                                                </xs:attribute>
+                                                <xs:attribute name="radius" type="g_float" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">radius of the wheel used for calculating the rotation speed</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="xRotNode" type="g_node_index" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">node rotated on x axis, e.g. wheel</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="yRotNode" type="g_node_index" use="required">
+                                                    <xs:annotation><xs:documentation xml:lang="en">node rotated on its y axis when steering, e.g. brakeCalipers as parent of wheel</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="driverNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">driver node, hidden when vehicle is parked. Use &apos;vehicle.assets.drivers.driver(?)&apos; for defining multiple drivers</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                        <xs:attribute name="filenameParked" type="g_string">
+                        </xs:attribute>
+                        <xs:attribute name="roadSideLimitDistanceFromFront" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">optional z offset adjusting the pivot used for placing the vehicle on the spline</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+            <xs:attribute name="accel" type="g_float">
+                <xs:annotation><xs:documentation xml:lang="en">acceleration in m/s²</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="topSpeed" type="g_float">
+                <xs:annotation><xs:documentation xml:lang="en">maximum speed in kph</xs:documentation></xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

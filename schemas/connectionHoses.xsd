@@ -1,0 +1,1565 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="fs25_materialTemplate">
+    <xs:annotation><xs:documentation>Material template name — 1237 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="chrome"/>
+      <xs:enumeration value="silverScratched"/>
+      <xs:enumeration value="silverScratchedShiny"/>
+      <xs:enumeration value="brassScratched"/>
+      <xs:enumeration value="bronzeScratched"/>
+      <xs:enumeration value="copperScratched"/>
+      <xs:enumeration value="goldScratched"/>
+      <xs:enumeration value="palladiumScratched"/>
+      <xs:enumeration value="silverRough"/>
+      <xs:enumeration value="silverBumpy"/>
+      <xs:enumeration value="metalGalvanized"/>
+      <xs:enumeration value="zincGalvanized"/>
+      <xs:enumeration value="silverCircularBrushed"/>
+      <xs:enumeration value="steelTreadPlate"/>
+      <xs:enumeration value="metalPainted"/>
+      <xs:enumeration value="metalPaintedBlack"/>
+      <xs:enumeration value="metalPaintedGray"/>
+      <xs:enumeration value="metalPaintedRough"/>
+      <xs:enumeration value="metalPaintedRoughBlack"/>
+      <xs:enumeration value="metalPaintedRoughGray"/>
+      <xs:enumeration value="metalPaintedGraphite"/>
+      <xs:enumeration value="metalPaintedGraphiteBlack"/>
+      <xs:enumeration value="metalPaintedOld"/>
+      <xs:enumeration value="metalPaintedOldGray"/>
+      <xs:enumeration value="plasticPainted"/>
+      <xs:enumeration value="plasticPaintedBlack"/>
+      <xs:enumeration value="plasticPaintedGray"/>
+      <xs:enumeration value="plasticPaintedShinyBlack"/>
+      <xs:enumeration value="plasticPaintedShinyGray"/>
+      <xs:enumeration value="plasticGearShift"/>
+      <xs:enumeration value="plasticGearShiftGrayDark"/>
+      <xs:enumeration value="plasticLeatherGrainMedium"/>
+      <xs:enumeration value="plasticLeatherGrainSmall"/>
+      <xs:enumeration value="plasticGraniteGrainSmall"/>
+      <xs:enumeration value="plasticGraniteGrainSmallBlack"/>
+      <xs:enumeration value="rubber"/>
+      <xs:enumeration value="rubberBlack"/>
+      <xs:enumeration value="rubberBlackHoses"/>
+      <xs:enumeration value="wood1"/>
+      <xs:enumeration value="wood1Cedar"/>
+      <xs:enumeration value="wood2"/>
+      <xs:enumeration value="wood2Oak"/>
+      <xs:enumeration value="leather1"/>
+      <xs:enumeration value="leather1Brown"/>
+      <xs:enumeration value="leather2"/>
+      <xs:enumeration value="leather2Brown"/>
+      <xs:enumeration value="leather3"/>
+      <xs:enumeration value="leather3GrayDark"/>
+      <xs:enumeration value="perforatedSynthetic1"/>
+      <xs:enumeration value="perforatedSynthetic1Black"/>
+      <xs:enumeration value="perforatedSynthetic2"/>
+      <xs:enumeration value="perforatedSynthetic2Black"/>
+      <xs:enumeration value="fabric1"/>
+      <xs:enumeration value="fabric1Bluish"/>
+      <xs:enumeration value="fabric2"/>
+      <xs:enumeration value="fabric2Gray"/>
+      <xs:enumeration value="fabric3"/>
+      <xs:enumeration value="fabric3Gray"/>
+      <xs:enumeration value="fabric4"/>
+      <xs:enumeration value="fabric4Beige"/>
+      <xs:enumeration value="fabric5"/>
+      <xs:enumeration value="fabric5Dark"/>
+      <xs:enumeration value="fabric6"/>
+      <xs:enumeration value="fabric6Bluish"/>
+      <xs:enumeration value="fell"/>
+      <xs:enumeration value="fellGray"/>
+      <xs:enumeration value="reflectorWhite"/>
+      <xs:enumeration value="reflectorRed"/>
+      <xs:enumeration value="reflectorOrange"/>
+      <xs:enumeration value="reflectorYellow"/>
+      <xs:enumeration value="reflectorWhiteHexagon"/>
+      <xs:enumeration value="reflectorRedHexagon"/>
+      <xs:enumeration value="reflectorOrangeHexagon"/>
+      <xs:enumeration value="reflectorYellowHexagon"/>
+      <xs:enumeration value="reflectorWhiteCube"/>
+      <xs:enumeration value="reflectorRedCube"/>
+      <xs:enumeration value="reflectorOrangeCube"/>
+      <xs:enumeration value="reflectorYellowCube"/>
+      <xs:enumeration value="reflectorWhiteDaylight"/>
+      <xs:enumeration value="reflectorOrangeDaylight"/>
+      <xs:enumeration value="dirt"/>
+      <xs:enumeration value="snow"/>
+      <xs:enumeration value="decal"/>
+      <xs:enumeration value="glassClear01"/>
+      <xs:enumeration value="glassClear02"/>
+      <xs:enumeration value="glassClear03"/>
+      <xs:enumeration value="glassWindow"/>
+      <xs:enumeration value="glassHeadlight"/>
+      <xs:enumeration value="glassLine01"/>
+      <xs:enumeration value="glassSquare01"/>
+      <xs:enumeration value="halfMetalNoise1"/>
+      <xs:enumeration value="halfMetalNoise1Black"/>
+      <xs:enumeration value="halfMetalNoise2"/>
+      <xs:enumeration value="calibratedPaint"/>
+      <xs:enumeration value="calibratedPaintBumpy"/>
+      <xs:enumeration value="calibratedGlossPaint"/>
+      <xs:enumeration value="calibratedMetallic"/>
+      <xs:enumeration value="calibratedMetallicPaint"/>
+      <xs:enumeration value="calibratedCastIron"/>
+      <xs:enumeration value="calibratedMatPaint"/>
+      <xs:enumeration value="carbonPattern01"/>
+      <xs:enumeration value="carbonPattern02"/>
+      <xs:enumeration value="fabricOrnamental1"/>
+      <xs:enumeration value="powderCoatMatte"/>
+      <xs:enumeration value="AEBI_RED1"/>
+      <xs:enumeration value="AEBI_WHITE1"/>
+      <xs:enumeration value="AGCO_GREY1"/>
+      <xs:enumeration value="AGCO_GREY2"/>
+      <xs:enumeration value="AGCO_GREY3"/>
+      <xs:enumeration value="AGI_GREEN1"/>
+      <xs:enumeration value="AGI_ORANGE1"/>
+      <xs:enumeration value="AGI_RED1"/>
+      <xs:enumeration value="AGI_YELLOW1"/>
+      <xs:enumeration value="AGRIFAC_RED1"/>
+      <xs:enumeration value="AGRIO_BLUE"/>
+      <xs:enumeration value="AGRIO_GREY"/>
+      <xs:enumeration value="AGRIO_WHITE"/>
+      <xs:enumeration value="AGRISEM_YELLOW1"/>
+      <xs:enumeration value="AGRISPREAD_GREY"/>
+      <xs:enumeration value="AGRISPREAD_RED"/>
+      <xs:enumeration value="AGRISPREAD_WHITE"/>
+      <xs:enumeration value="AGROMASZ_GREENPAINT"/>
+      <xs:enumeration value="AGROMASZ_REDPAINT"/>
+      <xs:enumeration value="AGROMASZ_WHITEPAINT"/>
+      <xs:enumeration value="ALBUTT_BLACK1"/>
+      <xs:enumeration value="ALBUTT_BLUE1"/>
+      <xs:enumeration value="ALBUTT_GREEN1"/>
+      <xs:enumeration value="ALBUTT_GREY1"/>
+      <xs:enumeration value="ALBUTT_RED1"/>
+      <xs:enumeration value="ALPEGO_BLUE"/>
+      <xs:enumeration value="ALPEGO_ORANGE1"/>
+      <xs:enumeration value="AMAZONE_BEIGE1"/>
+      <xs:enumeration value="AMAZONE_BLACK"/>
+      <xs:enumeration value="AMAZONE_BLUE1"/>
+      <xs:enumeration value="AMAZONE_BLUE2"/>
+      <xs:enumeration value="AMAZONE_BLUE3"/>
+      <xs:enumeration value="AMAZONE_GREEN1"/>
+      <xs:enumeration value="AMAZONE_GREY"/>
+      <xs:enumeration value="AMAZONE_ORANGE1"/>
+      <xs:enumeration value="AMAZONE_RED1"/>
+      <xs:enumeration value="AMAZONE_SILVER"/>
+      <xs:enumeration value="AMAZONE_YELLOW1"/>
+      <xs:enumeration value="AMAZONE_YELLOW2"/>
+      <xs:enumeration value="AMITYTECH_RED1"/>
+      <xs:enumeration value="ANDERSONGROUP_GREY1"/>
+      <xs:enumeration value="ANDERSONGROUP_RED1"/>
+      <xs:enumeration value="ANDERSONGROUP_YELLOW1"/>
+      <xs:enumeration value="ANNABURGER_BEIGE1"/>
+      <xs:enumeration value="ANNABURGER_BLUE1"/>
+      <xs:enumeration value="ANNABURGER_GREEN1"/>
+      <xs:enumeration value="ANNABURGER_GREY1"/>
+      <xs:enumeration value="ANNABURGER_RED1"/>
+      <xs:enumeration value="ANNABURGER_WHITE1"/>
+      <xs:enumeration value="ANTONIOCARRARO_BLACK1"/>
+      <xs:enumeration value="ANTONIOCARRARO_BLUE1"/>
+      <xs:enumeration value="ANTONIOCARRARO_BLUE2"/>
+      <xs:enumeration value="ANTONIOCARRARO_GREEN1"/>
+      <xs:enumeration value="ANTONIOCARRARO_GREY1"/>
+      <xs:enumeration value="ANTONIOCARRARO_GREY2"/>
+      <xs:enumeration value="ANTONIOCARRARO_GREY3"/>
+      <xs:enumeration value="ANTONIOCARRARO_ORANGE1"/>
+      <xs:enumeration value="ANTONIOCARRARO_ORANGE2"/>
+      <xs:enumeration value="ANTONIOCARRARO_PURPLE1"/>
+      <xs:enumeration value="ANTONIOCARRARO_RED1"/>
+      <xs:enumeration value="ANTONIOCARRARO_RED2"/>
+      <xs:enumeration value="APE_BLACK1"/>
+      <xs:enumeration value="APE_BLUE1"/>
+      <xs:enumeration value="APE_GREEN1"/>
+      <xs:enumeration value="APE_GREY1"/>
+      <xs:enumeration value="APE_ORANGE1"/>
+      <xs:enumeration value="APE_RED1"/>
+      <xs:enumeration value="APE_WHITE1"/>
+      <xs:enumeration value="APV_RED1"/>
+      <xs:enumeration value="APV_YELLOW1"/>
+      <xs:enumeration value="ARCUSIN_GREY1"/>
+      <xs:enumeration value="ARCUSIN_GREY2"/>
+      <xs:enumeration value="ARCUSIN_ORANGE1"/>
+      <xs:enumeration value="ARCUSIN_RED1"/>
+      <xs:enumeration value="ARCUSIN_WHITE"/>
+      <xs:enumeration value="ARCUSIN_YELLOW1"/>
+      <xs:enumeration value="ARMATRAC_GREEN1"/>
+      <xs:enumeration value="ARMATRAC_GREY1"/>
+      <xs:enumeration value="ARMATRAC_ORANGE1"/>
+      <xs:enumeration value="ARMATRAC_RED1"/>
+      <xs:enumeration value="BAUER_GREEN1"/>
+      <xs:enumeration value="BAUER_PURPLE"/>
+      <xs:enumeration value="BAUER_RED"/>
+      <xs:enumeration value="BEDNAR_BLUE1"/>
+      <xs:enumeration value="BEDNAR_GRAY1"/>
+      <xs:enumeration value="BEDNAR_GRAY2"/>
+      <xs:enumeration value="BEDNAR_RED1"/>
+      <xs:enumeration value="BEDNAR_YELLOW1"/>
+      <xs:enumeration value="BERGMANN_BRONZE1"/>
+      <xs:enumeration value="BERGMANN_GREEN1"/>
+      <xs:enumeration value="BERGMANN_GREY01"/>
+      <xs:enumeration value="BERGMANN_GREY02"/>
+      <xs:enumeration value="BERGMANN_RED1"/>
+      <xs:enumeration value="BERGMANN_YELLOW1"/>
+      <xs:enumeration value="BERTHOUD_BLUE1"/>
+      <xs:enumeration value="BERTHOUD_TURQUOISE1"/>
+      <xs:enumeration value="BIGBUD_BLUE1"/>
+      <xs:enumeration value="BIGBUD_BLUE2"/>
+      <xs:enumeration value="BIGBUD_GRAY1"/>
+      <xs:enumeration value="BIGBUD_GREEN1"/>
+      <xs:enumeration value="BIGBUD_ORANGE1"/>
+      <xs:enumeration value="BIGBUD_RED1"/>
+      <xs:enumeration value="BIGBUD_YELLOW1"/>
+      <xs:enumeration value="BIZON_BEIGE1"/>
+      <xs:enumeration value="BIZON_BLACK1"/>
+      <xs:enumeration value="BIZON_BLACK2"/>
+      <xs:enumeration value="BIZON_DARKGRAY1"/>
+      <xs:enumeration value="BIZON_GRAY1"/>
+      <xs:enumeration value="BIZON_GRAY2"/>
+      <xs:enumeration value="BIZON_GRAY3"/>
+      <xs:enumeration value="BIZON_GREEN1"/>
+      <xs:enumeration value="BIZON_RED1"/>
+      <xs:enumeration value="BOECKMANN_BLUE1"/>
+      <xs:enumeration value="BOMECH_BLUE1"/>
+      <xs:enumeration value="BOMECH_GREEN1"/>
+      <xs:enumeration value="BOMECH_RED1"/>
+      <xs:enumeration value="BOURGAULT_RED1"/>
+      <xs:enumeration value="BOURGAULT_WHITE1"/>
+      <xs:enumeration value="BOURGAULT_WHITE2"/>
+      <xs:enumeration value="BOURGAULT_YELLOW1"/>
+      <xs:enumeration value="BRANDT_BLUE1"/>
+      <xs:enumeration value="BRANDT_GREY1"/>
+      <xs:enumeration value="BRANDT_GREY2"/>
+      <xs:enumeration value="BRANDT_GREY3"/>
+      <xs:enumeration value="BRANDT_ORANGE1"/>
+      <xs:enumeration value="BRANTNER_BLACK"/>
+      <xs:enumeration value="BRANTNER_GREEN1"/>
+      <xs:enumeration value="BRANTNER_GREEN2"/>
+      <xs:enumeration value="BRANTNER_ORANGE1"/>
+      <xs:enumeration value="BRANTNER_RED1"/>
+      <xs:enumeration value="BREDAL_GREY"/>
+      <xs:enumeration value="BREDAL_RED1"/>
+      <xs:enumeration value="BREDAL_YELLOW1"/>
+      <xs:enumeration value="BREMER_BLUE1"/>
+      <xs:enumeration value="BRIELMAIER_BLUE1"/>
+      <xs:enumeration value="BRIELMAIER_GREY1"/>
+      <xs:enumeration value="BRIELMAIER_SILVER1"/>
+      <xs:enumeration value="BRIRI_BLACK1"/>
+      <xs:enumeration value="BRIRI_GREEN1"/>
+      <xs:enumeration value="BRIRI_GREEN2"/>
+      <xs:enumeration value="BRIRI_GREY"/>
+      <xs:enumeration value="BRIRI_RED"/>
+      <xs:enumeration value="BROCHARD_BLUE1"/>
+      <xs:enumeration value="BROCHARD_RED1"/>
+      <xs:enumeration value="BROCHARD_YELLOW1"/>
+      <xs:enumeration value="BUEHRER_BLACK1"/>
+      <xs:enumeration value="BUEHRER_BLACK2"/>
+      <xs:enumeration value="BUEHRER_BLUE1"/>
+      <xs:enumeration value="BUEHRER_BLUE2"/>
+      <xs:enumeration value="BUEHRER_BLUE3"/>
+      <xs:enumeration value="BUEHRER_GREEN1"/>
+      <xs:enumeration value="BUEHRER_GREEN2"/>
+      <xs:enumeration value="BUEHRER_GREEN3"/>
+      <xs:enumeration value="BUEHRER_RED1"/>
+      <xs:enumeration value="BUEHRER_RED2"/>
+      <xs:enumeration value="BUEHRER_RED3"/>
+      <xs:enumeration value="BUEHRER_YELLOW1"/>
+      <xs:enumeration value="BUEHRER_YELLOW2"/>
+      <xs:enumeration value="BUNNING_BLACK"/>
+      <xs:enumeration value="BUNNING_BLUE"/>
+      <xs:enumeration value="BUNNING_GREEN"/>
+      <xs:enumeration value="CANAM_COMPASS_GREEN"/>
+      <xs:enumeration value="CANAM_FIERYRED"/>
+      <xs:enumeration value="CAPELLO_BLACK1"/>
+      <xs:enumeration value="CAPELLO_RED1"/>
+      <xs:enumeration value="CARUELLENICOLAS_BLACK1"/>
+      <xs:enumeration value="CARUELLENICOLAS_BLUE1"/>
+      <xs:enumeration value="CARUELLENICOLAS_BLUE2"/>
+      <xs:enumeration value="CARUELLENICOLAS_GREY1"/>
+      <xs:enumeration value="CARUELLENICOLAS_GREY2"/>
+      <xs:enumeration value="CARUELLENICOLAS_GREY3"/>
+      <xs:enumeration value="CARUELLENICOLAS_RED1"/>
+      <xs:enumeration value="CARUELLENICOLAS_YELLOW1"/>
+      <xs:enumeration value="CASEIH_BEIGE1"/>
+      <xs:enumeration value="CASEIH_BEIGE2"/>
+      <xs:enumeration value="CASEIH_BEIGE3"/>
+      <xs:enumeration value="CASEIH_BEIGE4"/>
+      <xs:enumeration value="CASEIH_BLACK"/>
+      <xs:enumeration value="CASEIH_BLUE1"/>
+      <xs:enumeration value="CASEIH_FARMALL_BEIGE"/>
+      <xs:enumeration value="CASEIH_FARMALL_GOLD"/>
+      <xs:enumeration value="CASEIH_GREEN1"/>
+      <xs:enumeration value="CASEIH_GREY"/>
+      <xs:enumeration value="CASEIH_ORANGE1"/>
+      <xs:enumeration value="CASEIH_RED1"/>
+      <xs:enumeration value="CASEIH_RED2"/>
+      <xs:enumeration value="CASEIH_RED3"/>
+      <xs:enumeration value="CASEIH_SILVER"/>
+      <xs:enumeration value="CHALLENGER_ORANGE1"/>
+      <xs:enumeration value="CHALLENGER_RED1"/>
+      <xs:enumeration value="CHALLENGER_YELLOW1"/>
+      <xs:enumeration value="CLAAS_DARKGREY1"/>
+      <xs:enumeration value="CLAAS_DARKGREY2"/>
+      <xs:enumeration value="CLAAS_GREEN1"/>
+      <xs:enumeration value="CLAAS_GREY1"/>
+      <xs:enumeration value="CLAAS_ORANGE1"/>
+      <xs:enumeration value="CLAAS_RED1"/>
+      <xs:enumeration value="CLAAS_WHITE1"/>
+      <xs:enumeration value="CLAAS_WHITE2"/>
+      <xs:enumeration value="DALBO_BLUE1"/>
+      <xs:enumeration value="DAMCON_RED1"/>
+      <xs:enumeration value="DAMCON_YELLOW1"/>
+      <xs:enumeration value="DAMMANN_GREEN"/>
+      <xs:enumeration value="DAMMANN_GREY1"/>
+      <xs:enumeration value="DAMMANN_GREY2"/>
+      <xs:enumeration value="DAMMANN_YELLOW"/>
+      <xs:enumeration value="DEGELMAN_YELLOW1"/>
+      <xs:enumeration value="DEGELMAN_YELLOW2"/>
+      <xs:enumeration value="DEMCO_BLUE1"/>
+      <xs:enumeration value="DEMCO_GREEN1"/>
+      <xs:enumeration value="DEMCO_GREY1"/>
+      <xs:enumeration value="DEMCO_ORANGE1"/>
+      <xs:enumeration value="DEMCO_RED1"/>
+      <xs:enumeration value="DEMCO_WHITE1"/>
+      <xs:enumeration value="DEUTZ_BEIGE1"/>
+      <xs:enumeration value="DEUTZ_BLACK1"/>
+      <xs:enumeration value="DEUTZ_BLACK2"/>
+      <xs:enumeration value="DEUTZ_BLUE6"/>
+      <xs:enumeration value="DEUTZ_GREEN1"/>
+      <xs:enumeration value="DEUTZ_GREEN4"/>
+      <xs:enumeration value="DEUTZ_GREEN5"/>
+      <xs:enumeration value="DEUTZ_GREEN6"/>
+      <xs:enumeration value="DEUTZ_GREY01"/>
+      <xs:enumeration value="DEUTZ_GREY02"/>
+      <xs:enumeration value="DEUTZ_GREY03"/>
+      <xs:enumeration value="DEUTZ_GREY04"/>
+      <xs:enumeration value="DEUTZ_JAVAGREEN"/>
+      <xs:enumeration value="DEUTZ_MATTGREEN"/>
+      <xs:enumeration value="DEUTZ_ORANGE1"/>
+      <xs:enumeration value="DEUTZ_RED1"/>
+      <xs:enumeration value="DEUTZ_RED2"/>
+      <xs:enumeration value="DEUTZ_WHITE"/>
+      <xs:enumeration value="DEUTZ_YELLOW1"/>
+      <xs:enumeration value="DEWULF_GREY1"/>
+      <xs:enumeration value="DEWULF_RED1"/>
+      <xs:enumeration value="DFM_DARKBLUE1"/>
+      <xs:enumeration value="DFM_GREEN1"/>
+      <xs:enumeration value="DFM_GREEN2"/>
+      <xs:enumeration value="DFM_YELLOW1"/>
+      <xs:enumeration value="DOBLETT_BLACK1"/>
+      <xs:enumeration value="DOBLETT_BLACK2"/>
+      <xs:enumeration value="DOBLETT_BLUE1"/>
+      <xs:enumeration value="DOBLETT_DARKGRAY1"/>
+      <xs:enumeration value="DOBLETT_GRAY1"/>
+      <xs:enumeration value="DOBLETT_GRAY2"/>
+      <xs:enumeration value="DOBLETT_GREEN1"/>
+      <xs:enumeration value="DOBLETT_ORANGE1"/>
+      <xs:enumeration value="DOBLETT_RED1"/>
+      <xs:enumeration value="DOBLETT_YELLOW1"/>
+      <xs:enumeration value="DUEVELSDORF_GREEN1"/>
+      <xs:enumeration value="DUEVELSDORF_GREY1"/>
+      <xs:enumeration value="DUEVELSDORF_RED1"/>
+      <xs:enumeration value="EINBOECK_BLUE1"/>
+      <xs:enumeration value="EINBOECK_GREEN1"/>
+      <xs:enumeration value="EINBOECK_GREY"/>
+      <xs:enumeration value="EINBOECK_RED1"/>
+      <xs:enumeration value="EINBOECK_YELLOW1"/>
+      <xs:enumeration value="ELHO_ORANGE1"/>
+      <xs:enumeration value="ELMERSMFG_BEIGE1"/>
+      <xs:enumeration value="ELMERSMFG_BLUE1"/>
+      <xs:enumeration value="ELMERSMFG_GREY1"/>
+      <xs:enumeration value="ELMERSMFG_ORANGE1"/>
+      <xs:enumeration value="ELMERSMFG_RED"/>
+      <xs:enumeration value="ERO_GREEN1"/>
+      <xs:enumeration value="ERO_GREY1"/>
+      <xs:enumeration value="ERO_RED1"/>
+      <xs:enumeration value="EVERSAGRO_BLACK"/>
+      <xs:enumeration value="EVERSAGRO_GREY"/>
+      <xs:enumeration value="EVERSAGRO_RED"/>
+      <xs:enumeration value="FARESIN_BLUE1"/>
+      <xs:enumeration value="FARESIN_BLUE2"/>
+      <xs:enumeration value="FARESIN_GREEN1"/>
+      <xs:enumeration value="FARESIN_GREY1"/>
+      <xs:enumeration value="FARESIN_GREY2"/>
+      <xs:enumeration value="FARESIN_RED1"/>
+      <xs:enumeration value="FARESIN_WHITE"/>
+      <xs:enumeration value="FARMAX_RED1"/>
+      <xs:enumeration value="FARMET_BLUE1"/>
+      <xs:enumeration value="FARMET_BLUE2"/>
+      <xs:enumeration value="FARMET_YELLOW1"/>
+      <xs:enumeration value="FARMTECH_GREEN1"/>
+      <xs:enumeration value="FARMTECH_GREY1"/>
+      <xs:enumeration value="FARMTECH_RED1"/>
+      <xs:enumeration value="FARMTECH_YELLOW1"/>
+      <xs:enumeration value="FENDT_BIEGE1"/>
+      <xs:enumeration value="FENDT_BLACK1"/>
+      <xs:enumeration value="FENDT_BLACK2"/>
+      <xs:enumeration value="FENDT_BLUE1"/>
+      <xs:enumeration value="FENDT_BLUE2"/>
+      <xs:enumeration value="FENDT_BRIGHTBLUE1"/>
+      <xs:enumeration value="FENDT_BRIGHTGREEN"/>
+      <xs:enumeration value="FENDT_DARKGREEN1"/>
+      <xs:enumeration value="FENDT_DESIGN_GRILL"/>
+      <xs:enumeration value="FENDT_GREY1"/>
+      <xs:enumeration value="FENDT_GREY2"/>
+      <xs:enumeration value="FENDT_GREY3"/>
+      <xs:enumeration value="FENDT_GRILL"/>
+      <xs:enumeration value="FENDT_NEWGREEN1"/>
+      <xs:enumeration value="FENDT_OLDGREEN1"/>
+      <xs:enumeration value="FENDT_ORANGE1"/>
+      <xs:enumeration value="FENDT_RED1"/>
+      <xs:enumeration value="FENDT_VIOLET1"/>
+      <xs:enumeration value="FENDT_WHITE1"/>
+      <xs:enumeration value="FENDT_WHITE2"/>
+      <xs:enumeration value="FENDT_YELLOW1"/>
+      <xs:enumeration value="FIAT_BLACKPAINT"/>
+      <xs:enumeration value="FIAT_BROWN"/>
+      <xs:enumeration value="FIAT_GREENPAINT"/>
+      <xs:enumeration value="FIAT_ORANGEPAINT"/>
+      <xs:enumeration value="FIAT_RED"/>
+      <xs:enumeration value="FIAT_WHITE"/>
+      <xs:enumeration value="FIAT_WHITEPAINT"/>
+      <xs:enumeration value="FLEXICOIL_BLUEGRAY1"/>
+      <xs:enumeration value="FLEXICOIL_DARKBLUEGREY1"/>
+      <xs:enumeration value="FLEXICOIL_RED1"/>
+      <xs:enumeration value="FLIEGL_BLUE1"/>
+      <xs:enumeration value="FLIEGL_GREEN1"/>
+      <xs:enumeration value="FLIEGL_GREEN2"/>
+      <xs:enumeration value="FLIEGL_GREEN3"/>
+      <xs:enumeration value="FLIEGL_GREEN4"/>
+      <xs:enumeration value="FLIEGL_GREY"/>
+      <xs:enumeration value="FLIEGL_RED1"/>
+      <xs:enumeration value="FORD_BLUE1"/>
+      <xs:enumeration value="FORTSCHRITT_BLACK"/>
+      <xs:enumeration value="FORTSCHRITT_BLUE"/>
+      <xs:enumeration value="FORTSCHRITT_GREEN"/>
+      <xs:enumeration value="FORTSCHRITT_RED"/>
+      <xs:enumeration value="FORTUNA_GREEN1"/>
+      <xs:enumeration value="FORTUNA_GREY"/>
+      <xs:enumeration value="FSI_GREEN1"/>
+      <xs:enumeration value="FSI_RED1"/>
+      <xs:enumeration value="GENERIC_CABLEMOUNT_GREEN"/>
+      <xs:enumeration value="GERINGHOFF_BLACK"/>
+      <xs:enumeration value="GERINGHOFF_RED"/>
+      <xs:enumeration value="GERINGHOFF_YELLOW"/>
+      <xs:enumeration value="GESSNER_BLACK1"/>
+      <xs:enumeration value="GESSNER_BLACK2"/>
+      <xs:enumeration value="GESSNER_DARKGRAY1"/>
+      <xs:enumeration value="GESSNER_GRAY1"/>
+      <xs:enumeration value="GESSNER_GRAY2"/>
+      <xs:enumeration value="GESSNER_GRAY3"/>
+      <xs:enumeration value="GESSNER_GREEN1"/>
+      <xs:enumeration value="GESSNER_GREEN2"/>
+      <xs:enumeration value="GESSNER_ORANGE1"/>
+      <xs:enumeration value="GESSNER_RED1"/>
+      <xs:enumeration value="GESSNER_YELLOW1"/>
+      <xs:enumeration value="GILIBERT_RED1"/>
+      <xs:enumeration value="GILIBERT_YELLOW1"/>
+      <xs:enumeration value="GOEWEIL_BLUE1"/>
+      <xs:enumeration value="GOEWEIL_YELLOW1"/>
+      <xs:enumeration value="GOLDHOFER_BLUE"/>
+      <xs:enumeration value="GOLDHOFER_GREEN1"/>
+      <xs:enumeration value="GOLDHOFER_GREEN2"/>
+      <xs:enumeration value="GOLDHOFER_ORANGE1"/>
+      <xs:enumeration value="GOLDHOFER_PINK1"/>
+      <xs:enumeration value="GOLDHOFER_RED1"/>
+      <xs:enumeration value="GORENC_BLUE1"/>
+      <xs:enumeration value="GORENC_RED1"/>
+      <xs:enumeration value="GREATPLAINS_BEIGE"/>
+      <xs:enumeration value="GREATPLAINS_GREEN"/>
+      <xs:enumeration value="GREGOIREBESSON_GRAY"/>
+      <xs:enumeration value="GREGOIREBESSON_RED"/>
+      <xs:enumeration value="GREGOIRE_GREEN1"/>
+      <xs:enumeration value="GREGOIRE_ORANGE1"/>
+      <xs:enumeration value="GRIMME_BLACK"/>
+      <xs:enumeration value="GRIMME_BLUE1"/>
+      <xs:enumeration value="GRIMME_GREEN1"/>
+      <xs:enumeration value="GRIMME_GREEN1_1"/>
+      <xs:enumeration value="GRIMME_RED1"/>
+      <xs:enumeration value="GRIMME_WHITE"/>
+      <xs:enumeration value="GRIMME_YELLOW1"/>
+      <xs:enumeration value="HARDI_BEIGE"/>
+      <xs:enumeration value="HARDI_BLUE"/>
+      <xs:enumeration value="HARDI_GREEN"/>
+      <xs:enumeration value="HARDI_GREY"/>
+      <xs:enumeration value="HARDI_GREY2"/>
+      <xs:enumeration value="HARDI_RED"/>
+      <xs:enumeration value="HARDI_YELLOW"/>
+      <xs:enumeration value="HATZENBICHLER_BLACK"/>
+      <xs:enumeration value="HATZENBICHLER_DARKBLUE1"/>
+      <xs:enumeration value="HATZENBICHLER_GREEN"/>
+      <xs:enumeration value="HATZENBICHLER_GREY2"/>
+      <xs:enumeration value="HATZENBICHLER_RED"/>
+      <xs:enumeration value="HATZENBICHLER_YELLOW"/>
+      <xs:enumeration value="HATZENBICHLER_YELLOW1"/>
+      <xs:enumeration value="HAUER_BLACK"/>
+      <xs:enumeration value="HAUER_GREY1"/>
+      <xs:enumeration value="HAUER_ORANGE"/>
+      <xs:enumeration value="HAWE_GREEN1"/>
+      <xs:enumeration value="HAWE_GREY1"/>
+      <xs:enumeration value="HAWE_RED1"/>
+      <xs:enumeration value="HEIZOMAT_DARKGREY"/>
+      <xs:enumeration value="HEIZOMAT_GREEN"/>
+      <xs:enumeration value="HEIZOMAT_GREY"/>
+      <xs:enumeration value="HEIZOMAT_YELLOW"/>
+      <xs:enumeration value="HELIANTHUS_BLUE1"/>
+      <xs:enumeration value="HELIANTHUS_BLUE_1"/>
+      <xs:enumeration value="HELIANTHUS_BROWN_1"/>
+      <xs:enumeration value="HELIANTHUS_GREEN1"/>
+      <xs:enumeration value="HELIANTHUS_GREEN2"/>
+      <xs:enumeration value="HELIANTHUS_GREEN3"/>
+      <xs:enumeration value="HELIANTHUS_GREEN4"/>
+      <xs:enumeration value="HELIANTHUS_GREEN5"/>
+      <xs:enumeration value="HELIANTHUS_RED1"/>
+      <xs:enumeration value="HELIANTHUS_RED2"/>
+      <xs:enumeration value="HELIANTHUS_WHITE1"/>
+      <xs:enumeration value="HELIANTHUS_YELLOW1"/>
+      <xs:enumeration value="HOLARAS_GREEN"/>
+      <xs:enumeration value="HOLARAS_ORANGE"/>
+      <xs:enumeration value="HOLMER_BLUE"/>
+      <xs:enumeration value="HOLMER_BLUE_3"/>
+      <xs:enumeration value="HOLMER_BLUE_4"/>
+      <xs:enumeration value="HOLMER_GREEN1"/>
+      <xs:enumeration value="HOLMER_GREY1"/>
+      <xs:enumeration value="HOLMER_GREY2"/>
+      <xs:enumeration value="HOLMER_ORANGE"/>
+      <xs:enumeration value="HOLMER_RED1"/>
+      <xs:enumeration value="HOLMER_YELLOW_1"/>
+      <xs:enumeration value="HORSCH_BEIGE1"/>
+      <xs:enumeration value="HORSCH_GREY1"/>
+      <xs:enumeration value="HORSCH_GREY2"/>
+      <xs:enumeration value="HORSCH_RED1"/>
+      <xs:enumeration value="HUB_BOLT_DEFAULT"/>
+      <xs:enumeration value="HUB_DEFAULT"/>
+      <xs:enumeration value="HUERLIMANN_BEIGE_1"/>
+      <xs:enumeration value="HUERLIMANN_BEIGE_2"/>
+      <xs:enumeration value="HUERLIMANN_BEIGE_3"/>
+      <xs:enumeration value="HUERLIMANN_BEIGE_4"/>
+      <xs:enumeration value="HUERLIMANN_BLUE_1"/>
+      <xs:enumeration value="HUERLIMANN_BLUE_2"/>
+      <xs:enumeration value="HUERLIMANN_BLUE_3"/>
+      <xs:enumeration value="HUERLIMANN_BLUE_4"/>
+      <xs:enumeration value="HUERLIMANN_BLUE_5"/>
+      <xs:enumeration value="HUERLIMANN_BLUE_6"/>
+      <xs:enumeration value="HUERLIMANN_GREEN1"/>
+      <xs:enumeration value="HUERLIMANN_GREEN1_1"/>
+      <xs:enumeration value="HUERLIMANN_GREEN1_2"/>
+      <xs:enumeration value="HUERLIMANN_GREEN1_3"/>
+      <xs:enumeration value="HUERLIMANN_ORANGE1"/>
+      <xs:enumeration value="HUERLIMANN_ORANGE1_1"/>
+      <xs:enumeration value="HUERLIMANN_RED1"/>
+      <xs:enumeration value="HUERLIMANN_RED1_1"/>
+      <xs:enumeration value="HUERLIMANN_RED1_2"/>
+      <xs:enumeration value="HUERLIMANN_YELLOW_1"/>
+      <xs:enumeration value="HUERLIMANN_YELLOW_2"/>
+      <xs:enumeration value="HUSQVARNA_BLUE1"/>
+      <xs:enumeration value="HUSQVARNA_GREY2"/>
+      <xs:enumeration value="HUSQVARNA_ORANGE1"/>
+      <xs:enumeration value="HUSQVARNA_RED1"/>
+      <xs:enumeration value="IMPEX_GREEN1"/>
+      <xs:enumeration value="INTERNATIONAL_BEIGE1"/>
+      <xs:enumeration value="INTERNATIONAL_BEIGE2"/>
+      <xs:enumeration value="INTERNATIONAL_BEIGE3"/>
+      <xs:enumeration value="INTERNATIONAL_BLACK1"/>
+      <xs:enumeration value="INTERNATIONAL_BROWN1"/>
+      <xs:enumeration value="INTERNATIONAL_BROWN2"/>
+      <xs:enumeration value="INTERNATIONAL_GREY1"/>
+      <xs:enumeration value="INTERNATIONAL_GREY2"/>
+      <xs:enumeration value="INTERNATIONAL_GREY3"/>
+      <xs:enumeration value="INTERNATIONAL_RED1"/>
+      <xs:enumeration value="INTERNATIONAL_WHITE1"/>
+      <xs:enumeration value="ISARIA_BLUE1"/>
+      <xs:enumeration value="ISEKI_BLUE1"/>
+      <xs:enumeration value="ISEKI_DARKBLUE1"/>
+      <xs:enumeration value="ISEKI_ORANGE1"/>
+      <xs:enumeration value="ISEKI_WHITE1"/>
+      <xs:enumeration value="ITRUNNER_BLUE1"/>
+      <xs:enumeration value="ITRUNNER_BLUE_1"/>
+      <xs:enumeration value="ITRUNNER_BROWN_1"/>
+      <xs:enumeration value="ITRUNNER_GREEN1"/>
+      <xs:enumeration value="ITRUNNER_GREEN2"/>
+      <xs:enumeration value="ITRUNNER_GREEN3"/>
+      <xs:enumeration value="ITRUNNER_GREEN4"/>
+      <xs:enumeration value="ITRUNNER_GREEN5"/>
+      <xs:enumeration value="ITRUNNER_RED1"/>
+      <xs:enumeration value="ITRUNNER_RED2"/>
+      <xs:enumeration value="ITRUNNER_WHITE1"/>
+      <xs:enumeration value="ITRUNNER_YELLOW1"/>
+      <xs:enumeration value="JCB_ORANGE"/>
+      <xs:enumeration value="JCB_RED_1"/>
+      <xs:enumeration value="JCB_YELLOW1"/>
+      <xs:enumeration value="JENZ_GREEN1"/>
+      <xs:enumeration value="JENZ_GREYRAL7043"/>
+      <xs:enumeration value="JENZ_RED1"/>
+      <xs:enumeration value="JMMANUFACTURING_BLACK1"/>
+      <xs:enumeration value="JMMANUFACTURING_BLUE1"/>
+      <xs:enumeration value="JMMANUFACTURING_GREEN1"/>
+      <xs:enumeration value="JMMANUFACTURING_RED1"/>
+      <xs:enumeration value="JMMANUFACTURING_RED2"/>
+      <xs:enumeration value="JMMANUFACTURING_YELLOW1"/>
+      <xs:enumeration value="JOHNDEERE_BLACK1"/>
+      <xs:enumeration value="JOHNDEERE_BROWN1"/>
+      <xs:enumeration value="JOHNDEERE_BROWN2"/>
+      <xs:enumeration value="JOHNDEERE_BROWN3"/>
+      <xs:enumeration value="JOHNDEERE_BROWN4"/>
+      <xs:enumeration value="JOHNDEERE_GREEN1"/>
+      <xs:enumeration value="JOHNDEERE_GREEN2"/>
+      <xs:enumeration value="JOHNDEERE_ORANGE1"/>
+      <xs:enumeration value="JOHNDEERE_YELLOW1"/>
+      <xs:enumeration value="JONSERED_GREY2"/>
+      <xs:enumeration value="JONSERED_RED1"/>
+      <xs:enumeration value="JOSKIN_GREEN1"/>
+      <xs:enumeration value="JOSKIN_GREY"/>
+      <xs:enumeration value="JOSKIN_YELLOW1"/>
+      <xs:enumeration value="JUNGHEINRICH_GREY1"/>
+      <xs:enumeration value="JUNGHEINRICH_YELLOW1"/>
+      <xs:enumeration value="KAERCHER_GREY3"/>
+      <xs:enumeration value="KAERCHER_GREY4"/>
+      <xs:enumeration value="KAERCHER_RED"/>
+      <xs:enumeration value="KAERCHER_YELLOW1"/>
+      <xs:enumeration value="KAERCHER_YELLOW2"/>
+      <xs:enumeration value="KAWECO_GREEN"/>
+      <xs:enumeration value="KAWECO_GREEN1"/>
+      <xs:enumeration value="KAWECO_GREY"/>
+      <xs:enumeration value="KAWECO_ORANGE1"/>
+      <xs:enumeration value="KEMPER_GREEN1"/>
+      <xs:enumeration value="KEMPER_RED1"/>
+      <xs:enumeration value="KEMPER_YELLOW_1"/>
+      <xs:enumeration value="KESLA_YELLOW1"/>
+      <xs:enumeration value="KINZE_BEIGE"/>
+      <xs:enumeration value="KINZE_BLACK"/>
+      <xs:enumeration value="KINZE_BLUE"/>
+      <xs:enumeration value="KINZE_GREY1"/>
+      <xs:enumeration value="KINZE_GREY2"/>
+      <xs:enumeration value="KINZE_ORANGE1"/>
+      <xs:enumeration value="KINZE_RED1"/>
+      <xs:enumeration value="KIROVETS_BLUE_1"/>
+      <xs:enumeration value="KIROVETS_RED_1"/>
+      <xs:enumeration value="KIROVETS_YELLOW_1"/>
+      <xs:enumeration value="KIROVETS_YELLOW_2"/>
+      <xs:enumeration value="KLINE_GREEN1"/>
+      <xs:enumeration value="KNOCHE_RED1"/>
+      <xs:enumeration value="KOECKERLING_BLUE1"/>
+      <xs:enumeration value="KOLLER_RED1"/>
+      <xs:enumeration value="KOLLER_YELLOW1"/>
+      <xs:enumeration value="KOMATSU_BLACK"/>
+      <xs:enumeration value="KOMATSU_BLUE"/>
+      <xs:enumeration value="KOMATSU_GREEN"/>
+      <xs:enumeration value="KOMATSU_GREY"/>
+      <xs:enumeration value="KOMATSU_REDMETAL"/>
+      <xs:enumeration value="KOMATSU_REDPLASTIC"/>
+      <xs:enumeration value="KOMATSU_YELLOW"/>
+      <xs:enumeration value="KONGSKILDE_RED"/>
+      <xs:enumeration value="KOTTE_BLUE1"/>
+      <xs:enumeration value="KOTTE_GREEN1"/>
+      <xs:enumeration value="KOTTE_GREEN2"/>
+      <xs:enumeration value="KOTTE_GREEN3"/>
+      <xs:enumeration value="KOTTE_GREY1"/>
+      <xs:enumeration value="KOTTE_GREY2"/>
+      <xs:enumeration value="KOTTE_GREY3"/>
+      <xs:enumeration value="KOTTE_RED1"/>
+      <xs:enumeration value="KOTTE_YELLOW1"/>
+      <xs:enumeration value="KRAMER_GREEN"/>
+      <xs:enumeration value="KRAMER_GREY1"/>
+      <xs:enumeration value="KRAMER_GREY2"/>
+      <xs:enumeration value="KRAMER_RED"/>
+      <xs:enumeration value="KRAMPE_BLACK1"/>
+      <xs:enumeration value="KRAMPE_GREEN1"/>
+      <xs:enumeration value="KRAMPE_GREY1"/>
+      <xs:enumeration value="KRAMPE_RED1"/>
+      <xs:enumeration value="KRAMPE_WHITE1"/>
+      <xs:enumeration value="KROEGER_BLACK2"/>
+      <xs:enumeration value="KROEGER_GREEN1"/>
+      <xs:enumeration value="KROEGER_GREY1"/>
+      <xs:enumeration value="KROEGER_GREY2"/>
+      <xs:enumeration value="KROEGER_RED1"/>
+      <xs:enumeration value="KROEGER_YELLOW1"/>
+      <xs:enumeration value="KRONE_BLACK2"/>
+      <xs:enumeration value="KRONE_BLUE5"/>
+      <xs:enumeration value="KRONE_GREEN1"/>
+      <xs:enumeration value="KRONE_GREY"/>
+      <xs:enumeration value="KRONE_RED1"/>
+      <xs:enumeration value="KRONE_YELLOW1"/>
+      <xs:enumeration value="KRONE_YELLOW2"/>
+      <xs:enumeration value="KRONE_YELLOW4"/>
+      <xs:enumeration value="KUBOTA_BLACK1"/>
+      <xs:enumeration value="KUBOTA_ORANGE1"/>
+      <xs:enumeration value="KUHN_BLACK3"/>
+      <xs:enumeration value="KUHN_BLUE1"/>
+      <xs:enumeration value="KUHN_BLUE2"/>
+      <xs:enumeration value="KUHN_GREY"/>
+      <xs:enumeration value="KUHN_RED1"/>
+      <xs:enumeration value="KUHN_RED2"/>
+      <xs:enumeration value="KUHN_WHITE1"/>
+      <xs:enumeration value="KUHN_YELLOW1"/>
+      <xs:enumeration value="KVERNELAND_GREEN1"/>
+      <xs:enumeration value="KVERNELAND_GREEN2"/>
+      <xs:enumeration value="KVERNELAND_GREY1"/>
+      <xs:enumeration value="KVERNELAND_GREY2"/>
+      <xs:enumeration value="KVERNELAND_RED1"/>
+      <xs:enumeration value="LACOTEC_GREEN1"/>
+      <xs:enumeration value="LANDINI_BLUE1"/>
+      <xs:enumeration value="LANDINI_BLUE2"/>
+      <xs:enumeration value="LANDINI_GREEN1"/>
+      <xs:enumeration value="LANDINI_GREY1"/>
+      <xs:enumeration value="LANDINI_GREY2"/>
+      <xs:enumeration value="LANDINI_RED1"/>
+      <xs:enumeration value="LELY_BEIGE1"/>
+      <xs:enumeration value="LELY_COPPER"/>
+      <xs:enumeration value="LELY_RED1"/>
+      <xs:enumeration value="LEMKEN_BLUE1"/>
+      <xs:enumeration value="LEMKEN_GREY1"/>
+      <xs:enumeration value="LEMKEN_GREY2"/>
+      <xs:enumeration value="LEMKEN_RED1"/>
+      <xs:enumeration value="LIEBHERR_BLACK2"/>
+      <xs:enumeration value="LIEBHERR_BLUE1"/>
+      <xs:enumeration value="LIEBHERR_BLUE2"/>
+      <xs:enumeration value="LIEBHERR_GREY5"/>
+      <xs:enumeration value="LIEBHERR_RED1"/>
+      <xs:enumeration value="LIEBHERR_RED2"/>
+      <xs:enumeration value="LIEBHERR_YELLOW1"/>
+      <xs:enumeration value="LINDNER_BLACK"/>
+      <xs:enumeration value="LINDNER_GREY1"/>
+      <xs:enumeration value="LINDNER_RED1"/>
+      <xs:enumeration value="LINDNER_WHITE1"/>
+      <xs:enumeration value="LINDNER_WHITE2"/>
+      <xs:enumeration value="LIZARD_BLUE1"/>
+      <xs:enumeration value="LIZARD_BLUE2"/>
+      <xs:enumeration value="LIZARD_BLUE3"/>
+      <xs:enumeration value="LIZARD_ECRU1"/>
+      <xs:enumeration value="LIZARD_OLIVE1"/>
+      <xs:enumeration value="LIZARD_PINK1"/>
+      <xs:enumeration value="LIZARD_PURPLE1"/>
+      <xs:enumeration value="LIZARD_RED1"/>
+      <xs:enumeration value="MACDON_GREY"/>
+      <xs:enumeration value="MACDON_RED"/>
+      <xs:enumeration value="MACK_RED1"/>
+      <xs:enumeration value="MAGSI_BLACK1"/>
+      <xs:enumeration value="MAGSI_GREY"/>
+      <xs:enumeration value="MAHINDRA_BLACK1"/>
+      <xs:enumeration value="MAHINDRA_RED1"/>
+      <xs:enumeration value="MANITOU_BEIGE"/>
+      <xs:enumeration value="MANITOU_BLACK"/>
+      <xs:enumeration value="MANITOU_BLUE"/>
+      <xs:enumeration value="MANITOU_BRIGHTYELLOW"/>
+      <xs:enumeration value="MANITOU_DARKGREY"/>
+      <xs:enumeration value="MANITOU_GREY"/>
+      <xs:enumeration value="MANITOU_GREY3"/>
+      <xs:enumeration value="MANITOU_LIGHTGRAY"/>
+      <xs:enumeration value="MANITOU_ORANGE"/>
+      <xs:enumeration value="MANITOU_RED"/>
+      <xs:enumeration value="MANITOU_WHITE"/>
+      <xs:enumeration value="MAN_BEIGECLASSIC"/>
+      <xs:enumeration value="MAN_BEIGE_1"/>
+      <xs:enumeration value="MAN_BEIGE_2"/>
+      <xs:enumeration value="MAN_BEIGE_3"/>
+      <xs:enumeration value="MAN_BLUE1"/>
+      <xs:enumeration value="MAN_BLUE2"/>
+      <xs:enumeration value="MAN_BLUE3"/>
+      <xs:enumeration value="MAN_BLUE4"/>
+      <xs:enumeration value="MAN_BLUE5"/>
+      <xs:enumeration value="MAN_BLUE6"/>
+      <xs:enumeration value="MAN_GREEN_1"/>
+      <xs:enumeration value="MAN_OLDGREEN"/>
+      <xs:enumeration value="MAN_RED1"/>
+      <xs:enumeration value="MAN_RED2"/>
+      <xs:enumeration value="MAN_YELLOW_1"/>
+      <xs:enumeration value="MARSHALL_BLACK2"/>
+      <xs:enumeration value="MARSHALL_BLUE1"/>
+      <xs:enumeration value="MARSHALL_BROWN1"/>
+      <xs:enumeration value="MARSHALL_BROWN2"/>
+      <xs:enumeration value="MARSHALL_BROWN3"/>
+      <xs:enumeration value="MARSHALL_RED1"/>
+      <xs:enumeration value="MASSEYFERGUSON_BEIGE_1"/>
+      <xs:enumeration value="MASSEYFERGUSON_DARK_GREY"/>
+      <xs:enumeration value="MASSEYFERGUSON_DIAMOND_GREY"/>
+      <xs:enumeration value="MASSEYFERGUSON_GREEN"/>
+      <xs:enumeration value="MASSEYFERGUSON_GREY_1"/>
+      <xs:enumeration value="MASSEYFERGUSON_GREY_4"/>
+      <xs:enumeration value="MASSEYFERGUSON_GREY_5"/>
+      <xs:enumeration value="MASSEYFERGUSON_LIGHT_GREY"/>
+      <xs:enumeration value="MASSEYFERGUSON_ORANGE"/>
+      <xs:enumeration value="MASSEYFERGUSON_RED"/>
+      <xs:enumeration value="MASSEYFERGUSON_SILVER"/>
+      <xs:enumeration value="MASSEYFERGUSON_WHITE"/>
+      <xs:enumeration value="MCCORMACK_RED1"/>
+      <xs:enumeration value="MCCORMACK_YELLOW1"/>
+      <xs:enumeration value="MCCORMICK_BLACK1"/>
+      <xs:enumeration value="MCCORMICK_GREY1"/>
+      <xs:enumeration value="MCCORMICK_GREY2"/>
+      <xs:enumeration value="MCCORMICK_GREY3"/>
+      <xs:enumeration value="MCCORMICK_GREY4"/>
+      <xs:enumeration value="MCCORMICK_RED1"/>
+      <xs:enumeration value="MCCORMICK_RED2"/>
+      <xs:enumeration value="MCCULLOCH_GREY2"/>
+      <xs:enumeration value="MCCULLOCH_RED1"/>
+      <xs:enumeration value="MCCULLOCH_YELLOW1"/>
+      <xs:enumeration value="MERCEDES_TRAC_BEIGE"/>
+      <xs:enumeration value="MERCEDES_TRAC_GREEN_DARK"/>
+      <xs:enumeration value="MERCEDES_TRAC_GREEN_LIGHT"/>
+      <xs:enumeration value="MERCEDES_TRAC_GREY"/>
+      <xs:enumeration value="MERCEDES_TRAC_PURPLE"/>
+      <xs:enumeration value="MERCEDES_TRAC_SILBERDISTEL_BRIGHT"/>
+      <xs:enumeration value="MERCEDES_TRAC_SILBERDISTEL_DARK"/>
+      <xs:enumeration value="MERCEDES_TRUCK_BLUE"/>
+      <xs:enumeration value="MERCEDES_TRUCK_DARKCHROME"/>
+      <xs:enumeration value="MERCEDES_TRUCK_DARKGREY"/>
+      <xs:enumeration value="MERCEDES_TRUCK_DARKGREY2"/>
+      <xs:enumeration value="MERCEDES_TRUCK_GREY"/>
+      <xs:enumeration value="MERCEDES_TRUCK_GREY2"/>
+      <xs:enumeration value="MERCEDES_TRUCK_INTERIOR_BEIGE"/>
+      <xs:enumeration value="MERCEDES_TRUCK_LIGHTGREY"/>
+      <xs:enumeration value="MERCEDES_TRUCK_RED"/>
+      <xs:enumeration value="MERCEDES_TRUCK_WHITE"/>
+      <xs:enumeration value="MERCEDES_UNIMOG_BRIGHTGREEN"/>
+      <xs:enumeration value="MERCEDES_UNIMOG_DARKGREEN"/>
+      <xs:enumeration value="MERCEDES_UNIMOG_DARKGREY"/>
+      <xs:enumeration value="MERCEDES_UNIMOG_GREEN1"/>
+      <xs:enumeration value="MERCEDES_UNIMOG_GREEN2"/>
+      <xs:enumeration value="MERCEDES_UNIMOG_GREY"/>
+      <xs:enumeration value="MERCEDES_UNIMOG_ORANGE"/>
+      <xs:enumeration value="MERCEDES_UNIMOG_YELLOW"/>
+      <xs:enumeration value="MERIDIAN_GREY1"/>
+      <xs:enumeration value="MERIDIAN_RED"/>
+      <xs:enumeration value="MERIDIAN_WHITE1"/>
+      <xs:enumeration value="MERIDIAN_YELLOW"/>
+      <xs:enumeration value="MERLO_GREEN1"/>
+      <xs:enumeration value="MERLO_GREY1"/>
+      <xs:enumeration value="MERLO_GREY2"/>
+      <xs:enumeration value="MERLO_GREY3"/>
+      <xs:enumeration value="MERLO_GREY4"/>
+      <xs:enumeration value="MERLO_WHITE1"/>
+      <xs:enumeration value="METALTECH_GREEN"/>
+      <xs:enumeration value="METALTECH_GREEN_1"/>
+      <xs:enumeration value="METALTECH_RED"/>
+      <xs:enumeration value="MONOSEM_BLUE"/>
+      <xs:enumeration value="MONOSEM_RED"/>
+      <xs:enumeration value="MONOSEM_WHITE"/>
+      <xs:enumeration value="MZURI_GREY1"/>
+      <xs:enumeration value="MZURI_ORANGE1"/>
+      <xs:enumeration value="NEWHOLLAND_BLACK1"/>
+      <xs:enumeration value="NEWHOLLAND_BLUE1"/>
+      <xs:enumeration value="NEWHOLLAND_BLUE2"/>
+      <xs:enumeration value="NEWHOLLAND_BLUE4"/>
+      <xs:enumeration value="NEWHOLLAND_DARKBLUE1"/>
+      <xs:enumeration value="NEWHOLLAND_GOLD1"/>
+      <xs:enumeration value="NEWHOLLAND_GREY1"/>
+      <xs:enumeration value="NEWHOLLAND_GREY2"/>
+      <xs:enumeration value="NEWHOLLAND_ORANGE1"/>
+      <xs:enumeration value="NEWHOLLAND_RED1"/>
+      <xs:enumeration value="NEWHOLLAND_WHITE1"/>
+      <xs:enumeration value="NEWHOLLAND_YELLOW1"/>
+      <xs:enumeration value="NEXAT_BLACK"/>
+      <xs:enumeration value="NEXAT_RED"/>
+      <xs:enumeration value="NORDSTEN_BLUE1"/>
+      <xs:enumeration value="NORDSTEN_ORANGE1"/>
+      <xs:enumeration value="NOVAG_RED1"/>
+      <xs:enumeration value="NOVAG_WHITE1"/>
+      <xs:enumeration value="NOVAG_WHITE2"/>
+      <xs:enumeration value="OLOFSFORS_BLUE1"/>
+      <xs:enumeration value="OXBO_GREEN1"/>
+      <xs:enumeration value="OXBO_GREY1"/>
+      <xs:enumeration value="OXBO_GREY2"/>
+      <xs:enumeration value="OXBO_GREY3"/>
+      <xs:enumeration value="OXBO_WHITE1"/>
+      <xs:enumeration value="OXBO_YELLOW1"/>
+      <xs:enumeration value="PALADIN_GREY"/>
+      <xs:enumeration value="PALADIN_RED"/>
+      <xs:enumeration value="PALFINGER_RED"/>
+      <xs:enumeration value="PFANZELT_GREY1"/>
+      <xs:enumeration value="PFANZELT_GREY2"/>
+      <xs:enumeration value="PFANZELT_SILVER1"/>
+      <xs:enumeration value="PFANZELT_TURQOISE1"/>
+      <xs:enumeration value="POETTINGER_GREEN1"/>
+      <xs:enumeration value="POETTINGER_RED1"/>
+      <xs:enumeration value="POETTINGER_WHITE1"/>
+      <xs:enumeration value="POETTINGER_YELLOW"/>
+      <xs:enumeration value="PONSSE_BLACK1"/>
+      <xs:enumeration value="PONSSE_BLACK2"/>
+      <xs:enumeration value="PONSSE_BLUE1"/>
+      <xs:enumeration value="PONSSE_BLUE2"/>
+      <xs:enumeration value="PONSSE_BLUE3"/>
+      <xs:enumeration value="PONSSE_GREY1"/>
+      <xs:enumeration value="PONSSE_GREY2"/>
+      <xs:enumeration value="PONSSE_GREY4"/>
+      <xs:enumeration value="PONSSE_RED1"/>
+      <xs:enumeration value="PONSSE_YELLOW1"/>
+      <xs:enumeration value="PONSSE_YELLOW2"/>
+      <xs:enumeration value="PORSCHEDIESEL_BEIGE1"/>
+      <xs:enumeration value="PORSCHEDIESEL_BROWN1"/>
+      <xs:enumeration value="PORSCHEDIESEL_RED1"/>
+      <xs:enumeration value="PORSCHEDIESEL_YELLOW1"/>
+      <xs:enumeration value="PRINOTH_BLACK1"/>
+      <xs:enumeration value="PRINOTH_GREY1"/>
+      <xs:enumeration value="PRINOTH_RED1"/>
+      <xs:enumeration value="PROVITIS_ORANGE1"/>
+      <xs:enumeration value="QUICKE_BLACK1"/>
+      <xs:enumeration value="QUICKE_ORANGE1"/>
+      <xs:enumeration value="RABE_BLACK1"/>
+      <xs:enumeration value="RABE_BLUE1"/>
+      <xs:enumeration value="RANDON_ORANGE1"/>
+      <xs:enumeration value="RANDON_ORANGE2"/>
+      <xs:enumeration value="RANDON_RED1"/>
+      <xs:enumeration value="REITER_GREY"/>
+      <xs:enumeration value="REITER_RED"/>
+      <xs:enumeration value="REITER_WHITE"/>
+      <xs:enumeration value="RIEDLER_GREY1"/>
+      <xs:enumeration value="RIGITRAC_GREY"/>
+      <xs:enumeration value="RIGITRAC_ORANGE1"/>
+      <xs:enumeration value="RIGITRAC_RED1"/>
+      <xs:enumeration value="RIGITRAC_YELLOW"/>
+      <xs:enumeration value="RIM_ADDITIONAL_DEFAULT"/>
+      <xs:enumeration value="RIM_BOLT_DEFAULT"/>
+      <xs:enumeration value="RIM_CONFIGURATION_BLACK"/>
+      <xs:enumeration value="RIM_CONFIGURATION_CHROME"/>
+      <xs:enumeration value="RIM_CONFIGURATION_WHITE"/>
+      <xs:enumeration value="RIM_DEFAULT"/>
+      <xs:enumeration value="RISUTEC_GREY1"/>
+      <xs:enumeration value="RISUTEC_YELLOW1"/>
+      <xs:enumeration value="ROPA_BLACK1"/>
+      <xs:enumeration value="ROPA_BLACK2"/>
+      <xs:enumeration value="ROPA_BLUE"/>
+      <xs:enumeration value="ROPA_DARKGRAY"/>
+      <xs:enumeration value="ROPA_GRAY"/>
+      <xs:enumeration value="ROPA_GRAY1"/>
+      <xs:enumeration value="ROPA_YELLOW"/>
+      <xs:enumeration value="ROSTSELMASH_BROWN1"/>
+      <xs:enumeration value="ROSTSELMASH_GREEN1"/>
+      <xs:enumeration value="ROSTSELMASH_ORANGE1"/>
+      <xs:enumeration value="ROSTSELMASH_ORANGE2"/>
+      <xs:enumeration value="ROSTSELMASH_PURPLE1"/>
+      <xs:enumeration value="ROSTSELMASH_RED1"/>
+      <xs:enumeration value="ROSTSELMASH_RED2"/>
+      <xs:enumeration value="ROSTSELMASH_YELLOW1"/>
+      <xs:enumeration value="ROTTNE_BLUE1"/>
+      <xs:enumeration value="ROTTNE_GREY1"/>
+      <xs:enumeration value="ROTTNE_ORANGE1"/>
+      <xs:enumeration value="ROTTNE_ORANGE2"/>
+      <xs:enumeration value="RUDOLFHOERMANN_BEIGE"/>
+      <xs:enumeration value="RUDOLFHOERMANN_BLUE"/>
+      <xs:enumeration value="RUDOLFHOERMANN_BROWN"/>
+      <xs:enumeration value="RUDOLFHOERMANN_DARKBEIGE"/>
+      <xs:enumeration value="RUDOLFHOERMANN_DARKGREY"/>
+      <xs:enumeration value="RUDOLFHOERMANN_GREEN"/>
+      <xs:enumeration value="RUDOLFHOERMANN_GREYALU"/>
+      <xs:enumeration value="RUDOLFHOERMANN_LIGHTGREEN"/>
+      <xs:enumeration value="RUDOLFHOERMANN_LIGHTGREY"/>
+      <xs:enumeration value="RUDOLFHOERMANN_OXIDRED"/>
+      <xs:enumeration value="RUDOLFHOERMANN_RED"/>
+      <xs:enumeration value="RUDOLFHOERMANN_WHITEALU"/>
+      <xs:enumeration value="RUDOLFHOERMANN_WOODBRIGHT"/>
+      <xs:enumeration value="RUDOLFHOERMANN_WOODDARK"/>
+      <xs:enumeration value="RUDOLPHSOHN_COVERGREEN"/>
+      <xs:enumeration value="RUDOLPHSOHN_DARKGREEN"/>
+      <xs:enumeration value="RUDOLPHSOHN_LIGHTGREEN"/>
+      <xs:enumeration value="RUDOLPHSOHN_RED1"/>
+      <xs:enumeration value="SALEK_GREEN1"/>
+      <xs:enumeration value="SALEK_GREEN2"/>
+      <xs:enumeration value="SALEK_GREY1"/>
+      <xs:enumeration value="SALEK_ORANGE1"/>
+      <xs:enumeration value="SALEK_RED1"/>
+      <xs:enumeration value="SALEK_RED2"/>
+      <xs:enumeration value="SALEK_YELLOW1"/>
+      <xs:enumeration value="SALFORD_RED1"/>
+      <xs:enumeration value="SAMASZ_BLACK"/>
+      <xs:enumeration value="SAMASZ_GREEN"/>
+      <xs:enumeration value="SAMASZ_ORANGE"/>
+      <xs:enumeration value="SAMASZ_WHITE"/>
+      <xs:enumeration value="SAME_BLACK1"/>
+      <xs:enumeration value="SAME_BLACK2"/>
+      <xs:enumeration value="SAME_GREY1"/>
+      <xs:enumeration value="SAME_RED1"/>
+      <xs:enumeration value="SAMPOROSENLEW_BLUE1"/>
+      <xs:enumeration value="SAMPOROSENLEW_RED1"/>
+      <xs:enumeration value="SAMPOROSENLEW_YELLOW1"/>
+      <xs:enumeration value="SAMPOROSENLEW_YELLOW2"/>
+      <xs:enumeration value="SAMSONAGRO_BLUE"/>
+      <xs:enumeration value="SAMSONAGRO_GREEN"/>
+      <xs:enumeration value="SAMSONAGRO_YELLOWPTO"/>
+      <xs:enumeration value="SCHAEFFER_BLUE1"/>
+      <xs:enumeration value="SCHAEFFER_GREY1"/>
+      <xs:enumeration value="SCHAEFFER_RED1"/>
+      <xs:enumeration value="SCHAEFFER_SILVER"/>
+      <xs:enumeration value="SCHAEFFER_YELLOW1"/>
+      <xs:enumeration value="SCHAEFFER_YELLOW2"/>
+      <xs:enumeration value="SCHOUTEN_GREY1"/>
+      <xs:enumeration value="SCHOUTEN_ORANGE1"/>
+      <xs:enumeration value="SCHUITEMAKER_BLACK"/>
+      <xs:enumeration value="SCHUITEMAKER_GREY"/>
+      <xs:enumeration value="SCHUITEMAKER_ORANGE1"/>
+      <xs:enumeration value="SCHUITEMAKER_RED1"/>
+      <xs:enumeration value="SCHWARZMUELLER_GREY1"/>
+      <xs:enumeration value="SCHWARZMUELLER_ORANGE1"/>
+      <xs:enumeration value="SCHWARZMUELLER_RED1"/>
+      <xs:enumeration value="SCHWARZMUELLER_YELLOW1"/>
+      <xs:enumeration value="SEEDHAWK_RED1"/>
+      <xs:enumeration value="SEEDHAWK_YELLOW1"/>
+      <xs:enumeration value="SEEDHAWK_YELLOW2"/>
+      <xs:enumeration value="SENNEBOGEN_GREEN1"/>
+      <xs:enumeration value="SEPPKNUSEL_GREY1"/>
+      <xs:enumeration value="SEPPKNUSEL_RED1"/>
+      <xs:enumeration value="SEPPKNUSEL_YELLOW1"/>
+      <xs:enumeration value="SHARED_BEIGE"/>
+      <xs:enumeration value="SHARED_BLACK0"/>
+      <xs:enumeration value="SHARED_BLACK1"/>
+      <xs:enumeration value="SHARED_BLACK2"/>
+      <xs:enumeration value="SHARED_BLACK3"/>
+      <xs:enumeration value="SHARED_BLACK4"/>
+      <xs:enumeration value="SHARED_BLACK5"/>
+      <xs:enumeration value="SHARED_BLACK6"/>
+      <xs:enumeration value="SHARED_BLACKJET"/>
+      <xs:enumeration value="SHARED_BLACKONYX"/>
+      <xs:enumeration value="SHARED_BLUE1"/>
+      <xs:enumeration value="SHARED_BLUE2"/>
+      <xs:enumeration value="SHARED_BLUE3"/>
+      <xs:enumeration value="SHARED_BLUENAVY"/>
+      <xs:enumeration value="SHARED_BROWN"/>
+      <xs:enumeration value="SHARED_BROWN1"/>
+      <xs:enumeration value="SHARED_BROWN2"/>
+      <xs:enumeration value="SHARED_BROWN3"/>
+      <xs:enumeration value="SHARED_DA_METAL_BLACK"/>
+      <xs:enumeration value="SHARED_GLASS_ORANGE"/>
+      <xs:enumeration value="SHARED_GLASS_RED"/>
+      <xs:enumeration value="SHARED_GREY"/>
+      <xs:enumeration value="SHARED_GREY1"/>
+      <xs:enumeration value="SHARED_GREY2"/>
+      <xs:enumeration value="SHARED_GREY3"/>
+      <xs:enumeration value="SHARED_GREY4"/>
+      <xs:enumeration value="SHARED_GREY5"/>
+      <xs:enumeration value="SHARED_GREYDARK"/>
+      <xs:enumeration value="SHARED_GREYLIGHT"/>
+      <xs:enumeration value="SHARED_RED1"/>
+      <xs:enumeration value="SHARED_REDCRIMSON"/>
+      <xs:enumeration value="SHARED_SILVER"/>
+      <xs:enumeration value="SHARED_SILVERROPE1"/>
+      <xs:enumeration value="SHARED_SKIN1"/>
+      <xs:enumeration value="SHARED_WHITE1"/>
+      <xs:enumeration value="SHARED_WHITE2"/>
+      <xs:enumeration value="SHARED_WRAP_BLACK"/>
+      <xs:enumeration value="SHARED_WRAP_BLUE"/>
+      <xs:enumeration value="SHARED_WRAP_GREEN"/>
+      <xs:enumeration value="SHARED_WRAP_PINK"/>
+      <xs:enumeration value="SHARED_WRAP_WHITE"/>
+      <xs:enumeration value="SHARED_YELLOW1"/>
+      <xs:enumeration value="SHARED_YELLOW2"/>
+      <xs:enumeration value="SILOKING_BLUE1"/>
+      <xs:enumeration value="SILOKING_RED1"/>
+      <xs:enumeration value="SIP_BLUE1"/>
+      <xs:enumeration value="SIP_GREY1"/>
+      <xs:enumeration value="SIP_RED1"/>
+      <xs:enumeration value="SIP_RED2"/>
+      <xs:enumeration value="SKODA_BLACK_MAGIC"/>
+      <xs:enumeration value="SKODA_BRILLIANT_SILVER_METALLIC"/>
+      <xs:enumeration value="SKODA_ENERGY_BLUE"/>
+      <xs:enumeration value="SKODA_GOLD_BRONZE"/>
+      <xs:enumeration value="SKODA_GRAPHITE_GREY_METALLIC"/>
+      <xs:enumeration value="SKODA_MAMBA_GREEN"/>
+      <xs:enumeration value="SKODA_MOON_WHITE"/>
+      <xs:enumeration value="SKODA_PHOENIX_ORANGE_METALLIC"/>
+      <xs:enumeration value="SKODA_RACE_BLUE_METALLIC"/>
+      <xs:enumeration value="SKODA_STEEL_GREY"/>
+      <xs:enumeration value="SKODA_VELVET_RED_METALLIC"/>
+      <xs:enumeration value="STARA_BEIGE"/>
+      <xs:enumeration value="STARA_BEIGE1"/>
+      <xs:enumeration value="STARA_COLORED1"/>
+      <xs:enumeration value="STARA_COLOYELLOW"/>
+      <xs:enumeration value="STARA_GREEN"/>
+      <xs:enumeration value="STARA_GREEN1"/>
+      <xs:enumeration value="STARA_GREY"/>
+      <xs:enumeration value="STARA_ORANGE"/>
+      <xs:enumeration value="STARKINDUSTRIES_BLUE1"/>
+      <xs:enumeration value="STARKINDUSTRIES_BLUE2"/>
+      <xs:enumeration value="STARKINDUSTRIES_GREEN1"/>
+      <xs:enumeration value="STEIGER_GREEN"/>
+      <xs:enumeration value="STEMA_GREY1"/>
+      <xs:enumeration value="STEMA_RED1"/>
+      <xs:enumeration value="STEPA_GREY2"/>
+      <xs:enumeration value="STEPA_RED1"/>
+      <xs:enumeration value="STEPA_YELLOW1"/>
+      <xs:enumeration value="STEYR_BLACK"/>
+      <xs:enumeration value="STEYR_GREY1"/>
+      <xs:enumeration value="STEYR_GREY2"/>
+      <xs:enumeration value="STEYR_ORANGE"/>
+      <xs:enumeration value="STEYR_RED1"/>
+      <xs:enumeration value="STEYR_WHITE1"/>
+      <xs:enumeration value="STEYR_YELLOW1"/>
+      <xs:enumeration value="STIHL_BROWN"/>
+      <xs:enumeration value="STIHL_GREY_1"/>
+      <xs:enumeration value="STIHL_MAGENTA1"/>
+      <xs:enumeration value="STIHL_ORANGE_1"/>
+      <xs:enumeration value="STIHL_WHITE1"/>
+      <xs:enumeration value="STOLL_GREY1"/>
+      <xs:enumeration value="STOLL_GREY2"/>
+      <xs:enumeration value="STOLL_RED1"/>
+      <xs:enumeration value="STRAUTMANN_GREEN1"/>
+      <xs:enumeration value="STRAUTMANN_GREY1"/>
+      <xs:enumeration value="STRAUTMANN_RED1"/>
+      <xs:enumeration value="STRAUTMANN_YELLOW1"/>
+      <xs:enumeration value="SUER_GREY1"/>
+      <xs:enumeration value="SUMMERSMFG_GREEN1"/>
+      <xs:enumeration value="SUMMERSMFG_RED1"/>
+      <xs:enumeration value="TAJFUN_RED1"/>
+      <xs:enumeration value="TATRA_BEIGE1"/>
+      <xs:enumeration value="TATRA_BEIGE2"/>
+      <xs:enumeration value="TATRA_BEIGE3"/>
+      <xs:enumeration value="TATRA_BLUE1"/>
+      <xs:enumeration value="TATRA_ORANGE1"/>
+      <xs:enumeration value="TATRA_ORANGE2"/>
+      <xs:enumeration value="TATRA_RED1"/>
+      <xs:enumeration value="THUERINGERAGRAR_RED1"/>
+      <xs:enumeration value="THUERINGERAGRAR_YELLOW1"/>
+      <xs:enumeration value="THUNDERCREEK_BLUE"/>
+      <xs:enumeration value="THUNDERCREEK_GREEN1"/>
+      <xs:enumeration value="THUNDERCREEK_GREY1"/>
+      <xs:enumeration value="THUNDERCREEK_GREY2"/>
+      <xs:enumeration value="THUNDERCREEK_RED1"/>
+      <xs:enumeration value="TMCCANCELA_GREY"/>
+      <xs:enumeration value="TMCCANCELA_ORANGE"/>
+      <xs:enumeration value="TREFFLER_BLUE1"/>
+      <xs:enumeration value="TREFFLER_YELLOW1"/>
+      <xs:enumeration value="TRELLEBORG_RED1"/>
+      <xs:enumeration value="TRELLEBORG_WHITE3"/>
+      <xs:enumeration value="UNIA_GREY1"/>
+      <xs:enumeration value="UNIA_RED1"/>
+      <xs:enumeration value="UNVERFERTH_BEIGE1"/>
+      <xs:enumeration value="UNVERFERTH_BEIGE2"/>
+      <xs:enumeration value="UNVERFERTH_BLACK1"/>
+      <xs:enumeration value="UNVERFERTH_BLUE1"/>
+      <xs:enumeration value="UNVERFERTH_GREEN"/>
+      <xs:enumeration value="UNVERFERTH_GREEN2"/>
+      <xs:enumeration value="UNVERFERTH_GREEN3"/>
+      <xs:enumeration value="UNVERFERTH_RED1"/>
+      <xs:enumeration value="UNVERFERTH_YELLOW1"/>
+      <xs:enumeration value="UNVERFETH_BEIGE"/>
+      <xs:enumeration value="UNVERFETH_GREY"/>
+      <xs:enumeration value="UNVERFETH_RED"/>
+      <xs:enumeration value="UNVERFETH_WHITE"/>
+      <xs:enumeration value="VAEDERSTAD_RED1"/>
+      <xs:enumeration value="VAEDERSTAD_YELLOW1"/>
+      <xs:enumeration value="VALTRA_BEIGE"/>
+      <xs:enumeration value="VALTRA_BLACK1"/>
+      <xs:enumeration value="VALTRA_BLACK2"/>
+      <xs:enumeration value="VALTRA_BLUE1"/>
+      <xs:enumeration value="VALTRA_BLUE2"/>
+      <xs:enumeration value="VALTRA_BLUE3"/>
+      <xs:enumeration value="VALTRA_BLUE4"/>
+      <xs:enumeration value="VALTRA_GOLD1"/>
+      <xs:enumeration value="VALTRA_GREEN1"/>
+      <xs:enumeration value="VALTRA_GREEN2"/>
+      <xs:enumeration value="VALTRA_GREEN3"/>
+      <xs:enumeration value="VALTRA_GREY1"/>
+      <xs:enumeration value="VALTRA_GREY2"/>
+      <xs:enumeration value="VALTRA_GREY3"/>
+      <xs:enumeration value="VALTRA_OLIVE"/>
+      <xs:enumeration value="VALTRA_ORANGE1"/>
+      <xs:enumeration value="VALTRA_RED1"/>
+      <xs:enumeration value="VALTRA_RED2"/>
+      <xs:enumeration value="VALTRA_SPECIAL"/>
+      <xs:enumeration value="VALTRA_WHITE"/>
+      <xs:enumeration value="VALTRA_YELLOW1"/>
+      <xs:enumeration value="VEENHUIS_GREY"/>
+      <xs:enumeration value="VEENHUIS_ORANGE"/>
+      <xs:enumeration value="VEENHUIS_RED"/>
+      <xs:enumeration value="VERMEER_YELLOW"/>
+      <xs:enumeration value="VERSATILE_ORANGE1"/>
+      <xs:enumeration value="VERSATILE_ORANGE2"/>
+      <xs:enumeration value="VERSATILE_ORANGE3"/>
+      <xs:enumeration value="VERSATILE_RED1"/>
+      <xs:enumeration value="VERVAET_BEIGE"/>
+      <xs:enumeration value="VERVAET_BLUE1"/>
+      <xs:enumeration value="VERVAET_GREEN1"/>
+      <xs:enumeration value="VERVAET_GREY"/>
+      <xs:enumeration value="VERVAET_GREY1"/>
+      <xs:enumeration value="VERVAET_RED1"/>
+      <xs:enumeration value="VERVAET_WHITE"/>
+      <xs:enumeration value="VICON_BEIGE"/>
+      <xs:enumeration value="VICON_GREY1"/>
+      <xs:enumeration value="VICON_RED1"/>
+      <xs:enumeration value="VOGELNOOT_GREEN1"/>
+      <xs:enumeration value="VOGELNOOT_RED1"/>
+      <xs:enumeration value="VOGELSANG_BLUE1"/>
+      <xs:enumeration value="VOGELSANG_BRASS"/>
+      <xs:enumeration value="VOGELSANG_GREEN"/>
+      <xs:enumeration value="VOGELSANG_RED1"/>
+      <xs:enumeration value="VOLVO_BLACK1"/>
+      <xs:enumeration value="VOLVO_BM_GREEN1"/>
+      <xs:enumeration value="VOLVO_BM_GREEN2"/>
+      <xs:enumeration value="VOLVO_BM_RED1"/>
+      <xs:enumeration value="VOLVO_BM_YELLOW1"/>
+      <xs:enumeration value="VOLVO_GREEN1"/>
+      <xs:enumeration value="VOLVO_GREY1"/>
+      <xs:enumeration value="VOLVO_ORANGE1"/>
+      <xs:enumeration value="VOLVO_PURPLE1"/>
+      <xs:enumeration value="VOLVO_RED1"/>
+      <xs:enumeration value="VOLVO_YELLOW1"/>
+      <xs:enumeration value="VREDO_ORANGE"/>
+      <xs:enumeration value="VREDO_RED"/>
+      <xs:enumeration value="WALKABOUT_BLUE1"/>
+      <xs:enumeration value="WALKABOUT_WHITE1"/>
+      <xs:enumeration value="WALTERSCHEID_BLACK1"/>
+      <xs:enumeration value="WALTERSCHEID_YELLOW1"/>
+      <xs:enumeration value="WALTERSCHEID_YELLOW2"/>
+      <xs:enumeration value="WARZEE_LOGOBLUE"/>
+      <xs:enumeration value="WARZEE_LOGOGRAY"/>
+      <xs:enumeration value="WARZEE_YELLOW"/>
+      <xs:enumeration value="WEBERMT_BLUE1"/>
+      <xs:enumeration value="WEIDEMANN_GREY"/>
+      <xs:enumeration value="WEIDEMANN_RED"/>
+      <xs:enumeration value="WELGER_GREEN1"/>
+      <xs:enumeration value="WELGER_GREEN2"/>
+      <xs:enumeration value="WELGER_RED1"/>
+      <xs:enumeration value="WELGER_YELLOW1"/>
+      <xs:enumeration value="WESTTECH_ORANGE1"/>
+      <xs:enumeration value="WIENHOFF_BROWN"/>
+      <xs:enumeration value="WIENHOFF_GOLD"/>
+      <xs:enumeration value="WIENHOFF_GREEN"/>
+      <xs:enumeration value="WIENHOFF_GREY"/>
+      <xs:enumeration value="WIENHOFF_RED1"/>
+      <xs:enumeration value="WIENHOFF_RED2"/>
+      <xs:enumeration value="WIFO_GREY"/>
+      <xs:enumeration value="WIFO_RED"/>
+      <xs:enumeration value="WILSONTRAILER_WHITE1"/>
+      <xs:enumeration value="WOODMIZER_ORANGE1"/>
+      <xs:enumeration value="ZETOR_BLUE2"/>
+      <xs:enumeration value="ZETOR_BLUE3"/>
+      <xs:enumeration value="ZETOR_BROWN_1"/>
+      <xs:enumeration value="ZETOR_GREEN1"/>
+      <xs:enumeration value="ZETOR_GREEN2"/>
+      <xs:enumeration value="ZETOR_ORANGE1"/>
+      <xs:enumeration value="ZETOR_RED1"/>
+      <xs:enumeration value="ZETOR_YELLOW1"/>
+      <xs:enumeration value="ZETOR_YELLOW2"/>
+      <xs:enumeration value="ZIEGLER_RED"/>
+      <xs:enumeration value="ZIEGLER_YELLOW"/>
+      <xs:enumeration value="ZUNHAMMER_BLUE"/>
+      <xs:enumeration value="ZUNHAMMER_GREEN1"/>
+      <xs:enumeration value="ZUNHAMMER_GREEN3"/>
+      <xs:enumeration value="ZUNHAMMER_GREY"/>
+      <xs:enumeration value="ZUNHAMMER_RED1"/>
+      <xs:enumeration value="ZUNHAMMER_RED2"/>
+      <xs:enumeration value="ZUNHAMMER_YELLOW1"/>
+      <xs:enumeration value="ZUNHAMMER_YELLOW2"/>
+      <xs:enumeration value="ZUNHAMMER_YELLOW3"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="connectionHoses">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="basicHoses" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="basicHose" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="diameter" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Diameter of hose</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="endStraightening" type="g_float" default="2">
+                                        <xs:annotation><xs:documentation xml:lang="en">Straightening factor on end side</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="filename" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">I3d filename</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="length" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reference length of hose</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="minCenterPointAngle" type="g_angle" default="90">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min. bending angle at the center of the hose</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="node" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to hose node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="realLength" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Real length of hose in i3d</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="startStraightening" type="g_float" default="2">
+                                        <xs:annotation><xs:documentation xml:lang="en">Straightening factor on start side</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="connectionHoseTypes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="connectionHoseType" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="adapter" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="detachedNode" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Detached adapter node in i3d file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="filename" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to i3d file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="name" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of adapter</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="node" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Adapter node in i3d file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="material" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="filename" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to i3d file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="materialNode" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Material node in i3d file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="materialTemplateName" type="fs25_materialTemplate">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Material template to be applied by default</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="name" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Name of material</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="uvLengthScale" type="g_float" default="1">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Scale factor of the UV in X axis</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="uvMinMax" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Min. and max. range of uv&apos;s in Y</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="uvRandomOffset" type="g_vector_2" default="0 0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Random offset range on x and y axis</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="name" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Name of type</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sockets" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="socket" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="cap" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="closedRotation" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Closed rotation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="closedVisibility" type="g_bool" default="true">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Closed visibility</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="node" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of cap node inside socket</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="openedRotation" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Opened rotation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="openedVisibility" type="g_bool" default="true">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Opened visibility</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="filename" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to i3d file</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Socket name</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="node" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Socket node in i3d</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="referenceNode" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Index of reference node inside socket</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,1243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="fs25_treeType">
+    <xs:annotation><xs:documentation>Tree type (maps_treeTypes.xml) — 21 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="americanElm"/>
+      <xs:enumeration value="aspen"/>
+      <xs:enumeration value="beech"/>
+      <xs:enumeration value="betulaErmanii"/>
+      <xs:enumeration value="boxelder"/>
+      <xs:enumeration value="cherry"/>
+      <xs:enumeration value="chineseElm"/>
+      <xs:enumeration value="downyServiceberry"/>
+      <xs:enumeration value="goldenRain"/>
+      <xs:enumeration value="japaneseZelkova"/>
+      <xs:enumeration value="lodgepolePine"/>
+      <xs:enumeration value="northernCatalpa"/>
+      <xs:enumeration value="pinusSylvestris"/>
+      <xs:enumeration value="pinusTabuliformis"/>
+      <xs:enumeration value="oak"/>
+      <xs:enumeration value="shagbarkHickory"/>
+      <xs:enumeration value="tiliaAmurensis"/>
+      <xs:enumeration value="deadwood"/>
+      <xs:enumeration value="transport"/>
+      <xs:enumeration value="apple"/>
+      <xs:enumeration value="ravaged"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="fs25_fillType">
+    <xs:annotation><xs:documentation>Fill type name (UPPERCASE) — 176 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WHEAT"/>
+      <xs:enumeration value="BARLEY"/>
+      <xs:enumeration value="OAT"/>
+      <xs:enumeration value="CANOLA"/>
+      <xs:enumeration value="SORGHUM"/>
+      <xs:enumeration value="SUNFLOWER"/>
+      <xs:enumeration value="SOYBEAN"/>
+      <xs:enumeration value="MAIZE"/>
+      <xs:enumeration value="POTATO"/>
+      <xs:enumeration value="SUGARBEET"/>
+      <xs:enumeration value="BEETROOT"/>
+      <xs:enumeration value="CARROT"/>
+      <xs:enumeration value="PARSNIP"/>
+      <xs:enumeration value="COTTON"/>
+      <xs:enumeration value="RICELONGGRAIN"/>
+      <xs:enumeration value="RICE"/>
+      <xs:enumeration value="GREENBEAN"/>
+      <xs:enumeration value="PEA"/>
+      <xs:enumeration value="SPINACH"/>
+      <xs:enumeration value="SUGARCANE"/>
+      <xs:enumeration value="WOOD"/>
+      <xs:enumeration value="WOODCHIPS"/>
+      <xs:enumeration value="SUGARBEET_CUT"/>
+      <xs:enumeration value="SILAGE"/>
+      <xs:enumeration value="GRASS"/>
+      <xs:enumeration value="MEADOW"/>
+      <xs:enumeration value="GRASS_WINDROW"/>
+      <xs:enumeration value="DRYGRASS"/>
+      <xs:enumeration value="DRYGRASS_WINDROW"/>
+      <xs:enumeration value="STRAW"/>
+      <xs:enumeration value="WHEAT_CUT"/>
+      <xs:enumeration value="BARLEY_CUT"/>
+      <xs:enumeration value="OAT_CUT"/>
+      <xs:enumeration value="CANOLA_CUT"/>
+      <xs:enumeration value="SOYBEAN_CUT"/>
+      <xs:enumeration value="GRAPE"/>
+      <xs:enumeration value="OLIVE"/>
+      <xs:enumeration value="MILK"/>
+      <xs:enumeration value="GOATMILK"/>
+      <xs:enumeration value="BUFFALOMILK"/>
+      <xs:enumeration value="WOOL"/>
+      <xs:enumeration value="EGG"/>
+      <xs:enumeration value="LIQUIDSEEDTREATMENT"/>
+      <xs:enumeration value="HONEY"/>
+      <xs:enumeration value="LETTUCE"/>
+      <xs:enumeration value="TOMATO"/>
+      <xs:enumeration value="STRAWBERRY"/>
+      <xs:enumeration value="SPRING_ONION"/>
+      <xs:enumeration value="NAPACABBAGE"/>
+      <xs:enumeration value="CHILLI"/>
+      <xs:enumeration value="GARLIC"/>
+      <xs:enumeration value="ENOKI"/>
+      <xs:enumeration value="OYSTER"/>
+      <xs:enumeration value="BOARDS"/>
+      <xs:enumeration value="PLANKS"/>
+      <xs:enumeration value="WOODBEAM"/>
+      <xs:enumeration value="PREFABWALL"/>
+      <xs:enumeration value="FLOUR"/>
+      <xs:enumeration value="RICEFLOUR"/>
+      <xs:enumeration value="BREAD"/>
+      <xs:enumeration value="CAKE"/>
+      <xs:enumeration value="MILK_BOTTLED"/>
+      <xs:enumeration value="GOATMILK_BOTTLED"/>
+      <xs:enumeration value="BUFFALOMILK_BOTTLED"/>
+      <xs:enumeration value="BUTTER"/>
+      <xs:enumeration value="CHEESE"/>
+      <xs:enumeration value="BUFFALOMOZZARELLA"/>
+      <xs:enumeration value="GOATCHEESE"/>
+      <xs:enumeration value="CHOCOLATE"/>
+      <xs:enumeration value="POTATOCHIPS"/>
+      <xs:enumeration value="RICEROLLS"/>
+      <xs:enumeration value="FERMENTEDNAPACABBAGE"/>
+      <xs:enumeration value="PRESERVEDCARROTS"/>
+      <xs:enumeration value="PRESERVEDPARSNIP"/>
+      <xs:enumeration value="PRESERVEDBEETROOT"/>
+      <xs:enumeration value="NOODLESOUP"/>
+      <xs:enumeration value="SOUPCANSMIXED"/>
+      <xs:enumeration value="SOUPCANSCARROTS"/>
+      <xs:enumeration value="SOUPCANSPARSNIP"/>
+      <xs:enumeration value="SOUPCANSBEETROOT"/>
+      <xs:enumeration value="SOUPCANSPOTATO"/>
+      <xs:enumeration value="FABRIC"/>
+      <xs:enumeration value="CLOTHES"/>
+      <xs:enumeration value="SUGAR"/>
+      <xs:enumeration value="CEREAL"/>
+      <xs:enumeration value="FURNITURE"/>
+      <xs:enumeration value="CARTONROLL"/>
+      <xs:enumeration value="PAPERROLL"/>
+      <xs:enumeration value="PIANO"/>
+      <xs:enumeration value="WAGON"/>
+      <xs:enumeration value="TOYTRACTOR"/>
+      <xs:enumeration value="SUNFLOWER_OIL"/>
+      <xs:enumeration value="CANOLA_OIL"/>
+      <xs:enumeration value="OLIVE_OIL"/>
+      <xs:enumeration value="RICE_OIL"/>
+      <xs:enumeration value="RAISINS"/>
+      <xs:enumeration value="GRAPEJUICE"/>
+      <xs:enumeration value="CEMENT"/>
+      <xs:enumeration value="BARREL"/>
+      <xs:enumeration value="BATHTUB"/>
+      <xs:enumeration value="BUCKET"/>
+      <xs:enumeration value="ROOFPLATES"/>
+      <xs:enumeration value="ROPE"/>
+      <xs:enumeration value="CANNED_PEAS"/>
+      <xs:enumeration value="CEMENTBRICKS"/>
+      <xs:enumeration value="SPINACH_BAGS"/>
+      <xs:enumeration value="JARRED_GREENBEAN"/>
+      <xs:enumeration value="RICE_BAGS"/>
+      <xs:enumeration value="RICE_BOXES"/>
+      <xs:enumeration value="SEEDS"/>
+      <xs:enumeration value="STONE"/>
+      <xs:enumeration value="MANURE"/>
+      <xs:enumeration value="LIQUIDMANURE"/>
+      <xs:enumeration value="DIGESTATE"/>
+      <xs:enumeration value="FORAGE"/>
+      <xs:enumeration value="FORAGE_MIXING"/>
+      <xs:enumeration value="WATER"/>
+      <xs:enumeration value="CHAFF"/>
+      <xs:enumeration value="TREESAPLINGS"/>
+      <xs:enumeration value="TREE"/>
+      <xs:enumeration value="OILSEEDRADISH"/>
+      <xs:enumeration value="POPLAR"/>
+      <xs:enumeration value="DIESEL"/>
+      <xs:enumeration value="DEF"/>
+      <xs:enumeration value="AIR"/>
+      <xs:enumeration value="ELECTRICCHARGE"/>
+      <xs:enumeration value="METHANE"/>
+      <xs:enumeration value="SNOW"/>
+      <xs:enumeration value="ROADSALT"/>
+      <xs:enumeration value="ROUNDBALE"/>
+      <xs:enumeration value="ROUNDBALE_GRASS"/>
+      <xs:enumeration value="ROUNDBALE_DRYGRASS"/>
+      <xs:enumeration value="ROUNDBALE_COTTON"/>
+      <xs:enumeration value="ROUNDBALE_WOOD"/>
+      <xs:enumeration value="SQUAREBALE"/>
+      <xs:enumeration value="SQUAREBALE_GRASS"/>
+      <xs:enumeration value="SQUAREBALE_DRYGRASS"/>
+      <xs:enumeration value="SQUAREBALE_COTTON"/>
+      <xs:enumeration value="SQUAREBALE_WOOD"/>
+      <xs:enumeration value="BALE_WRAP"/>
+      <xs:enumeration value="BALE_NET"/>
+      <xs:enumeration value="BALE_TWINE"/>
+      <xs:enumeration value="RICESAPLINGS"/>
+      <xs:enumeration value="FERTILIZER"/>
+      <xs:enumeration value="LIQUIDFERTILIZER"/>
+      <xs:enumeration value="PIGFOOD"/>
+      <xs:enumeration value="TARP"/>
+      <xs:enumeration value="LIME"/>
+      <xs:enumeration value="HERBICIDE"/>
+      <xs:enumeration value="SILAGE_ADDITIVE"/>
+      <xs:enumeration value="MINERAL_FEED"/>
+      <xs:enumeration value="WEED"/>
+      <xs:enumeration value="HORSE_PALOMINO"/>
+      <xs:enumeration value="HORSE_BLACK"/>
+      <xs:enumeration value="HORSE_BAY"/>
+      <xs:enumeration value="HORSE_PINTO"/>
+      <xs:enumeration value="HORSE_SEAL_BROWN"/>
+      <xs:enumeration value="HORSE_GRAY"/>
+      <xs:enumeration value="HORSE_DUN"/>
+      <xs:enumeration value="HORSE_CHESTNUT"/>
+      <xs:enumeration value="COW_SWISS_BROWN"/>
+      <xs:enumeration value="COW_HOLSTEIN"/>
+      <xs:enumeration value="COW_LIMOUSIN"/>
+      <xs:enumeration value="COW_ANGUS"/>
+      <xs:enumeration value="COW_WATERBUFFALO"/>
+      <xs:enumeration value="COW_HIGHLAND_CATTLE"/>
+      <xs:enumeration value="SHEEP_LANDRACE"/>
+      <xs:enumeration value="SHEEP_SWISS_MOUNTAIN"/>
+      <xs:enumeration value="SHEEP_STEINSCHAF"/>
+      <xs:enumeration value="SHEEP_BLACK_WELSH"/>
+      <xs:enumeration value="PIG_LANDRACE"/>
+      <xs:enumeration value="PIG_BLACK_PIED"/>
+      <xs:enumeration value="PIG_BERKSHIRE"/>
+      <xs:enumeration value="CHICKEN"/>
+      <xs:enumeration value="CHICKEN_ROOSTER"/>
+      <xs:enumeration value="GOAT"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="additionalFiles" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="additionalFile" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to additional i3d- or xml files to load for the map</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="aiSystem" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="animals" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="food" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" type="g_string">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="names" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" type="g_string">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="bales" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="boatWaterSystem" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="geofence" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="point" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="translation" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Translation of the point</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="height" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Water height</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="collectibles" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="culling" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="clipDistanceThreshold1" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="clipDistanceThreshold2" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="maxY" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="minY" type="g_float">
+                        </xs:attribute>
+                        <xs:attribute name="xzOffset" type="g_float">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="decoFoliages" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="decoFoliage" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="layerName" type="g_string">
+                                    </xs:attribute>
+                                    <xs:attribute name="mowable" type="g_bool">
+                                    </xs:attribute>
+                                    <xs:attribute name="numChannels" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="startChannel" type="g_int">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="mapping" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="layerName" type="g_string">
+                                    </xs:attribute>
+                                    <xs:attribute name="name" type="g_string">
+                                    </xs:attribute>
+                                    <xs:attribute name="state" type="g_int">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="densityHeightTypes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="densityMap" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="revision" type="g_int">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="densityMapHeightTypes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="densityMapHeightType" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="collision" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="baseOffset" type="g_float" default="0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Collision base offset</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="maxOffset" type="g_float" default="1">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Collision max offset</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="minOffset" type="g_float" default="0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Collision min offset</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="scale" type="g_float" default="1">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Collision scale</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="visualHeightMapping" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="mapping" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="realValue" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Real density map value (1-64 when using 6 bits)</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="visualValue" type="g_int">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Visual value to show when the real value is reached (1-64 when using 6 bits)</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="allowsSmoothing" type="g_bool" default="false">
+                                        <xs:annotation><xs:documentation xml:lang="en">Allows smoothing</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="canBeTipped" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Can be tipped</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="fillToGroundScale" type="g_float" default="1">
+                                        <xs:annotation><xs:documentation xml:lang="en">Scale factor for fill to ground</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="fillTypeName" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Name of the fill type</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="maxSurfaceAngle" type="g_angle" default="26">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max. surface angle for this fill type</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="freeAccessArea" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="radius" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">free accees area radius in meters</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="x" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">free accees area center world space x coordinate</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="z" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">free accees area center world space z coordinate</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="firstChannel" type="g_int" default="0">
+                            <xs:annotation><xs:documentation xml:lang="en">First channel on the density map for height types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="numChannels" type="g_int" default="6">
+                            <xs:annotation><xs:documentation xml:lang="en">Number of channel on the density map for height types</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="environment" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="environmentAreaSystem" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="outOfBoundsAreaType" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">AreaType to use for EnvironmentAreaSystem if the requested posities lies outside of the map bounds / bitmap</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="farmlands" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Filename of the farmland definition config</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fieldGround" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fields" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Filename of the field preplanted config</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="filename" type="g_string" minOccurs="1">
+                    <xs:annotation><xs:documentation xml:lang="en">filepath to map i3d file</xs:documentation></xs:annotation>
+                </xs:element>
+                <xs:element name="fillTypes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fishingSystem" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="spot" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="items" type="g_string_list">
+                                        <xs:annotation><xs:documentation xml:lang="en">space separated list of fishing items available at this spot</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="position" type="g_vector_2">
+                                        <xs:annotation><xs:documentation xml:lang="en">spot x z world translation</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="radius" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">spot radius</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="spawnWeight" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">weight of this spot</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="filename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">fishing system config xml filepath</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fruitTypeCategories" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="fruitTypeCategory" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="g_string">
+                                            <xs:attribute name="name" type="g_string">
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fruitTypeConverters" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="fruitTypeConverter" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="converter" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="factor" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="from" type="fs25_fillType">
+                                                </xs:attribute>
+                                                <xs:attribute name="to" type="fs25_fillType">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="name" type="g_string">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fruitTypes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="fruitType" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" type="g_string">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="gameplayHints" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="groundTypeMappings" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="groundTypeMapping" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="layer" type="g_string">
+                                    </xs:attribute>
+                                    <xs:attribute name="title" type="g_string">
+                                    </xs:attribute>
+                                    <xs:attribute name="type" type="g_string">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="groundTypes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="guidedTours" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="guidedTour" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" type="g_string" use="required">
+                                        <xs:annotation><xs:documentation xml:lang="en">Path to guided tour config file</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name" type="g_string" use="required">
+                                        <xs:annotation><xs:documentation xml:lang="en">Name identifier of the guided tour</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="helpers" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="helpline" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="trigger" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="categoryIndex" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="pageIndex" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="position" type="g_vector_trans">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="hotspots" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="placeableHotspot" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="teleportWorldPosition" type="g_vector_3">
+                                        <xs:annotation><xs:documentation xml:lang="en">Placeable teleport world position</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="text" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Placeable hotspot text</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="type" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Placeable hotspot type</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="worldPosition" type="g_vector_2">
+                                        <xs:annotation><xs:documentation xml:lang="en">Placeable world position</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="indexBufferMemoryUsage" type="g_float" minOccurs="0">
+                </xs:element>
+                <xs:element name="licensePlates" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="missions" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="baleMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="baleWrapMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerBale" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per bale</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="cultivateMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="deadwoodMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="spots" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="filename" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Filename to tree spots</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="penaltyPerTree" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Penalty per tree</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerTree" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per tree</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="treeType" type="fs25_treeType">
+                                        <xs:annotation><xs:documentation xml:lang="en">Tree type</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="destructibleRockMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="marker" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="filename" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Filename to rock marker</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="spots" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="filename" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Filename to rock spots</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="maxNumRocks" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of rocks</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="minNumRocks" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of rocks</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="penaltyPerRock" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Penalty per tree</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerRock" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per tree</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="fertilizeMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="harvestMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="fruitType" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="name" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Fruit type</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="failureCostFactor" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Failure cost factor</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="failureCostOfTotal" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Failure cost of total</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="herbicideMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="hoeMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="mowMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="plowMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="sowMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="stonePickMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="tedderMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="treeTransportMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="spots" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:attribute name="filename" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Filename to tree spots</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="penaltyPerTree" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Penalty per tree</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerTree" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per tree</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="treeType" type="fs25_treeType">
+                                        <xs:annotation><xs:documentation xml:lang="en">Tree type</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="weedMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="rewardPerHa" type="g_int">
+                                        <xs:annotation><xs:documentation xml:lang="en">Reward per ha</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="wildlifeFeederPlacementMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="seasonPeriods" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="seasonPeriod" type="g_string" minOccurs="0">
+                                                        <xs:annotation><xs:documentation xml:lang="en">Season period (e.g. EARLY_WINTER, LATE_SUMMER, ..) this mission can occur in</xs:documentation></xs:annotation>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="wildlifeFeederRefillMission" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="feederFillType" type="g_string" minOccurs="0">
+                                            <xs:annotation><xs:documentation xml:lang="en">fill type name used by the feeder</xs:documentation></xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="seasonPeriods" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="seasonPeriod" type="g_string" minOccurs="0">
+                                                        <xs:annotation><xs:documentation xml:lang="en">Season period (e.g. EARLY_WINTER, LATE_SUMMER, ..) this mission can occur in</xs:documentation></xs:annotation>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="maxNumInstances" type="g_int">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="enabled" type="g_bool">
+                        </xs:attribute>
+                        <xs:attribute name="vehicleFilename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="motionPathEffects" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="navigationCollision" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="revision" type="g_int">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="newPlayerHandTools" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="handTool" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="xmlFilename" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Filename of the hand tool&apos;s xml file</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="npcs" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Filename of the npcs available on the map</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="paintableFoliages" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="paintableFoliage" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="layerName" type="g_string">
+                                    </xs:attribute>
+                                    <xs:attribute name="numStateChannels" type="g_int">
+                                    </xs:attribute>
+                                    <xs:attribute name="startChannel" type="g_int">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="placeableSystem" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="boundary" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="point" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="translation" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Translation of the point</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="placementCollision" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="revision" type="g_int">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="shop" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sounds" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="splitShapes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="revision" type="g_int">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sprayTypes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="storeItems" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="terrainLodTexture" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="revision" type="g_int">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="terrainTexture" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="revision" type="g_int">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="textureMemoryUsage" type="g_float" minOccurs="0">
+                </xs:element>
+                <xs:element name="tipCollision" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="revision" type="g_int">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="treeTypes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                        <xs:attribute name="maxNumTrees" type="g_int" default="8000">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="vertexBufferMemoryUsage" type="g_float" minOccurs="0">
+                </xs:element>
+                <xs:element name="weed" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="wildlife" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="filename" type="g_string">
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+            <xs:attribute name="height" type="g_int" default="2048">
+                <xs:annotation><xs:documentation xml:lang="en">Height of the world</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="imageFilename" type="g_string">
+                <xs:annotation><xs:documentation xml:lang="en">2D map filename</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="mapFieldColor" type="g_vector_3">
+                <xs:annotation><xs:documentation xml:lang="en">2D map field color rgb</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="mapGrassFieldColor" type="g_vector_3">
+                <xs:annotation><xs:documentation xml:lang="en">2D map grass color rgb</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="width" type="g_int" default="2048">
+                <xs:annotation><xs:documentation xml:lang="en">Width of the world</xs:documentation></xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,6 @@
+{
+  "// FS25 modding: install this for XML autocomplete + validation": "",
+  "recommendations": [
+    "redhat.vscode-xml"
+  ]
+}

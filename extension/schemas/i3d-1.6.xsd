@@ -1,0 +1,1140 @@
+<!-- 
+ Description: i3D file format - schema
+ Authors....: Christian Ammann and Stefan Geiger
+ Created....: 12/03/03
+ Modified...: 30/09/21
+ Version....: 1.6h
+ Copyright (C) GIANTS Software GmbH, All Rights Reserved.
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:annotation>
+        <xsd:documentation xml:lang="en">i3D file format</xsd:documentation>
+    </xsd:annotation>
+    <xsd:element name="i3D" type="i3DType"/>
+    <!-- Custom simple types -->
+    <xsd:simpleType name="doubleListType">
+        <xsd:list itemType="xsd:double"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="intListType">
+        <xsd:list itemType="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="stringListType">
+        <xsd:list itemType="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name='int3ListType'>
+        <xsd:restriction base='intListType'>
+            <xsd:length value='3'/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="uv_coordType">
+        <xsd:restriction base="doubleListType">
+            <xsd:length value="2"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="xyz_coordType">
+        <xsd:restriction base="doubleListType">
+            <xsd:length value="3"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="xyzw_coordType">
+        <xsd:restriction base="doubleListType">
+            <xsd:length value="4"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="xyz_w_coordType">
+        <xsd:restriction base="doubleListType">
+            <xsd:minLength value="3"/>
+            <xsd:maxLength value="4"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="u32BitIntOrHex">
+        <xsd:restriction base="xsd:string">
+          <xsd:pattern value="0x[0-9A-Fa-f]{1,8}|[0-9]{1,10}"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!-- Main parts -->
+    <xsd:complexType name="i3DType">
+        <xsd:sequence>
+            <xsd:element name="Asset" type="AssetType" minOccurs="0"/>
+            <xsd:element name="Files" type="FilesType" minOccurs="0"/>
+            <xsd:element name="Materials" type="MaterialsType" minOccurs="0"/>
+            <xsd:element name="PerInstanceMaterialParameters" type="PerInstanceMaterialParametersType" minOccurs="0"/>
+            <xsd:element name="Shapes" type="ShapesType" minOccurs="0"/>
+            <xsd:element name="Dynamics" type="DynamicsType" minOccurs="0"/>
+            <xsd:element name="Scene" type="SceneType" minOccurs="0"/>
+            <xsd:element name="Animation" type="AnimationType" minOccurs="0"/>
+            <xsd:element name="ProceduralPlacement" type="ProceduralPlacementType" minOccurs="0"/>
+            <xsd:element name="UserAttributes" type="UserAttributesType" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string"/>
+        <xsd:attribute name="version" type="xsd:string"/>
+    </xsd:complexType>
+    <!-- Asset -->
+    <xsd:complexType name="AssetType">
+        <xsd:sequence>
+            <xsd:element name="Export" type="ExportType" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="filename" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="ExportType">
+        <xsd:attribute name="program" type="xsd:string"/>
+        <xsd:attribute name="version" type="xsd:string"/>
+        <xsd:attribute name="revision" type="xsd:string"/>
+        <xsd:attribute name="date" type="xsd:string"/>
+    </xsd:complexType>
+    <!-- Files -->
+    <xsd:complexType name="FilesType">
+        <xsd:sequence>
+            <xsd:element name="File" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="fileId" type="xsd:integer" use="required"/>
+                    <xsd:attribute name="filename" type="xsd:string" use="required"/>
+                    <xsd:attribute name="colorProfile" type="colorProfileType"/>  <!-- TODO: still supported? -->
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="colorProfileType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="sRGB"/>
+            <xsd:enumeration value="linearRGB"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <!-- Materials -->
+    <xsd:complexType name="MaterialsType">
+        <xsd:sequence>
+            <xsd:element name="Material" type="MaterialType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MaterialType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="Texture" type="TextureReferenceType" minOccurs="0" maxOccurs="1"/> <!-- minOccurs maxOccurs not working due to choice parent -->
+            <xsd:element name="Normalmap" type="NormalmapReferenceType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Glossmap" type="TextureReferenceType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Emissivemap" type="TextureReferenceType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Reflectionmap" type="ReflectionmapReferenceType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Refractionmap" type="RefractionmapReferenceType" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="Custommap" type="CustommapReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="CustomParameter" type="CustomParameterReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:attribute name="materialId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="diffuseColor" type="xyz_w_coordType"/>
+        <xsd:attribute name="emissiveColor" type="xyz_w_coordType"/>
+        <xsd:attribute name="specularColor" type="xyz_coordType"/>
+        <xsd:attribute name="alphaBlending" type="xsd:boolean"/>
+        <xsd:attribute name="allowFog" type="xsd:boolean"/>
+        <xsd:attribute name="customShaderId" type="xsd:integer"/>
+        <xsd:attribute name="customShaderVariation" type="xsd:string"/>
+        <xsd:attribute name="shadingRate" type="ShadingRateType"/>
+        <xsd:attribute name="ssrUsePixelColorOnFailedIntersection" type="xsd:boolean" default="false">
+            <xsd:annotation>
+                <xsd:documentation>
+                    When screen space reflection traced rays don't hit anything, we use a fallback color for the reflection, usually the env map / sky.
+                    This flag makes it so that when that failed ray ends on a pixel that was rendered with this material (for example by shooting behind it into infinity), it can use the material's pixel color instead of the sky.
+                    Used to fix holes in reflections of e.g. alpha tested objects where this occurs a lot.
+                    Optional as it creates other artifacts in return, like wrong reflections when rays go under and behind a bridge.
+                </xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+    </xsd:complexType>
+    <xsd:simpleType name="ShadingRateType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="1x1" />
+            <xsd:enumeration value="1x2" />
+            <xsd:enumeration value="2x1" />
+            <xsd:enumeration value="2x2" />
+            <xsd:enumeration value="2x4" />
+            <xsd:enumeration value="4x2" />
+            <xsd:enumeration value="4x4" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="TextureReferenceType">
+        <xsd:attribute name="fileId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="wrap" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="NormalmapReferenceType">
+        <xsd:attribute name="fileId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="bumpDepth" type="xsd:double"/>
+        <xsd:attribute name="wrap" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="ReflectionmapReferenceType">
+        <xsd:attribute name="fileId" type="xsd:integer"/>
+        <xsd:attribute name="type" type="xsd:string"/>
+        <xsd:attribute name="refractiveIndex" type="xsd:double"/>
+        <xsd:attribute name="bumpScale" type="xsd:double"/>
+        <xsd:attribute name="shapesObjectMask" type="xsd:integer"/>
+        <xsd:attribute name="objectMask" type="u32BitIntOrHex"/>
+        <xsd:attribute name="lightsObjectMask" type="xsd:integer"/>
+        <xsd:attribute name="lodDistanceScaling" type="xsd:double"/>
+        <xsd:attribute name="viewDistanceScaling" type="xsd:double"/>
+        <xsd:attribute name="scaling" type="xsd:double"/>
+    </xsd:complexType>
+    <xsd:complexType name="RefractionmapReferenceType">
+        <xsd:attribute name="type" type="xsd:string"/>
+        <xsd:attribute name="coeff" type="xsd:double"/>
+        <xsd:attribute name="bumpScale" type="xsd:double"/>
+        <xsd:attribute name="withSSRData" type="xsd:boolean"/>
+    </xsd:complexType>
+    <xsd:complexType name="CustommapReferenceType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="fileId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="wrap" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="CustomParameterReferenceType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="value" type="doubleListType" use="required"/>
+    </xsd:complexType>
+    <!-- PerInstanceMaterialParameters -->
+    <xsd:complexType name="PerInstanceMaterialParametersType">
+        <xsd:sequence>
+            <xsd:element name="PerInstanceMaterialParameter" type="PerInstanceMaterialParameterType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PerInstanceMaterialParameterType">
+        <xsd:sequence>
+            <xsd:element name="CustomParameter" type="PerInstanceMaterialParameterCustomParameterType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="nodeId" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="PerInstanceMaterialParameterCustomParameterType">
+        <xsd:attribute name="materialIndex" type="xsd:integer" use="required"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="value" type="doubleListType" use="required"/>
+    </xsd:complexType>
+    <!-- Shapes -->
+    <xsd:complexType name="ShapesType">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="NurbsCurve" type="NurbsCurveType"/>
+            <xsd:element name="IndexedTriangleSet" type="IndexedTriangleSetType"/>
+            <xsd:element name="Precipitation" type="PrecipitationType"/>
+            <xsd:element name="NavigationMesh" type="NavigationMeshType"/>
+            <xsd:element name="PrefracturedMesh" type="PrefracturedMeshType"/>
+        </xsd:choice>
+        <xsd:attribute name="externalShapesFile" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="ShapeType">
+        <xsd:attribute name="shapeId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="NurbsCurveType">
+        <xsd:complexContent>
+            <xsd:extension base="ShapeType">
+                <xsd:sequence>
+                    <xsd:element name="cv" minOccurs="3" maxOccurs="unbounded">
+                        <xsd:complexType>
+                            <xsd:attribute name="c" type="xyz_coordType" use="required"/>
+                        </xsd:complexType>
+                    </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="type" type="NurbsCurveTypeType" use="required"/>
+                <xsd:attribute name="degree" type="xsd:integer"/>
+                <xsd:attribute name="form" type="NurbsCurveFormType" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:simpleType name="NurbsCurveTypeType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="linear" />
+            <xsd:enumeration value="cubic" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="NurbsCurveFormType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="open" />
+            <xsd:enumeration value="closed" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="IndexedTriangleSetType">
+        <xsd:complexContent>
+            <xsd:extension base="ShapeType">
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="Vertices" type="IndexedTriangleSetVerticesType"/>
+                    <xsd:element name="Triangles" type="TrianglesType"/>
+                    <xsd:element name="Subsets" type="SubsetsType"/>
+                    <xsd:element name="Attachments" type="AttachmentsType"/>
+                </xsd:choice>
+                <xsd:attribute name="meshUsage" type="xsd:integer"/>
+                <xsd:attribute name="bvCenter" type="xyz_coordType"/>
+                <xsd:attribute name="bvRadius" type="xsd:double"/>
+                <xsd:attribute name="isOptimized" type="xsd:boolean"/>
+                <xsd:attribute name="isAttachment" type="xsd:boolean"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="IndexedTriangleSetVerticesType">
+        <xsd:sequence>
+            <xsd:element name="v" type="VertexType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="count" type="xsd:integer"/>
+        <xsd:attribute name="normal" type="xsd:boolean"/>
+        <xsd:attribute name="uv0" type="xsd:boolean"/>
+        <xsd:attribute name="uv1" type="xsd:boolean"/>
+        <xsd:attribute name="uv2" type="xsd:boolean"/>
+        <xsd:attribute name="uv3" type="xsd:boolean"/>
+        <xsd:attribute name="color" type="xsd:boolean"/>
+        <xsd:attribute name="singleblendweights" type="xsd:boolean"/>
+        <xsd:attribute name="blendweights" type="xsd:boolean"/>
+        <xsd:attribute name="tangent" type="xsd:boolean"/>
+        <xsd:attribute name="generic" type="xsd:boolean"/>
+    </xsd:complexType>
+    <xsd:complexType name="VertexType">
+        <xsd:attribute name="p" type="doubleListType" use="required"/>
+        <xsd:attribute name="n" type="doubleListType"/>
+        <xsd:attribute name="t0" type="doubleListType"/>
+        <xsd:attribute name="t1" type="doubleListType"/>
+        <xsd:attribute name="t2" type="doubleListType"/>
+        <xsd:attribute name="t3" type="doubleListType"/>
+        <xsd:attribute name="c" type="doubleListType"/>
+        <xsd:attribute name="bw" type="doubleListType"/>
+        <xsd:attribute name="bi" type="intListType"/>
+        <xsd:attribute name="g" type="doubleListType"/>
+    </xsd:complexType>
+    <xsd:complexType name="TrianglesType">
+        <xsd:sequence>
+            <xsd:element name="t" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="vi" type="int3ListType" use="required"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="count" type="xsd:integer"/>
+    </xsd:complexType>
+    <xsd:complexType name="SubsetsType">
+        <xsd:sequence>
+            <xsd:element name="Subset" type="SubsetType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="count" type="xsd:integer"/>
+    </xsd:complexType>
+    <xsd:complexType name="SubsetType">
+        <xsd:attribute name="firstVertex" type="xsd:integer" use="required"/>
+        <xsd:attribute name="numVertices" type="xsd:integer" use="required"/>
+        <xsd:attribute name="firstIndex" type="xsd:integer" use="required"/>
+        <xsd:attribute name="numIndices" type="xsd:integer" use="required"/>
+        <xsd:attribute name="uvDensity0" type="xsd:double"/>
+        <xsd:attribute name="uvDensity1" type="xsd:double"/>
+        <xsd:attribute name="uvDensity2" type="xsd:double"/>
+        <xsd:attribute name="uvDensity3" type="xsd:double"/>
+    </xsd:complexType>
+    <xsd:complexType name="AttachmentsType">
+        <xsd:sequence>
+            <xsd:element name="Attachment" type="AttachmentType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="count" type="xsd:integer"/>
+    </xsd:complexType>
+    <xsd:complexType name="AttachmentType">
+        <xsd:attribute name="faceIndex" type="xsd:integer" use="required"/>
+        <xsd:attribute name="translation" type="xyz_coordType"/>
+        <xsd:attribute name="rotation" type="xyz_coordType"/>
+        <xsd:attribute name="scale" type="xyz_coordType"/>
+        <xsd:attribute name="bvCenter" type="xyz_coordType"/>
+        <xsd:attribute name="bvRadius" type="xsd:double"/>
+    </xsd:complexType>
+    <xsd:complexType name="PrecipitationType">
+        <xsd:complexContent>
+            <xsd:extension base="ShapeType">
+                <xsd:attribute name="dropMaterialId" type="xsd:integer" use="required"/>
+                <xsd:attribute name="maxRainDropsMultiplier" type="xsd:double" use="required"/>
+                <xsd:attribute name="activeRainDropsMultiplier" type="xsd:double" use="required"/>
+                <xsd:attribute name="rainSpawnHeight" type="xsd:double" use="required"/>
+                <xsd:attribute name="rainSpawnBoxWidth" type="xsd:double" use="required"/>
+                <xsd:attribute name="rainSpawnBoxDepth" type="xsd:double" use="required"/>
+                <xsd:attribute name="spawnVelocity" type="xsd:double" use="required"/>
+                <xsd:attribute name="windForceX" type="xsd:double" use="required"/>
+                <xsd:attribute name="windForceY" type="xsd:double" use="required"/>
+                <xsd:attribute name="turbulence" type="xsd:double" use="required"/>
+                <xsd:attribute name="turbulenceTimeScale" type="xsd:double" use="required"/>
+                <xsd:attribute name="turbulencePulseDuration" type="xsd:double" use="required"/>
+                <xsd:attribute name="cameraVelocityMultiplier" type="xsd:double" use="required"/>
+                <xsd:attribute name="mostConcentratedRainDistance" type="xsd:double"/>
+                <xsd:attribute name="rainDistributionPower" type="xsd:double"/>
+                <xsd:attribute name="maxBounces" type="xsd:integer"/>
+                <xsd:attribute name="bounceRestitution" type="xsd:double"/>
+                <xsd:attribute name="bounceRandomFactor" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="NavigationMeshType">
+        <xsd:complexContent>
+            <xsd:extension base="ShapeType">
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="Vertices" type="NavigationMeshVerticesType"/>
+                    <xsd:element name="Nodes" type="NavigationMeshNodesType"/>
+                </xsd:choice>
+                <xsd:attribute name="cellSize" type="xsd:double" use="required"/>
+                <xsd:attribute name="cellHeight" type="xsd:double" use="required"/>
+                <xsd:attribute name="gridMinBound" type="xyz_coordType" use="required"/>
+                <xsd:attribute name="gridMaxBound" type="xyz_coordType" use="required"/>
+                <xsd:attribute name="vertices" type="xsd:integer" use="required"/>
+                <xsd:attribute name="nodes" type="xsd:integer" use="required"/>
+                <xsd:attribute name="edges" type="xsd:integer" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="NavigationMeshVerticesType">
+        <xsd:sequence>
+            <xsd:element name="v" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="p" type="xyz_coordType" use="required"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="NavigationMeshNodesType">
+        <xsd:sequence>
+            <xsd:element name="Node" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="vi" type="intListType" use="required"/>
+                    <xsd:attribute name="ci" type="intListType" use="required"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PrefracturedMeshType">
+        <xsd:complexContent>
+            <xsd:extension base="ShapeType">
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="Chunks" type="PrefracturedMeshChunkType"/>
+                </xsd:choice>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="PrefracturedMeshChunkType">
+        <xsd:complexContent>
+            <xsd:extension base="ShapeType">
+                <xsd:sequence>
+                    <xsd:element name="v" type="VertexType" maxOccurs="unbounded"/>
+                </xsd:sequence>
+                <xsd:attribute name="nc" type="xsd:integer" use="required"/>
+                <xsd:attribute name="fci" type="xsd:integer" use="required"/>
+                <xsd:attribute name="ni" type="xsd:integer" use="required"/>
+                <xsd:attribute name="i" type="intListType" use="required"/>
+                <xsd:attribute name="nhv" type="xsd:integer" use="required"/>
+                <xsd:attribute name="hv" type="doubleListType" use="required"/>
+                <xsd:attribute name="nhei" type="xsd:integer" use="required"/>
+                <xsd:attribute name="hei" type="intListType" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!-- Dynamics-->
+    <xsd:complexType name="DynamicsType">
+        <xsd:choice minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="ParticleSystem" type="ParticleSystemType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="ParticleSystemType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="Gravity" type="GravityType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Air" type="AirType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:attribute name="dynamicId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="type" type="xsd:string"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="particleShapeId" type="xsd:integer"/>
+        <xsd:attribute name="maxCount" type="xsd:integer"/>
+        <xsd:attribute name="rate" type="xsd:double"/>
+        <xsd:attribute name="maxEmit" type="xsd:integer"/>
+        <xsd:attribute name="emitStartTime" type="xsd:double"/>
+        <xsd:attribute name="emitStopTime" type="xsd:double"/>
+        <xsd:attribute name="lifespanInfinite" type="xsd:boolean"/>
+        <xsd:attribute name="speed" type="xsd:double"/>
+        <xsd:attribute name="speedRandom" type="xsd:double"/>
+        <xsd:attribute name="tangentSpeed" type="xsd:double"/>
+        <xsd:attribute name="normalSpeed" type="xsd:double"/>
+        <xsd:attribute name="lifespan" type="xsd:double"/>
+        <xsd:attribute name="spriteScaleX" type="xsd:double"/>
+        <xsd:attribute name="spriteScaleY" type="xsd:double"/>
+        <xsd:attribute name="depthSort" type="xsd:boolean"/>
+        <xsd:attribute name="buildTangents" type="xsd:boolean"/>
+        <xsd:attribute name="blendFactor" type="xsd:double"/>
+        <xsd:attribute name="blendInFactor" type="xsd:double"/>
+        <xsd:attribute name="blendOutFactor" type="xsd:double"/>
+        <xsd:attribute name="textureAtlasSizeX" type="xsd:integer"/>
+        <xsd:attribute name="spriteScaleXGain" type="xsd:double"/>
+        <xsd:attribute name="spriteScaleYGain" type="xsd:double"/>
+        <xsd:attribute name="emitterShapeVelocityScale" type="xsd:double"/>
+        <xsd:attribute name="damping" type="xsd:double"/>
+        <xsd:attribute name="randomInitRotation" type="xsd:boolean"/>
+        <xsd:attribute name="deltaRotateMin" type="xsd:double"/>
+        <xsd:attribute name="deltaRotateMax" type="xsd:double"/>
+        <xsd:attribute name="textureAtlasSizeY" type="xsd:integer"/>
+        <xsd:attribute name="emitTrianglesLifespan" type="xsd:double"/>
+        <xsd:attribute name="emitDestructionCollision" type="xsd:boolean"/>
+        <xsd:attribute name="emitDestructionBreak" type="xsd:boolean"/>
+        <xsd:attribute name="emitDestructionChunkDelete" type="xsd:boolean"/>
+    </xsd:complexType>
+    <xsd:complexType name="GravityType">
+        <xsd:attribute name="force" type="xyz_coordType" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="AirType">
+        <xsd:attribute name="velocity" type="xyz_coordType" use="required"/>
+    </xsd:complexType>
+    <!-- Scene -->
+    <xsd:complexType name="SceneType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="TransformGroup" type="TransformGroupType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="ReferenceNode" type="ReferenceNodeType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Shape" type="ShapeSceneType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Camera" type="CameraType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Light" type="LightType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Dynamic" type="DynamicType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="AudioSource" type="AudioSourceType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="TerrainTransformGroup" type="TerrainTransformGroupType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="NavigationMesh" type="NavigationMeshSceneType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Note" type="NoteType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="TransformGroupType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="TransformGroup" type="TransformGroupType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="ReferenceNode" type="ReferenceNodeType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Shape" type="ShapeSceneType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Camera" type="CameraType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Light" type="LightType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Dynamic" type="DynamicType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="AudioSource" type="AudioSourceType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="TerrainTransformGroup" type="TerrainTransformGroupType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="NavigationMesh" type="NavigationMeshSceneType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Note" type="NoteType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="lockedgroup" type="xsd:boolean"/>
+        <xsd:attribute name="translation" type="xyz_coordType"/>
+        <xsd:attribute name="rotation" type="xyz_coordType"/>
+        <xsd:attribute name="scale" type="xyz_coordType"/>
+        <xsd:attribute name="visibility" type="xsd:boolean"/>
+        <xsd:attribute name="static" type="xsd:boolean"/>
+        <xsd:attribute name="dynamic" type="xsd:boolean"/>
+        <xsd:attribute name="kinematic" type="xsd:boolean"/>
+        <xsd:attribute name="compound" type="xsd:boolean"/>
+        <xsd:attribute name="compoundChild" type="xsd:boolean"/>
+        <xsd:attribute name="collision" type="xsd:boolean"/>
+        <xsd:attribute name="trigger" type="xsd:boolean"/>
+        <xsd:attribute name="collisionMask" type="xsd:integer"/>  <!-- yet supported for loading only -->
+        <xsd:attribute name="collisionFilterGroup" type="u32BitIntOrHex"/>
+        <xsd:attribute name="collisionFilterMask" type="u32BitIntOrHex"/>
+        <xsd:attribute name="restitution" type="xsd:double"/>
+        <xsd:attribute name="staticFriction" type="xsd:double"/>
+        <xsd:attribute name="dynamicFriction" type="xsd:double"/>
+        <xsd:attribute name="linearDamping" type="xsd:double"/>
+        <xsd:attribute name="angularDamping" type="xsd:double"/>
+        <xsd:attribute name="rollingFriction" type="xsd:double"/>
+        <xsd:attribute name="density" type="xsd:double"/>
+        <xsd:attribute name="solverIterationCount" type="xsd:integer"/>
+        <xsd:attribute name="joint" type="xsd:boolean"/>
+        <xsd:attribute name="projection" type="xsd:boolean"/>
+        <xsd:attribute name="projDistance" type="xsd:double"/>
+        <xsd:attribute name="projAngle" type="xsd:double"/>
+        <xsd:attribute name="xAxisDrive" type="xsd:boolean"/>
+        <xsd:attribute name="yAxisDrive" type="xsd:boolean"/>
+        <xsd:attribute name="zAxisDrive" type="xsd:boolean"/>
+        <xsd:attribute name="drivePos" type="xsd:boolean"/>
+        <xsd:attribute name="driveForceLimit" type="xsd:double"/>
+        <xsd:attribute name="driveSpring" type="xsd:double"/>
+        <xsd:attribute name="driveDamping" type="xsd:double"/>
+        <xsd:attribute name="breakableJoint" type="xsd:boolean"/>
+        <xsd:attribute name="jointBreakForce" type="xsd:double"/>
+        <xsd:attribute name="jointBreakTorque" type="xsd:double"/>
+        <xsd:attribute name="rotMinX" type="xsd:double"/>
+        <xsd:attribute name="rotMinY" type="xsd:double"/>
+        <xsd:attribute name="rotMinZ" type="xsd:double"/>
+        <xsd:attribute name="rotMaxX" type="xsd:double"/>
+        <xsd:attribute name="rotMaxY" type="xsd:double"/>
+        <xsd:attribute name="rotMaxZ" type="xsd:double"/>
+        <xsd:attribute name="transMinX" type="xsd:double"/>
+        <xsd:attribute name="transMinY" type="xsd:double"/>
+        <xsd:attribute name="transMinZ" type="xsd:double"/>
+        <xsd:attribute name="transMaxX" type="xsd:double"/>
+        <xsd:attribute name="transMaxY" type="xsd:double"/>
+        <xsd:attribute name="transMaxZ" type="xsd:double"/>
+        <xsd:attribute name="clipDistance" type="xsd:double"/>
+        <xsd:attribute name="minClipDistance" type="xsd:double"/>
+        <xsd:attribute name="objectMask" type="u32BitIntOrHex"/>
+        <xsd:attribute name="minuteOfDayStart" type="xsd:integer"/>
+        <xsd:attribute name="minuteOfDayEnd" type="xsd:integer"/>
+        <xsd:attribute name="dayOfYearStart" type="xsd:integer"/>
+        <xsd:attribute name="dayOfYearEnd" type="xsd:integer"/>
+        <xsd:attribute name="renderInvisible" type="xsd:boolean"/>
+        <xsd:attribute name="visibleShaderParameter" type="xsd:double"/>
+        <xsd:attribute name="weatherRequiredMask" type="u32BitIntOrHex"/>
+        <xsd:attribute name="weatherPreventMask" type="u32BitIntOrHex"/>
+        <xsd:attribute name="viewerSpacialityRequiredMask" type="u32BitIntOrHex"/>
+        <xsd:attribute name="viewerSpacialityPreventMask" type="u32BitIntOrHex"/>
+        <xsd:attribute name="nodeId" type="xsd:integer"/>
+        <xsd:attribute name="lodDistance" type="doubleListType"/>
+        <xsd:attribute name="lodBlending" type="xsd:boolean"/>
+    </xsd:complexType>
+    <xsd:complexType name="ReferenceNodeType">
+        <xsd:complexContent>
+            <xsd:extension base="TransformGroupType">
+                <xsd:attribute name="referenceId" type="xsd:integer" use="required"/>
+                <xsd:attribute name="referenceRuntimeLoaded" type="xsd:boolean" default="true"/>
+                <xsd:attribute name="referenceChildPath" type="xsd:string"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="LightType">
+        <xsd:complexContent>
+            <xsd:extension base="TransformGroupType">
+                <xsd:attribute name="type" type="LightTypeAttributeType"/>
+                <xsd:attribute name="color" type="xyz_coordType"/>
+                <xsd:attribute name="diffuseColor" type="xyz_coordType"/>
+                <xsd:attribute name="emitDiffuse" type="xsd:string"/>
+                <xsd:attribute name="emitSpecular" type="xsd:boolean"/>
+                <xsd:attribute name="castShadowMap" type="xsd:boolean"/>
+                <xsd:attribute name="depthMapBias" type="xsd:double"/>
+                <xsd:attribute name="depthMapSlopeScaleBias" type="xsd:double"/>
+                <xsd:attribute name="depthMapSlopeClamp" type="xsd:double"/>
+                <xsd:attribute name="depthMapResolution" type="xsd:integer"/>
+                <xsd:attribute name="shadowPerspective" type="xsd:boolean"/>
+                <xsd:attribute name="shadowFarDistance" type="xsd:double"/>
+                <xsd:attribute name="shadowExtrusionDistance" type="xsd:double"/>
+                <xsd:attribute name="numShadowMapSplits" type="xsd:integer"/>
+                <xsd:attribute name="shadowMapSplitDistance0" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistance1" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistance2" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistance3" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistance4" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistance5" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistance6" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistance7" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistance8" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistance9" type="xsd:double"/>
+                <xsd:attribute name="shadowMapSplitDistancesParameter" type="xsd:double"/>
+                <xsd:attribute name="lastShadowMapSplitBboxMin" type="xsd:string"/>
+                <xsd:attribute name="lastShadowMapSplitBboxMax" type="xsd:string"/>
+                <xsd:attribute name="range" type="xsd:double"/>
+                <xsd:attribute name="coneAngle" type="xsd:double"/>
+                <xsd:attribute name="dropOff" type="xsd:double"/>
+                <xsd:attribute name="iesProfileFileId" type="xsd:integer"/>
+                <xsd:attribute name="scattering" type="xsd:boolean"/>
+                <xsd:attribute name="softShadowsLightSize" type="xsd:double"/>
+                <xsd:attribute name="softShadowsLightDistance" type="xsd:double"/>
+                <xsd:attribute name="softShadowsDepthBiasFactor" type="xsd:double"/>
+                <xsd:attribute name="softShadowsMaxPenumbraSize" type="xsd:double"/>
+                <xsd:attribute name="scatteringConeAngle" type="xsd:double"/>
+                <xsd:attribute name="scatteringIntensity" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:simpleType name="LightTypeAttributeType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="directional" />
+            <xsd:enumeration value="point" />
+            <xsd:enumeration value="spot" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="CameraType">
+        <xsd:complexContent>
+            <xsd:extension base="TransformGroupType">
+                <xsd:attribute name="fov" type="xsd:double"/>
+                <xsd:attribute name="nearClip" type="xsd:double"/>
+                <xsd:attribute name="farClip" type="xsd:double"/>
+                <xsd:attribute name="orthographic" type="xsd:boolean"/>
+                <xsd:attribute name="orthographicHeight" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ShapeSceneType">
+        <xsd:complexContent>
+            <xsd:extension base="TransformGroupType">
+                <xsd:attribute name="shapeId" type="xsd:integer" use="required"/>
+                <xsd:attribute name="excludeFromSSRIntersection" type="xsd:boolean" default="false">
+                    <xsd:annotation>
+                        <xsd:documentation>
+                            Prevents the screen space reflection's ray tracing from from hitting this object.
+                            Usually this removes the object from the reflection, but if another object close-by is hit by the rays instead, it may still show up because it will still appear in the screen space color buffer where the reflection colors are taken from.
+                            Typically used for objects in far away reflections that appear jittery in the reflection.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="splitType" type="xsd:integer"/>
+                <xsd:attribute name="splitUvs" type="doubleListType"/>
+                <xsd:attribute name="materialHolder" type="xsd:boolean">
+                    <xsd:annotation><xsd:documentation>Needs to be set if the material of this shape is to be used on any non-standard geometry such as GEOMETRY_PARTICLE_SYSTEM or GEOMETRY_FILL_PLANE in order for the shaders to be properly precompiled</xsd:documentation></xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="materialIds" type="xsd:string"/>
+                <xsd:attribute name="castsShadows" type="xsd:boolean"/>
+                <xsd:attribute name="receiveShadows" type="xsd:boolean"/>
+                <xsd:attribute name="doubleSided" type="xsd:boolean"/>
+                <xsd:attribute name="nonRenderable" type="xsd:boolean"/>
+                <xsd:attribute name="terrainDecal" type="xsd:boolean"/>
+                <xsd:attribute name="distanceBlending" type="xsd:boolean"/>
+                <xsd:attribute name="renderedInViewports" type="xsd:boolean">
+                    <xsd:annotation><xsd:documentation>If false, shape will not be visible in viewport while still being rendered to the shadow map (if castsShadows=true). Use 'nonRenderable' flag to fully disable rendering for a shape</xsd:documentation></xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="occluder" type="xsd:boolean"/>
+                <xsd:attribute name="buildNavMeshMask" type="u32BitIntOrHex"/>
+                <xsd:attribute name="buildNavMesh" type="xsd:boolean"/>
+                <xsd:attribute name="adPlacementId" type="xsd:integer"/>
+                <xsd:attribute name="decalLayer" type="xsd:integer"/>
+                <xsd:attribute name="skinBindNodeIds" type="intListType"/>
+                <xsd:attribute name="innerJointsBreakForce" type="xsd:double"/>
+                <xsd:attribute name="innerJointsBreakTorque" type="xsd:double"/>
+                <xsd:attribute name="worldJointsBreakForce" type="xsd:double"/>
+                <xsd:attribute name="worldJointsBreakTorque" type="xsd:double"/>
+                <xsd:attribute name="worldJointsYOffset" type="xsd:double"/>
+                <xsd:attribute name="breakThreshold" type="xsd:double"/>
+                <xsd:attribute name="angularBreakThreshold" type="xsd:double"/>
+                <xsd:attribute name="renderUpdateThreshold" type="xsd:double"/>
+                <xsd:attribute name="maxDamage" type="xsd:double"/>
+                <!-- <xsd:attribute name="density" type="xsd:double"/> inherited -->
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="DynamicType">
+        <xsd:complexContent>
+            <xsd:extension base="TransformGroupType">
+                <xsd:attribute name="dynamicId" type="xsd:integer" use="required"/>
+                <xsd:attribute name="emitterShapeNodeId" type="xsd:integer"/>
+                <xsd:attribute name="castsShadows" type="xsd:boolean"/>
+                <xsd:attribute name="receiveShadows" type="xsd:boolean"/>
+                <xsd:attribute name="materialIds" type="xsd:string"/>
+                <xsd:attribute name="distanceBlending" type="xsd:boolean"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="AudioSourceType">
+        <xsd:complexContent>
+            <xsd:extension base="TransformGroupType">
+                <xsd:attribute name="fileIds" type="intListType"/>
+                <xsd:attribute name="fileId" type="xsd:integer"/>
+                <xsd:attribute name="randomPlayback" type="xsd:boolean"/>
+                <xsd:attribute name="probabilities" type="doubleListType"/>
+                <xsd:attribute name="retriggerDelay" type="doubleListType"/>
+                <xsd:attribute name="range" type="xsd:double"/>
+                <xsd:attribute name="innerRange" type="xsd:double"/>
+                <xsd:attribute name="volume" type="xsd:double"/>
+                <xsd:attribute name="loops" type="xsd:integer"/>
+                <xsd:attribute name="audioGroup" type="xsd:string"/>
+                <xsd:attribute name="color" type="xyz_w_coordType"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="NavigationMeshSceneType">
+        <xsd:complexContent>
+            <xsd:extension base="TransformGroupType">
+                <xsd:attribute name="shapeId" type="xsd:integer" use="required"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="NoteType">
+        <xsd:complexContent>
+            <xsd:extension base="TransformGroupType">
+                <xsd:attribute name="text" type="xsd:string"/>
+                <xsd:attribute name="color" type="xsd:integer"/>
+                <xsd:attribute name="fixedSize" type="xsd:boolean"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupType">
+        <xsd:complexContent>
+            <xsd:extension base="TransformGroupType">
+                <xsd:choice maxOccurs="unbounded">
+                    <xsd:element name="OccluderLods" type="TerrainTransformOccluderLodType"/>
+                    <xsd:element name="Layers" type="TerrainTransformGroupLayersType"/>
+                    <xsd:element name="ProceduralPlacementMasks" type="TerrainTransformGroupProceduralPlacementMasksType"/>
+                </xsd:choice>
+                <!-- <xsd:attribute name="nodeId" type="xsd:integer" use="required"/> inherited -->
+                <xsd:attribute name="cacheFilenamesPrefix" type="xsd:string"/>
+                <xsd:attribute name="heightMapId" type="xsd:integer" use="required"/>
+                <xsd:attribute name="materialId" type="xsd:integer" use="required"/>
+                <xsd:attribute name="patchSize" type="xsd:integer"/>
+                <xsd:attribute name="maxLODDistance" type="xsd:double"/>
+                <xsd:attribute name="heightScale" type="xsd:double"/>
+                <xsd:attribute name="unitsPerPixel" type="xsd:double"/>
+                <xsd:attribute name="lodBlendStart" type="xsd:double"/>
+                <xsd:attribute name="lodBlendEnd" type="xsd:double"/>
+                <xsd:attribute name="lodBlendStartDynamic" type="xsd:double"/>
+                <xsd:attribute name="lodBlendEndDynamic" type="xsd:double"/>
+                <xsd:attribute name="lodTextureSize" type="xsd:integer"/>
+                <xsd:attribute name="detailLodBlendDelta" type="xsd:double"/>
+                <xsd:attribute name="castShadowMap" type="xsd:boolean"/>
+                <xsd:attribute name="patchVisibility" type="xsd:boolean"/>
+                <xsd:attribute name="occNumLODs" type="xsd:integer"/>
+                <xsd:attribute name="occMaxLODDistance" type="xsd:integer"/>
+                <xsd:attribute name="occPatchSize" type="xsd:integer"/>
+                <xsd:attribute name="occLevel" type="xsd:integer"/>
+                <xsd:attribute name="occDistanceWeight" type="xsd:double"/>
+                <xsd:attribute name="occMaxAdjacentFaces" type="xsd:double"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformOccluderLodType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="OccluderLod" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="occLodLevel" type="xsd:integer"/>
+                    <xsd:attribute name="occFaceCount" type="xsd:integer"/>
+                    <xsd:attribute name="occMaxHausdorffDistance" type="xsd:integer"/>
+                    <xsd:attribute name="occMaxHausdorffDistanceExtra" type="xsd:integer"/>
+                    <xsd:attribute name="occMinHorizontalDistance" type="xsd:integer"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupLayersType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="LayerAttributes" type="TerrainTransformGroupLayerAttributesType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Layer" type="TerrainTransformGroupLayerType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="OverlayLayer" type="TerrainTransformGroupOverlayLayerType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="CombinedLayer" type="TerrainTransformGroupCombinedLayerType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="CombinedOverlayLayer" type="TerrainTransformGroupCombinedOverlayLayerType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="FoliageMultiLayer" type="TerrainTransformGroupFoliageMultiLayerType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="DetailLayer" type="TerrainTransformGroupDetailLayerType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="DisplacementLayer" type="TerrainTransformGroupDisplacementLayerType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="InfoLayer" type="TerrainTransformGroupInfoLayerType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="FoliageSystem" type="TerrainTransformGroupFoliageSystemType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupLayerAttributesType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="LayerAttribute" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="name" type="xsd:string"/>
+                    <xsd:attribute name="type" type="xsd:string"/>
+                    <xsd:attribute name="minValue" type="xsd:double"/>
+                    <xsd:attribute name="maxValue" type="xsd:double"/>
+                    <xsd:attribute name="enumValues" type="xsd:string"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupLayerType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="detailMap" type="xsd:string"/>
+        <xsd:attribute name="detailMapId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="normalMapId" type="xsd:integer"/>
+        <xsd:attribute name="heightMapId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="displacementMapId" type="xsd:integer"/>
+        <xsd:attribute name="unitSize" type="xsd:double"/>
+        <xsd:attribute name="unitOffsetU" type="xsd:double"/>
+        <xsd:attribute name="unitOffsetV" type="xsd:double"/>
+        <xsd:attribute name="blendContrast" type="xsd:double"/>
+        <xsd:attribute name="displacementMaxHeight" type="xsd:double"/>
+        <xsd:attribute name="noiseScale" type="xsd:double"/>
+        <xsd:attribute name="noiseSharpness" type="xsd:double"/>
+        <xsd:attribute name="porosityAtZeroRoughness" type="xsd:double"/>
+        <xsd:attribute name="porosityAtFullRoughness" type="xsd:double"/>
+        <xsd:attribute name="firmness" type="xsd:double"/>
+        <xsd:attribute name="firmnessWet" type="xsd:double"/>
+        <xsd:attribute name="viscosity" type="xsd:double"/>
+        <xsd:attribute name="weightMapId" type="xsd:integer"/>
+        <xsd:attribute name="attributes" type="doubleListType"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupOverlayLayerType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="type" type="xsd:string"/>
+        <xsd:attribute name="detailMapId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="heightMapId" type="xsd:integer"/>
+        <xsd:attribute name="normalMapId" type="xsd:integer"/>
+        <xsd:attribute name="displacementMapId" type="xsd:integer"/>
+        <xsd:attribute name="unitSize" type="xsd:double"/>
+        <xsd:attribute name="unitOffsetU" type="xsd:double"/>
+        <xsd:attribute name="unitOffsetV" type="xsd:double"/>
+        <xsd:attribute name="displacementMaxHeight" type="xsd:double"/>
+        <xsd:attribute name="blendContrast" type="xsd:double"/>
+        <xsd:attribute name="noiseScale" type="xsd:double"/>
+        <xsd:attribute name="noiseSharpness" type="xsd:double"/>
+        <xsd:attribute name="porosityAtZeroRoughness" type="xsd:double"/>
+        <xsd:attribute name="porosityAtFullRoughness" type="xsd:double"/>
+        <xsd:attribute name="firmness" type="xsd:double"/>
+        <xsd:attribute name="firmnessWet" type="xsd:double"/>
+        <xsd:attribute name="viscosity" type="xsd:double"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupCombinedLayerType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="noiseFrequency" type="xsd:double"/>
+        <xsd:attribute name="layers" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupCombinedOverlayLayerType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="type" type="xsd:string" use="required"/>
+        <xsd:attribute name="layers" type="xsd:string" use="required"/>
+        <xsd:attribute name="customLayer" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupFoliageMultiLayerType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="FoliageType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="name" type="xsd:string" use="required"/>
+                    <xsd:attribute name="foliageXmlId" type="xsd:integer" use="required"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        <xsd:attribute name="densityMapId" type="xsd:integer"/>
+        <xsd:attribute name="numChannels" type="xsd:integer"/>
+        <xsd:attribute name="numTypeIndexChannels" type="xsd:integer"/>
+        <xsd:attribute name="compressionChannels" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupDetailLayerType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="Group" type="TerrainTransformGroupDetailLayerGroupType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="DistanceTexture" type="TerrainTransformGroupDetailLayerDistanceTextureType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:attribute name="densityMapShaderNames" type="stringListType" use="required"/>
+        <xsd:attribute name="materialId" type="xsd:integer"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="densityMapId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="numDensityMapChannels" type="xsd:integer"/>
+        <xsd:attribute name="compressionChannels" type="xsd:string"/>
+        <xsd:attribute name="densityMapTypeIndex" type="xsd:integer"/>
+        <xsd:attribute name="densityMapChannelOffset" type="xsd:integer"/>
+        <xsd:attribute name="decalLayer" type="xsd:integer"/>
+        <xsd:attribute name="cellSize" type="xsd:double"/>
+        <xsd:attribute name="objectMask" type="u32BitIntOrHex"/>
+        <xsd:attribute name="distanceMapFirstChannel" type="xsd:integer"/>
+        <xsd:attribute name="distanceMapNumChannels" type="xsd:integer"/>
+        <xsd:attribute name="distanceMapLayers" type="xsd:string"/>
+        <xsd:attribute name="distanceMapIds" type="xsd:string"/>
+        <xsd:attribute name="repeatLastDistanceMap" type="xsd:boolean"/>
+        <xsd:attribute name="viewDistance" type="xsd:double"/>
+        <xsd:attribute name="blendOutDistance" type="xsd:double"/>
+        <xsd:attribute name="combinedValuesChannels" type="xsd:string">
+            <xsd:annotation>
+                <xsd:documentation>semicolon-separated list of space-separated triplets (one triplet per group): firstChannel numChannels textureIndex</xsd:documentation>
+            </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute name="channelOverlayTypes" type="xsd:string"/>
+        <xsd:attribute name="heightFirstChannel" type="xsd:string"/>
+        <xsd:attribute name="heightNumChannels" type="xsd:integer"/>
+        <xsd:attribute name="maxHeight" type="xsd:double"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupDetailLayerGroupType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="Option" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="name" type="xsd:string" use="required"/>
+                    <xsd:attribute name="value" type="xsd:integer" use="required"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="firstChannel" type="xsd:integer"/>
+        <xsd:attribute name="numChannels" type="xsd:integer"/>
+        <xsd:attribute name="maxDefaultFill" type="xsd:integer"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupDetailLayerDistanceTextureType">
+        <xsd:attribute name="match" type="xsd:string" use="required"/>
+        <xsd:attribute name="fileId" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupDisplacementLayerType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="size" type="xsd:integer" use="required"/>
+        <xsd:attribute name="tileSize" type="xsd:integer" use="required"/>
+        <xsd:attribute name="numChannels" type="xsd:integer" use="required"/>
+        <xsd:attribute name="cellSize" type="xsd:integer" use="required"/>
+        <xsd:attribute name="viewDistance" type="xsd:double" use="required"/>
+        <xsd:attribute name="blendOutDistance" type="xsd:double" use="required"/>
+        <xsd:attribute name="maxHeight" type="xsd:double" use="required"/>
+        <xsd:attribute name="densityMapShaderNames" type="xsd:string"/>
+        <xsd:attribute name="combinedValuesChannels" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupInfoLayerType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="Group" type="TerrainTransformGroupInfoLayerGroupType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="fileId" type="xsd:integer" use="required"/>
+        <xsd:attribute name="numChannels" type="xsd:integer"/>
+        <xsd:attribute name="runtime" type="xsd:boolean"/>
+        <xsd:attribute name="vertexBased" type="xsd:boolean"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupInfoLayerGroupType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="Option" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="name" type="xsd:string" use="required"/>
+                    <xsd:attribute name="value" type="xsd:integer" use="required"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="firstChannel" type="xsd:integer"/>
+        <xsd:attribute name="numChannels" type="xsd:integer"/>
+        <xsd:attribute name="maxDefaultFill" type="xsd:integer"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupFoliageSystemType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="FoliageMultiLayer" type="FoliageMultiLayerType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:choice>
+        <xsd:attribute name="cellSize" type="xsd:double"/>
+        <xsd:attribute name="graphicsCellScale" type="xsd:integer"/>
+        <xsd:attribute name="objectMask" type="u32BitIntOrHex"/>
+        <xsd:attribute name="decalLayer" type="xsd:integer"/>
+    </xsd:complexType>
+    <xsd:complexType name="FoliageMultiLayerType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="FoliageType" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="name" type="xsd:string" use="required"/>
+                    <xsd:attribute name="foliageXmlId" type="xsd:integer" use="required"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        <xsd:attribute name="densityMapId" type="xsd:integer"/>
+        <xsd:attribute name="numChannels" type="xsd:integer"/>
+        <xsd:attribute name="numTypeIndexChannels" type="xsd:integer"/>
+        <xsd:attribute name="compressionChannels" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="TerrainTransformGroupProceduralPlacementMasksType">
+        <xsd:choice maxOccurs="unbounded">
+            <xsd:element name="Mask" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                    <xsd:attribute name="name" type="xsd:string"/>
+                    <xsd:attribute name="fileId" type="xsd:integer"/>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:choice>
+        <xsd:attribute name="blockMaskFileId" type="xsd:integer"/>
+    </xsd:complexType>
+    <!-- Animation -->
+    <xsd:complexType name="AnimationType">
+        <xsd:sequence>
+            <xsd:element name="AnimationSets" type="AnimationSetsType" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute name="externalAnimFile" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="AnimationSetsType">
+        <xsd:sequence>
+            <xsd:element name="AnimationSet" type="AnimationSetType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AnimationSetType">
+        <xsd:sequence>
+            <xsd:element name="Clip" type="ClipType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="ClipType">
+        <xsd:sequence>
+            <xsd:element name="Keyframes" type="KeyframesType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="duration" type="xsd:double" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="KeyframesType">
+        <xsd:sequence>
+            <xsd:element name="Keyframe" type="KeyframeType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="nodeId" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+    <xsd:simpleType name="KeyframeInterpolationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="linear" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="KeyframeType">
+        <xsd:attribute name="time" type="xsd:double"/>
+        <xsd:attribute name="translation" type="xyz_coordType"/>
+        <xsd:attribute name="iptin" type="KeyframeInterpolationType"/>
+        <xsd:attribute name="iptout" type="KeyframeInterpolationType"/>
+        <xsd:attribute name="rotation" type="xyz_coordType"/>
+        <xsd:attribute name="iprin" type="KeyframeInterpolationType"/>
+        <xsd:attribute name="iprout" type="KeyframeInterpolationType"/>
+        <xsd:attribute name="scale" type="xyz_coordType"/>
+        <xsd:attribute name="visibility" type="xsd:boolean"/>
+    </xsd:complexType>
+    <!-- ProceduralPlacement -->
+    <xsd:complexType name="ProceduralPlacementType">
+        <xsd:sequence>
+            <xsd:element name="Types" type="ProceduralPlacementTypesType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Objects" type="ProceduralPlacementObjectsType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Rules" type="ProceduralPlacementRulesType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementTypesType">
+        <xsd:sequence>
+            <xsd:element name="Type" type="ProceduralPlacementTypeType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementTypeType">
+        <xsd:sequence>
+            <xsd:element name="Distance" type="ProceduralPlacementTypesDistanceType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementTypesDistanceType">
+        <xsd:attribute name="to" type="xsd:string" use="required"/>
+        <xsd:attribute name="min" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementObjectsType">
+        <xsd:sequence>
+            <xsd:element name="Object" type="ProceduralPlacementObjectType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementObjectType">
+        <xsd:attribute name="type" type="xsd:string" use="required"/>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="foliageTypeName" type="xsd:string"/>
+        <xsd:attribute name="channels" type="xsd:integer"/>
+        <xsd:attribute name="fileId" type="xsd:integer"/>
+        <xsd:attribute name="ppType" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementRulesType">
+        <xsd:sequence>
+            <xsd:element name="Rule" type="ProceduralPlacementRuleType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementRuleType">
+        <xsd:sequence>
+            <xsd:element name="Script" type="ProceduralPlacementRuleScriptType" maxOccurs="unbounded"/>
+            <xsd:element name="Object" type="ProceduralPlacementRuleObjectType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="isMainRule" type="xsd:boolean" use="required"/>
+        <xsd:attribute name="objectMinDistance" type="xsd:integer" use="required"/>
+        <xsd:attribute name="slopeStart" type="xsd:integer" use="required"/>
+        <xsd:attribute name="slopeEnd" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementRuleScriptType">
+        <xsd:sequence>
+            <xsd:element name="Arg" type="ProceduralPlacementRuleScriptArgType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementRuleScriptArgType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="type" type="xsd:string" use="required"/>
+        <xsd:attribute name="value" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="ProceduralPlacementRuleObjectType">
+        <xsd:attribute name="id" type="xsd:integer" use="required"/>
+        <xsd:attribute name="childRule" type="xsd:string" use="required"/>
+        <xsd:attribute name="objectName" type="xsd:string" use="required"/>
+        <xsd:attribute name="childMinCount" type="xsd:integer" use="required"/>
+        <xsd:attribute name="childMaxCount" type="xsd:integer" use="required"/>
+        <xsd:attribute name="childMinRadius" type="xsd:integer" use="required"/>
+        <xsd:attribute name="childMaxRadius" type="xsd:integer" use="required"/>
+        <xsd:attribute name="scaleMin" type="xsd:double"/>
+        <xsd:attribute name="scaleMax" type="xsd:double"/>
+        <xsd:attribute name="probability" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+    <!-- UserAttributes -->
+    <xsd:complexType name="UserAttributesType">
+        <xsd:sequence>
+            <xsd:element name="UserAttribute" type="UserAttributeType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="UserAttributeType">
+        <xsd:sequence>
+            <xsd:element name="Attribute" type="AttributeType" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="nodeId" type="xsd:integer" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="AttributeType">
+        <xsd:attribute name="name" type="xsd:string" use="required"/>
+        <xsd:attribute name="type" type="UserAttributeTypeAttribute" use="required"/>
+        <xsd:attribute name="value" type="xsd:string" use="required"/>
+    </xsd:complexType>
+    <xsd:simpleType name="UserAttributeTypeAttribute">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="boolean" />
+            <xsd:enumeration value="integer" />
+            <xsd:enumeration value="float" />
+            <xsd:enumeration value="string" />
+            <xsd:enumeration value="scriptCallback" />
+            <xsd:enumeration value="nodeId" />
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,44 @@
+{
+  "name": "fs25-xml",
+  "displayName": "FS25 XML — Farming Simulator 25 modding",
+  "description": "Autocomplete + validation for Farming Simulator 25 mod XML (vehicle, placeable, map, modDesc, …) with valid-value dropdowns the stock docs hide: jointType, fillType, fruitType, particleType, effectClass, rigidBodyType, inputAction, brand, store category, material templates.",
+  "version": "0.2.0",
+  "publisher": "fs25researchproject",
+  "license": "MIT",
+  "engines": { "vscode": "^1.75.0" },
+  "categories": ["Programming Languages", "Snippets", "Linters"],
+  "keywords": ["farming simulator", "fs25", "giants", "modding", "xml"],
+  "extensionDependencies": ["redhat.vscode-xml"],
+  "activationEvents": ["onLanguage:xml"],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      { "command": "fs25xml.bindCurrent", "title": "FS25: Apply enriched schema to current XML file" },
+      { "command": "fs25xml.repointWorkspace", "title": "FS25: Repoint all stock schema refs in workspace to enriched" },
+      { "command": "fs25xml.insertSchemaRef", "title": "FS25: Insert/repoint schema reference in current file" }
+    ],
+    "configuration": {
+      "title": "FS25 XML",
+      "properties": {
+        "fs25xml.autoBindOnOpen": {
+          "type": "boolean",
+          "default": true,
+          "description": "When a file has NO schema reference, bind the matching enriched schema via xml.fileAssociations (no file edit)."
+        },
+        "fs25xml.autoRepointOnOpen": {
+          "type": "boolean",
+          "default": false,
+          "description": "When a file references a stock GIANTS schema (relative path or the giants-software validation URL), rewrite that reference to the enriched schema on open. This edits and saves the file."
+        },
+        "fs25xml.schemaDir": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to the enriched schemas folder. Leave empty to use the schemas bundled in this extension. Set it to a stable path (e.g. .../FS25_ResearchProject/schemas) so repointed refs survive extension updates."
+        }
+      }
+    },
+    "snippets": [
+      { "language": "xml", "path": "./snippets/fs25.code-snippets" }
+    ]
+  }
+}

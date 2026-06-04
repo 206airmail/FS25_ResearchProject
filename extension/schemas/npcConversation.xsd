@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="conversation">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="class" type="g_string" minOccurs="0">
+                    <xs:annotation><xs:documentation xml:lang="en">Class name of the npc conversation controller</xs:documentation></xs:annotation>
+                </xs:element>
+                <xs:element name="isActive" type="g_bool" minOccurs="0">
+                    <xs:annotation><xs:documentation xml:lang="en">If conversation is active</xs:documentation></xs:annotation>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="prerequisites" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="conversationAllTriggeredByType" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="type" use="required">
+                                        <xs:simpleType>
+                                            <xs:annotation><xs:documentation xml:lang="en">Type of the conversation</xs:documentation></xs:annotation>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="DAVID_ADVICE" />
+                                                <xs:enumeration value="DAVID_ANECDOTES" />
+                                                <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                <xs:enumeration value="DAVID_YOU" />
+                                                <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                <xs:enumeration value="DEFAULT" />
+                                                <xs:enumeration value="FIRST_CONTACT" />
+                                                <xs:enumeration value="GUIDED_TOUR" />
+                                                <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                <xs:enumeration value="HELP" />
+                                                <xs:enumeration value="INTRO" />
+                                                <xs:enumeration value="KATIE_ANECDOTES" />
+                                                <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                <xs:enumeration value="KATIE_YOU" />
+                                                <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                <xs:enumeration value="MISSION" />
+                                                <xs:enumeration value="MISSION_INTRO" />
+                                                <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                <xs:enumeration value="MISSION_SELECT" />
+                                                <xs:enumeration value="SMALLTALK" />
+                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="conversationAvailableByType" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="type" use="required">
+                                        <xs:simpleType>
+                                            <xs:annotation><xs:documentation xml:lang="en">Type of the conversation</xs:documentation></xs:annotation>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="DAVID_ADVICE" />
+                                                <xs:enumeration value="DAVID_ANECDOTES" />
+                                                <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                <xs:enumeration value="DAVID_YOU" />
+                                                <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                <xs:enumeration value="DEFAULT" />
+                                                <xs:enumeration value="FIRST_CONTACT" />
+                                                <xs:enumeration value="GUIDED_TOUR" />
+                                                <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                <xs:enumeration value="HELP" />
+                                                <xs:enumeration value="INTRO" />
+                                                <xs:enumeration value="KATIE_ANECDOTES" />
+                                                <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                <xs:enumeration value="KATIE_YOU" />
+                                                <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                <xs:enumeration value="MISSION" />
+                                                <xs:enumeration value="MISSION_INTRO" />
+                                                <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                <xs:enumeration value="MISSION_SELECT" />
+                                                <xs:enumeration value="SMALLTALK" />
+                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="conversationWasTriggered" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="uniqueId" type="g_string" use="required">
+                                        <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation that has to be triggered before</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="firstContact" type="g_string" minOccurs="0">
+                                <xs:annotation><xs:documentation xml:lang="en">If should be played on first contact only</xs:documentation></xs:annotation>
+                            </xs:element>
+                            <xs:element name="gameMode" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="multiplayer" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Is available in multiplayer</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="singleplayer" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Is available in singleplayer</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ingameDaysPlayed" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="max" type="g_int" default="9999999999">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max number of ingame days played</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="min" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of ingame days played</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ingameTime" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="maxHour" type="g_float" default="24">
+                                        <xs:annotation><xs:documentation xml:lang="en">Ingame time max hour</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="minHour" type="g_float" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Ingame time min hour</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="manuallyTriggered" type="g_string" minOccurs="0">
+                                <xs:annotation><xs:documentation xml:lang="en">The conversation is manually triggered</xs:documentation></xs:annotation>
+                            </xs:element>
+                            <xs:element name="map" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="mapId" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Map id</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="missionAvailable" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="type" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="name" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Type name of the available mission</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="variant" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Variant name of the available mission</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="money" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="max" type="g_int" default="9999999999">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max money</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="min" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min money</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="numContacts" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="max" type="g_int" default="9999999999">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max number of contacts</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="min" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of contacts</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="numOwnedAnimals" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="max" type="g_int" default="9999999999">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max number of owned animals</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="min" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of owned animals</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="type" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Animal type</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="numOwnedFarmlands" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="max" type="g_int" default="9999999999">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max number of owned farmlands</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="min" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of owned farmlands</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="numOwnedVehicles" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="max" type="g_int" default="9999999999">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max number of owned vehicles</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="min" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of owned vehicles</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="numTriggered" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="max" type="g_int" default="1">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max number of triggers</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="ownedAllFarmlands" type="g_string" minOccurs="0">
+                                <xs:annotation><xs:documentation xml:lang="en">If should be played if all farmlands are owned</xs:documentation></xs:annotation>
+                            </xs:element>
+                            <xs:element name="realDate" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="day" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Real date day</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="month" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Real date month</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="year" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Real date year</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="realTime" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="maxHour" type="g_float" default="24">
+                                        <xs:annotation><xs:documentation xml:lang="en">Real time max hour</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="minHour" type="g_float" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Real time min hour</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="retriggerDelayIngameDays" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="minDays" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of ingame days since last occurrence</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="retriggerDelayRealDays" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="minDays" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of real days since last occurrence</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="retriggerTypeDelayIngameDays" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="minDays" type="g_int" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Min number of ingame days since last occurrence</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="type" use="required">
+                                        <xs:simpleType>
+                                            <xs:annotation><xs:documentation xml:lang="en">Type of the conversation</xs:documentation></xs:annotation>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="DAVID_ADVICE" />
+                                                <xs:enumeration value="DAVID_ANECDOTES" />
+                                                <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                <xs:enumeration value="DAVID_YOU" />
+                                                <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                <xs:enumeration value="DEFAULT" />
+                                                <xs:enumeration value="FIRST_CONTACT" />
+                                                <xs:enumeration value="GUIDED_TOUR" />
+                                                <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                <xs:enumeration value="HELP" />
+                                                <xs:enumeration value="INTRO" />
+                                                <xs:enumeration value="KATIE_ANECDOTES" />
+                                                <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                <xs:enumeration value="KATIE_YOU" />
+                                                <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                <xs:enumeration value="MISSION" />
+                                                <xs:enumeration value="MISSION_INTRO" />
+                                                <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                <xs:enumeration value="MISSION_SELECT" />
+                                                <xs:enumeration value="SMALLTALK" />
+                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="seasonPeriod" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="max" type="g_string" default="LATE_WINTER">
+                                        <xs:annotation><xs:documentation xml:lang="en">Name of the max season period</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="min" type="g_string" default="EARLY_SPRING">
+                                        <xs:annotation><xs:documentation xml:lang="en">Name of the min season period</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="probability" type="g_int" minOccurs="0">
+                    <xs:annotation><xs:documentation xml:lang="en">Default probability of the conversation</xs:documentation></xs:annotation>
+                </xs:element>
+                <xs:element name="textFlow" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="actions" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="cancelTour" type="g_string" minOccurs="0">
+                                                        <xs:annotation><xs:documentation xml:lang="en">Cancel tour</xs:documentation></xs:annotation>
+                                                    </xs:element>
+                                                    <xs:element name="navigateToNPC" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="npcName" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Name of the npc</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="resetNumTriggeredByType" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="type" use="required">
+                                                                <xs:simpleType>
+                                                                    <xs:annotation><xs:documentation xml:lang="en">Type of the conversation</xs:documentation></xs:annotation>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="DAVID_ADVICE" />
+                                                                        <xs:enumeration value="DAVID_ANECDOTES" />
+                                                                        <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                                        <xs:enumeration value="DAVID_YOU" />
+                                                                        <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                                        <xs:enumeration value="DEFAULT" />
+                                                                        <xs:enumeration value="FIRST_CONTACT" />
+                                                                        <xs:enumeration value="GUIDED_TOUR" />
+                                                                        <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                                        <xs:enumeration value="HELP" />
+                                                                        <xs:enumeration value="INTRO" />
+                                                                        <xs:enumeration value="KATIE_ANECDOTES" />
+                                                                        <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                                        <xs:enumeration value="KATIE_YOU" />
+                                                                        <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                                        <xs:enumeration value="MISSION" />
+                                                                        <xs:enumeration value="MISSION_INTRO" />
+                                                                        <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                                        <xs:enumeration value="MISSION_SELECT" />
+                                                                        <xs:enumeration value="SMALLTALK" />
+                                                                        <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                                        <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                                        <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                                        <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                                        <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                                        <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                                        <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="startConversationById" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="uniqueId" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="startConversationByType" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="type" use="required">
+                                                                <xs:simpleType>
+                                                                    <xs:annotation><xs:documentation xml:lang="en">Type of the conversation</xs:documentation></xs:annotation>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="DAVID_ADVICE" />
+                                                                        <xs:enumeration value="DAVID_ANECDOTES" />
+                                                                        <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                                        <xs:enumeration value="DAVID_YOU" />
+                                                                        <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                                        <xs:enumeration value="DEFAULT" />
+                                                                        <xs:enumeration value="FIRST_CONTACT" />
+                                                                        <xs:enumeration value="GUIDED_TOUR" />
+                                                                        <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                                        <xs:enumeration value="HELP" />
+                                                                        <xs:enumeration value="INTRO" />
+                                                                        <xs:enumeration value="KATIE_ANECDOTES" />
+                                                                        <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                                        <xs:enumeration value="KATIE_YOU" />
+                                                                        <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                                        <xs:enumeration value="MISSION" />
+                                                                        <xs:enumeration value="MISSION_INTRO" />
+                                                                        <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                                        <xs:enumeration value="MISSION_SELECT" />
+                                                                        <xs:enumeration value="SMALLTALK" />
+                                                                        <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                                        <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                                        <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                                        <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                                        <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                                        <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                                        <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="startConversationFromList" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:element name="conversation" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="uniqueId" type="g_string" use="required">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="failConversation" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="uniqueId" type="g_string" use="required">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Unique id of the fail conversation</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:choice>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="startMissionSelection" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="uniqueIdMissionAvailable" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation that should be started if missions are available</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="uniqueIdMissionUnavailable" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation that should be started if no missions are available</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="startMissionSelectionByType" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="typeMissionAvailable" use="required">
+                                                                <xs:simpleType>
+                                                                    <xs:annotation><xs:documentation xml:lang="en">Type of the conversation that should be started if missions are available</xs:documentation></xs:annotation>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="DAVID_ADVICE" />
+                                                                        <xs:enumeration value="DAVID_ANECDOTES" />
+                                                                        <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                                        <xs:enumeration value="DAVID_YOU" />
+                                                                        <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                                        <xs:enumeration value="DEFAULT" />
+                                                                        <xs:enumeration value="FIRST_CONTACT" />
+                                                                        <xs:enumeration value="GUIDED_TOUR" />
+                                                                        <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                                        <xs:enumeration value="HELP" />
+                                                                        <xs:enumeration value="INTRO" />
+                                                                        <xs:enumeration value="KATIE_ANECDOTES" />
+                                                                        <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                                        <xs:enumeration value="KATIE_YOU" />
+                                                                        <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                                        <xs:enumeration value="MISSION" />
+                                                                        <xs:enumeration value="MISSION_INTRO" />
+                                                                        <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                                        <xs:enumeration value="MISSION_SELECT" />
+                                                                        <xs:enumeration value="SMALLTALK" />
+                                                                        <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                                        <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                                        <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                                        <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                                        <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                                        <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                                        <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="typeMissionUnavailable" use="required">
+                                                                <xs:simpleType>
+                                                                    <xs:annotation><xs:documentation xml:lang="en">Type of the conversation that should be started if no missions are available</xs:documentation></xs:annotation>
+                                                                    <xs:restriction base="xs:string">
+                                                                        <xs:enumeration value="DAVID_ADVICE" />
+                                                                        <xs:enumeration value="DAVID_ANECDOTES" />
+                                                                        <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                                        <xs:enumeration value="DAVID_YOU" />
+                                                                        <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                                        <xs:enumeration value="DEFAULT" />
+                                                                        <xs:enumeration value="FIRST_CONTACT" />
+                                                                        <xs:enumeration value="GUIDED_TOUR" />
+                                                                        <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                                        <xs:enumeration value="HELP" />
+                                                                        <xs:enumeration value="INTRO" />
+                                                                        <xs:enumeration value="KATIE_ANECDOTES" />
+                                                                        <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                                        <xs:enumeration value="KATIE_YOU" />
+                                                                        <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                                        <xs:enumeration value="MISSION" />
+                                                                        <xs:enumeration value="MISSION_INTRO" />
+                                                                        <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                                        <xs:enumeration value="MISSION_SELECT" />
+                                                                        <xs:enumeration value="SMALLTALK" />
+                                                                        <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                                        <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                                        <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                                        <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                                        <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                                        <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                                        <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                                                    </xs:restriction>
+                                                                </xs:simpleType>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="startSelectedMission" type="g_string" minOccurs="1">
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="inputs" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="availableMissions" type="g_string" minOccurs="1">
+                                                    </xs:element>
+                                                    <xs:element name="leaseVehicles" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="value" type="g_bool" default="false">
+                                                                <xs:annotation><xs:documentation xml:lang="en">True if vehicles should be leased, else false</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="selectedMission" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="type" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Mission type</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="next" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="option" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:all>
+                                                                <xs:element name="actions" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:choice maxOccurs="unbounded">
+                                                                            <xs:element name="cancelTour" type="g_string" minOccurs="0">
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Cancel tour</xs:documentation></xs:annotation>
+                                                                            </xs:element>
+                                                                            <xs:element name="navigateToNPC" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="npcName" type="g_string" use="required">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Name of the npc</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="resetNumTriggeredByType" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="type" use="required">
+                                                                                        <xs:simpleType>
+                                                                                            <xs:annotation><xs:documentation xml:lang="en">Type of the conversation</xs:documentation></xs:annotation>
+                                                                                            <xs:restriction base="xs:string">
+                                                                                                <xs:enumeration value="DAVID_ADVICE" />
+                                                                                                <xs:enumeration value="DAVID_ANECDOTES" />
+                                                                                                <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                                                                <xs:enumeration value="DAVID_YOU" />
+                                                                                                <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                                                                <xs:enumeration value="DEFAULT" />
+                                                                                                <xs:enumeration value="FIRST_CONTACT" />
+                                                                                                <xs:enumeration value="GUIDED_TOUR" />
+                                                                                                <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                                                                <xs:enumeration value="HELP" />
+                                                                                                <xs:enumeration value="INTRO" />
+                                                                                                <xs:enumeration value="KATIE_ANECDOTES" />
+                                                                                                <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                                                                <xs:enumeration value="KATIE_YOU" />
+                                                                                                <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                                                                <xs:enumeration value="MISSION" />
+                                                                                                <xs:enumeration value="MISSION_INTRO" />
+                                                                                                <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                                                                <xs:enumeration value="MISSION_SELECT" />
+                                                                                                <xs:enumeration value="SMALLTALK" />
+                                                                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                                                                <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                                                                <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                                                                <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                                                                <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                                                                <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                                                                            </xs:restriction>
+                                                                                        </xs:simpleType>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="startConversationById" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="uniqueId" type="g_string" use="required">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="startConversationByType" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="type" use="required">
+                                                                                        <xs:simpleType>
+                                                                                            <xs:annotation><xs:documentation xml:lang="en">Type of the conversation</xs:documentation></xs:annotation>
+                                                                                            <xs:restriction base="xs:string">
+                                                                                                <xs:enumeration value="DAVID_ADVICE" />
+                                                                                                <xs:enumeration value="DAVID_ANECDOTES" />
+                                                                                                <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                                                                <xs:enumeration value="DAVID_YOU" />
+                                                                                                <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                                                                <xs:enumeration value="DEFAULT" />
+                                                                                                <xs:enumeration value="FIRST_CONTACT" />
+                                                                                                <xs:enumeration value="GUIDED_TOUR" />
+                                                                                                <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                                                                <xs:enumeration value="HELP" />
+                                                                                                <xs:enumeration value="INTRO" />
+                                                                                                <xs:enumeration value="KATIE_ANECDOTES" />
+                                                                                                <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                                                                <xs:enumeration value="KATIE_YOU" />
+                                                                                                <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                                                                <xs:enumeration value="MISSION" />
+                                                                                                <xs:enumeration value="MISSION_INTRO" />
+                                                                                                <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                                                                <xs:enumeration value="MISSION_SELECT" />
+                                                                                                <xs:enumeration value="SMALLTALK" />
+                                                                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                                                                <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                                                                <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                                                                <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                                                                <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                                                                <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                                                                            </xs:restriction>
+                                                                                        </xs:simpleType>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="startConversationFromList" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:choice maxOccurs="unbounded">
+                                                                                        <xs:element name="conversation" minOccurs="0" maxOccurs="unbounded">
+                                                                                            <xs:complexType>
+                                                                                                <xs:attribute name="uniqueId" type="g_string" use="required">
+                                                                                                    <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation</xs:documentation></xs:annotation>
+                                                                                                </xs:attribute>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                        <xs:element name="failConversation" minOccurs="0" maxOccurs="unbounded">
+                                                                                            <xs:complexType>
+                                                                                                <xs:attribute name="uniqueId" type="g_string" use="required">
+                                                                                                    <xs:annotation><xs:documentation xml:lang="en">Unique id of the fail conversation</xs:documentation></xs:annotation>
+                                                                                                </xs:attribute>
+                                                                                            </xs:complexType>
+                                                                                        </xs:element>
+                                                                                    </xs:choice>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="startMissionSelection" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="uniqueIdMissionAvailable" type="g_string" use="required">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation that should be started if missions are available</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="uniqueIdMissionUnavailable" type="g_string" use="required">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation that should be started if no missions are available</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="startMissionSelectionByType" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="typeMissionAvailable" use="required">
+                                                                                        <xs:simpleType>
+                                                                                            <xs:annotation><xs:documentation xml:lang="en">Type of the conversation that should be started if missions are available</xs:documentation></xs:annotation>
+                                                                                            <xs:restriction base="xs:string">
+                                                                                                <xs:enumeration value="DAVID_ADVICE" />
+                                                                                                <xs:enumeration value="DAVID_ANECDOTES" />
+                                                                                                <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                                                                <xs:enumeration value="DAVID_YOU" />
+                                                                                                <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                                                                <xs:enumeration value="DEFAULT" />
+                                                                                                <xs:enumeration value="FIRST_CONTACT" />
+                                                                                                <xs:enumeration value="GUIDED_TOUR" />
+                                                                                                <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                                                                <xs:enumeration value="HELP" />
+                                                                                                <xs:enumeration value="INTRO" />
+                                                                                                <xs:enumeration value="KATIE_ANECDOTES" />
+                                                                                                <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                                                                <xs:enumeration value="KATIE_YOU" />
+                                                                                                <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                                                                <xs:enumeration value="MISSION" />
+                                                                                                <xs:enumeration value="MISSION_INTRO" />
+                                                                                                <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                                                                <xs:enumeration value="MISSION_SELECT" />
+                                                                                                <xs:enumeration value="SMALLTALK" />
+                                                                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                                                                <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                                                                <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                                                                <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                                                                <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                                                                <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                                                                            </xs:restriction>
+                                                                                        </xs:simpleType>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="typeMissionUnavailable" use="required">
+                                                                                        <xs:simpleType>
+                                                                                            <xs:annotation><xs:documentation xml:lang="en">Type of the conversation that should be started if no missions are available</xs:documentation></xs:annotation>
+                                                                                            <xs:restriction base="xs:string">
+                                                                                                <xs:enumeration value="DAVID_ADVICE" />
+                                                                                                <xs:enumeration value="DAVID_ANECDOTES" />
+                                                                                                <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                                                                                                <xs:enumeration value="DAVID_YOU" />
+                                                                                                <xs:enumeration value="DAVID_YOU_INTRO" />
+                                                                                                <xs:enumeration value="DEFAULT" />
+                                                                                                <xs:enumeration value="FIRST_CONTACT" />
+                                                                                                <xs:enumeration value="GUIDED_TOUR" />
+                                                                                                <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                                                                                                <xs:enumeration value="HELP" />
+                                                                                                <xs:enumeration value="INTRO" />
+                                                                                                <xs:enumeration value="KATIE_ANECDOTES" />
+                                                                                                <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                                                                                                <xs:enumeration value="KATIE_YOU" />
+                                                                                                <xs:enumeration value="KATIE_YOU_INTRO" />
+                                                                                                <xs:enumeration value="MISSION" />
+                                                                                                <xs:enumeration value="MISSION_INTRO" />
+                                                                                                <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                                                                                                <xs:enumeration value="MISSION_SELECT" />
+                                                                                                <xs:enumeration value="SMALLTALK" />
+                                                                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                                                                                                <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                                                                                                <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                                                                                                <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                                                                                                <xs:enumeration value="SMALLTALK_PROJECTS" />
+                                                                                                <xs:enumeration value="SMALLTALK_WISDOM" />
+                                                                                                <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                                                                                            </xs:restriction>
+                                                                                        </xs:simpleType>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="startSelectedMission" type="g_string" minOccurs="1">
+                                                                            </xs:element>
+                                                                        </xs:choice>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="inputs" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:choice maxOccurs="unbounded">
+                                                                            <xs:element name="availableMissions" type="g_string" minOccurs="1">
+                                                                            </xs:element>
+                                                                            <xs:element name="leaseVehicles" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="value" type="g_bool" default="false">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">True if vehicles should be leased, else false</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="selectedMission" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="type" type="g_string" use="required">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Mission type</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:choice>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="prerequisites" minOccurs="0" maxOccurs="1">
+                                                                    <xs:complexType>
+                                                                        <xs:choice maxOccurs="unbounded">
+                                                                            <xs:element name="missionAvailable" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="type" type="g_string" use="required">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Mission type</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="variant" type="g_string">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Variant name of the available mission</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                            <xs:element name="missionPermission" type="g_string" minOccurs="1">
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Mission Permission</xs:documentation></xs:annotation>
+                                                                            </xs:element>
+                                                                        </xs:choice>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="text" type="g_string" minOccurs="1">
+                                                                    <xs:annotation><xs:documentation xml:lang="en">Path to the conversation text flow item option text</xs:documentation></xs:annotation>
+                                                                </xs:element>
+                                                            </xs:all>
+                                                            <xs:attribute name="id" type="g_string" use="required">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation flow item. Used for Dialog Editor only</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="isActive" type="g_bool">
+                                                                <xs:annotation><xs:documentation xml:lang="en">If the item is active. Used for Dialog Editor only</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="nextId" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Unique id of the next converstion flow item</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="text" type="g_string" minOccurs="1">
+                                            <xs:annotation><xs:documentation xml:lang="en">Path to the conversation text flow item text</xs:documentation></xs:annotation>
+                                        </xs:element>
+                                    </xs:all>
+                                    <xs:attribute name="animationType" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Name of the animation that should be played</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="id" type="g_string" use="required">
+                                        <xs:annotation><xs:documentation xml:lang="en">Unique id of the conversation text flow item</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="isActive" type="g_bool">
+                                        <xs:annotation><xs:documentation xml:lang="en">If the item is active</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="nextId" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Unique id of the next converstion flow item</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="startId" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Start unique id of the conversation</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="type" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:annotation><xs:documentation xml:lang="en">Type of the conversation</xs:documentation></xs:annotation>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="DAVID_ADVICE" />
+                            <xs:enumeration value="DAVID_ANECDOTES" />
+                            <xs:enumeration value="DAVID_ANECDOTES_INTRO" />
+                            <xs:enumeration value="DAVID_YOU" />
+                            <xs:enumeration value="DAVID_YOU_INTRO" />
+                            <xs:enumeration value="DEFAULT" />
+                            <xs:enumeration value="FIRST_CONTACT" />
+                            <xs:enumeration value="GUIDED_TOUR" />
+                            <xs:enumeration value="GUIDED_TOUR_INTRO" />
+                            <xs:enumeration value="HELP" />
+                            <xs:enumeration value="INTRO" />
+                            <xs:enumeration value="KATIE_ANECDOTES" />
+                            <xs:enumeration value="KATIE_ANECDOTES_INTRO" />
+                            <xs:enumeration value="KATIE_YOU" />
+                            <xs:enumeration value="KATIE_YOU_INTRO" />
+                            <xs:enumeration value="MISSION" />
+                            <xs:enumeration value="MISSION_INTRO" />
+                            <xs:enumeration value="MISSION_NOT_AVAILABLE" />
+                            <xs:enumeration value="MISSION_SELECT" />
+                            <xs:enumeration value="SMALLTALK" />
+                            <xs:enumeration value="SMALLTALK_ABOUT_YOU" />
+                            <xs:enumeration value="SMALLTALK_ABOUT_YOU_INTRO" />
+                            <xs:enumeration value="SMALLTALK_FUNFACTS" />
+                            <xs:enumeration value="SMALLTALK_FUNFACTS_INTRO" />
+                            <xs:enumeration value="SMALLTALK_PROJECTS" />
+                            <xs:enumeration value="SMALLTALK_WISDOM" />
+                            <xs:enumeration value="SMALLTALK_WISDOM_INTRO" />
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

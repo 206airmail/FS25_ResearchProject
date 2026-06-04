@@ -1,0 +1,37 @@
+{
+  // ---------------------------------------------------------------------------
+  // FS25 XML autocomplete + validation via the Red Hat XML extension (LemMinX).
+  // Two ways to attach a schema to a file — use EITHER:
+  //
+  // (A) Per-file (recommended, exact): add to the file's root element, e.g.
+  //       <vehicle xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  //                xsi:noNamespaceSchemaLocation="<path>/FS25_ResearchProject/schemas/vehicle.xsd">
+  //     LemMinX picks it up automatically. This is how GIANTS' own data files work.
+  //
+  // (B) Workspace-wide by file glob (below). Because every FS25 XML type shares the
+  //     .xml extension, you can only safely bind by a glob that ONLY matches vehicle
+  //     files. Adjust the patterns to YOUR mod layout, or delete this block and use (A).
+  // ---------------------------------------------------------------------------
+  "xml.fileAssociations": [
+    {
+      "pattern": "**/vehicles/**/*.xml",
+      "systemId": "schemas/vehicle.xsd"
+    }
+  ],
+
+  // Stock GIANTS schemas (structural validation + completion for EVERY other XML type)
+  // live in the game install. Point LemMinX catalogs there so placeable/map/etc. validate
+  // too. Update the path if your install differs.
+  "xml.catalogs": [],
+
+  // GIANTS' vehicle.xsd is ~6.7 MB; give LemMinX enough Java heap or it OOM-crashes.
+  "xml.server.vmargs": "-Xmx3G -Xms256m -XX:+UseG1GC",
+
+  "xml.validation.enabled": true,
+  "xml.validation.schema.enabled": "always",
+  "xml.completion.autoCloseTags": true,
+  "xml.format.enabled": true,
+  "files.associations": {
+    "*.xml": "xml"
+  }
+}

@@ -1,0 +1,1575 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="fs25_rigidBodyType">
+    <xs:annotation><xs:documentation>RigidBodyType (case-insensitive) — 4 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE"/>
+      <xs:enumeration value="STATIC"/>
+      <xs:enumeration value="DYNAMIC"/>
+      <xs:enumeration value="KINEMATIC"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:complexType name="SoundManager_sound">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="loopSynthesisLoad" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="modifiedValue" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="type">
+                                    <xs:simpleType>
+                                        <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                            <xs:enumeration value="SPEED" />
+                                            <xs:enumeration value="SUSPENSION" />
+                                            <xs:enumeration value="COMBINE_LOAD" />
+                                            <xs:enumeration value="DRIVING_DIRECTION" />
+                                            <xs:enumeration value="MOTOR_LOAD" />
+                                            <xs:enumeration value="WHEEL_SUSPENSION" />
+                                            <xs:enumeration value="CRUISECONTROL" />
+                                            <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                            <xs:enumeration value="MOTOR_RPM_REAL" />
+                                            <xs:enumeration value="FOOTBALL_SPEED" />
+                                            <xs:enumeration value="MOWER_LOAD" />
+                                            <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                            <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                            <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                            <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                            <xs:enumeration value="CARRIAGE_SPEED" />
+                                            <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                            <xs:enumeration value="DECELERATE" />
+                                            <xs:enumeration value="ACCELERATE" />
+                                            <xs:enumeration value="TURNED_ON_SPEED" />
+                                            <xs:enumeration value="MOTOR_RPM" />
+                                            <xs:enumeration value="BRAKE_TIME" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                                <xs:attribute name="value" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="loopSynthesisRpm" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="modifiedValue" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="type">
+                                    <xs:simpleType>
+                                        <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                            <xs:enumeration value="SPEED" />
+                                            <xs:enumeration value="SUSPENSION" />
+                                            <xs:enumeration value="COMBINE_LOAD" />
+                                            <xs:enumeration value="DRIVING_DIRECTION" />
+                                            <xs:enumeration value="MOTOR_LOAD" />
+                                            <xs:enumeration value="WHEEL_SUSPENSION" />
+                                            <xs:enumeration value="CRUISECONTROL" />
+                                            <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                            <xs:enumeration value="MOTOR_RPM_REAL" />
+                                            <xs:enumeration value="FOOTBALL_SPEED" />
+                                            <xs:enumeration value="MOWER_LOAD" />
+                                            <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                            <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                            <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                            <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                            <xs:enumeration value="CARRIAGE_SPEED" />
+                                            <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                            <xs:enumeration value="DECELERATE" />
+                                            <xs:enumeration value="ACCELERATE" />
+                                            <xs:enumeration value="TURNED_ON_SPEED" />
+                                            <xs:enumeration value="MOTOR_RPM" />
+                                            <xs:enumeration value="BRAKE_TIME" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                                <xs:attribute name="value" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="lowpassCutoffFrequency" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:attribute name="indoor" type="g_float" default="5000">
+                        <xs:annotation><xs:documentation xml:lang="en">Indoor lowpass cutoff frequency</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="outdoor" type="g_float" default="5000">
+                        <xs:annotation><xs:documentation xml:lang="en">Outdoor lowpass cutoff frequency</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="lowpassGain" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="modifiedValue" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="type">
+                                    <xs:simpleType>
+                                        <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                            <xs:enumeration value="SPEED" />
+                                            <xs:enumeration value="SUSPENSION" />
+                                            <xs:enumeration value="COMBINE_LOAD" />
+                                            <xs:enumeration value="DRIVING_DIRECTION" />
+                                            <xs:enumeration value="MOTOR_LOAD" />
+                                            <xs:enumeration value="WHEEL_SUSPENSION" />
+                                            <xs:enumeration value="CRUISECONTROL" />
+                                            <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                            <xs:enumeration value="MOTOR_RPM_REAL" />
+                                            <xs:enumeration value="FOOTBALL_SPEED" />
+                                            <xs:enumeration value="MOWER_LOAD" />
+                                            <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                            <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                            <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                            <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                            <xs:enumeration value="CARRIAGE_SPEED" />
+                                            <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                            <xs:enumeration value="DECELERATE" />
+                                            <xs:enumeration value="ACCELERATE" />
+                                            <xs:enumeration value="TURNED_ON_SPEED" />
+                                            <xs:enumeration value="MOTOR_RPM" />
+                                            <xs:enumeration value="BRAKE_TIME" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                                <xs:attribute name="value" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="indoor" type="g_float" default="0.8">
+                        <xs:annotation><xs:documentation xml:lang="en">Indoor lowpass gain</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="outdoor" type="g_float" default="1">
+                        <xs:annotation><xs:documentation xml:lang="en">Outdoor lowpass gain</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="lowpassResonance" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:attribute name="indoor" type="g_float" default="2">
+                        <xs:annotation><xs:documentation xml:lang="en">Indoor lowpass resonance</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="outdoor" type="g_float" default="2">
+                        <xs:annotation><xs:documentation xml:lang="en">Outdoor lowpass resonance</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="pitch" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="modifiedValue" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="type">
+                                    <xs:simpleType>
+                                        <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                            <xs:enumeration value="SPEED" />
+                                            <xs:enumeration value="SUSPENSION" />
+                                            <xs:enumeration value="COMBINE_LOAD" />
+                                            <xs:enumeration value="DRIVING_DIRECTION" />
+                                            <xs:enumeration value="MOTOR_LOAD" />
+                                            <xs:enumeration value="WHEEL_SUSPENSION" />
+                                            <xs:enumeration value="CRUISECONTROL" />
+                                            <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                            <xs:enumeration value="MOTOR_RPM_REAL" />
+                                            <xs:enumeration value="FOOTBALL_SPEED" />
+                                            <xs:enumeration value="MOWER_LOAD" />
+                                            <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                            <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                            <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                            <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                            <xs:enumeration value="CARRIAGE_SPEED" />
+                                            <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                            <xs:enumeration value="DECELERATE" />
+                                            <xs:enumeration value="ACCELERATE" />
+                                            <xs:enumeration value="TURNED_ON_SPEED" />
+                                            <xs:enumeration value="MOTOR_RPM" />
+                                            <xs:enumeration value="BRAKE_TIME" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                                <xs:attribute name="value" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="indoor" type="g_float" default="1">
+                        <xs:annotation><xs:documentation xml:lang="en">Indoor pitch</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="outdoor" type="g_float" default="1">
+                        <xs:annotation><xs:documentation xml:lang="en">Outdoor pitch</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="randomization" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="isInside" type="g_bool" default="true">
+                        <xs:annotation><xs:documentation xml:lang="en">Randomization is applied inside</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="isOutside" type="g_bool" default="true">
+                        <xs:annotation><xs:documentation xml:lang="en">Randomization is applied outside</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="maxLowpassGain" type="g_float">
+                        <xs:annotation><xs:documentation xml:lang="en">Max lowpass gain</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="maxPitch" type="g_float">
+                        <xs:annotation><xs:documentation xml:lang="en">Max pitch</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="maxVolume" type="g_float">
+                        <xs:annotation><xs:documentation xml:lang="en">Max volume</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="minLowpassGain" type="g_float">
+                        <xs:annotation><xs:documentation xml:lang="en">Max lowpass gain</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="minPitch" type="g_float">
+                        <xs:annotation><xs:documentation xml:lang="en">Max pitch</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="minVolume" type="g_float">
+                        <xs:annotation><xs:documentation xml:lang="en">Min volume</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="sourceRandomization" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="file" type="g_string">
+                        <xs:annotation><xs:documentation xml:lang="en">Path to sound sample</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="volume" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="modifiedValue" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                                <xs:attribute name="type">
+                                    <xs:simpleType>
+                                        <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                        <xs:restriction base="xs:string">
+                                            <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                            <xs:enumeration value="SPEED" />
+                                            <xs:enumeration value="SUSPENSION" />
+                                            <xs:enumeration value="COMBINE_LOAD" />
+                                            <xs:enumeration value="DRIVING_DIRECTION" />
+                                            <xs:enumeration value="MOTOR_LOAD" />
+                                            <xs:enumeration value="WHEEL_SUSPENSION" />
+                                            <xs:enumeration value="CRUISECONTROL" />
+                                            <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                            <xs:enumeration value="MOTOR_RPM_REAL" />
+                                            <xs:enumeration value="FOOTBALL_SPEED" />
+                                            <xs:enumeration value="MOWER_LOAD" />
+                                            <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                            <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                            <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                            <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                            <xs:enumeration value="CARRIAGE_SPEED" />
+                                            <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                            <xs:enumeration value="DECELERATE" />
+                                            <xs:enumeration value="ACCELERATE" />
+                                            <xs:enumeration value="TURNED_ON_SPEED" />
+                                            <xs:enumeration value="MOTOR_RPM" />
+                                            <xs:enumeration value="BRAKE_TIME" />
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                                <xs:attribute name="value" type="g_float">
+                                    <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="indoor" type="g_float" default="0.8">
+                        <xs:annotation><xs:documentation xml:lang="en">Indoor volume</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="outdoor" type="g_float" default="1">
+                        <xs:annotation><xs:documentation xml:lang="en">Outdoor volume</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+        <xs:attribute name="debug" type="g_bool" default="false">
+            <xs:annotation><xs:documentation xml:lang="en">Flag to enable debug rendering</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="fadeIn" type="g_float" default="0">
+            <xs:annotation><xs:documentation xml:lang="en">Fade in time in seconds</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="fadeOut" type="g_float" default="0">
+            <xs:annotation><xs:documentation xml:lang="en">Fade out time in seconds</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="file" type="g_string">
+            <xs:annotation><xs:documentation xml:lang="en">Path to sound sample</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="innerRadius" type="g_float" default="80">
+            <xs:annotation><xs:documentation xml:lang="en">Inner radius</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="isLocalSound" type="g_bool" default="false">
+            <xs:annotation><xs:documentation xml:lang="en">While set for vehicle sounds it will only play for the player currently using the vehicle</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="linkNode" type="g_node_index">
+            <xs:annotation><xs:documentation xml:lang="en">Link node for 3d sound</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="linkNodeOffset" type="g_vector_trans">
+            <xs:annotation><xs:documentation xml:lang="en">Sound source will be offset by this value to the link node</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="loops" type="g_int" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">Number of loops (0 = infinite)</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="loopSynthesisRPMRatio" type="g_float" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">Ratio between rpm in the gls file and actual rpm of the motor (e.g. 0.9: max. rpm in the gls file will be reached at 90% of motor rpm)</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="lowpassGainScale" type="g_float" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">Additional lowpass gain that is applied on the volume attributes</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="outerRadius" type="g_float" default="5">
+            <xs:annotation><xs:documentation xml:lang="en">Outer radius</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="parent" type="g_string">
+            <xs:annotation><xs:documentation xml:lang="en">Parent sample for inheritance</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="pitchScale" type="g_float" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">Additional pitch that is applied on the volume attributes</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="priority" default="MEDIUM">
+            <xs:simpleType>
+                <xs:annotation><xs:documentation xml:lang="en">Priority of the sound</xs:documentation></xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="VERY_LOW" />
+                    <xs:enumeration value="MEDIUM" />
+                    <xs:enumeration value="HIGH" />
+                    <xs:enumeration value="LOW" />
+                    <xs:enumeration value="VERY_HIGH" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+        <xs:attribute name="supportsReverb" type="g_bool" default="true">
+            <xs:annotation><xs:documentation xml:lang="en">Flag to disable reverb</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="template" type="g_string">
+            <xs:annotation>
+                <xs:documentation xml:lang="en">Sound template name</xs:documentation>
+                <xs:appinfo>
+                    <typeStr>String</typeStr>
+                    <giantsAutoCompletion sourceFile="$data/sounds/soundTemplates.xml" prefix="">
+                        <path>soundTemplates.template#name</path>
+                    </giantsAutoCompletion>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="volumeScale" type="g_float" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">Additional scale that is applied on the volume attributes</xs:documentation></xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:element name="crawler">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="animations" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="animation" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="part" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element name="rollingGateAnimation" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:element name="segment" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:all>
+                                                                            <xs:element name="lineAlignment" minOccurs="0" maxOccurs="1">
+                                                                                <xs:complexType>
+                                                                                    <xs:attribute name="endNode" type="g_node_index">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">End node of the line to align to</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                    <xs:attribute name="startNode" type="g_node_index">
+                                                                                        <xs:annotation><xs:documentation xml:lang="en">Start node of the line to align to</xs:documentation></xs:annotation>
+                                                                                    </xs:attribute>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:all>
+                                                                        <xs:attribute name="length" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Length of the segment</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="node" type="g_node_index">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Node of the segment</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:choice>
+                                                            <xs:attribute name="isInverted" type="g_bool" default="false">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Gate is inverted</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="maxOpeningDistance" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Gate opening distance in spline time [0-1]</xs:documentation><xs:appinfo><defaultStr>automatically based on gate length, so it is fully open</defaultStr></xs:appinfo></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="referenceFrame" type="g_node_index">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Reference Frame</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="splineNode" type="g_node_index">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Spline Node</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:all>
+                                                <xs:attribute name="animationClip" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Animation clip name</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="baleLoaderAnimationNodes" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Bale Loader animation nodes turn on/off</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="clipEndTime" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Animation clip end time</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="clipStartTime" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Animation clip start time</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="componentIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Component index</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="componentJointIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Component joint index</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="dependentAnimation" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Dependent animation name</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="dependentAnimationEndTime" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Dependent animation end time</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="dependentAnimationStartTime" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Dependent animation start time</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="direction" type="g_int" default="0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Part direction</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="duration" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Duration</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endBrakeFactor" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End brake force factor</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endCenterOfMass" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End center of mass</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endDoorAnimationMaxTime" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Max. time of door animation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endFrictionVelocity" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End friction velocity applied to node</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endGatePos" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End rolling gate position</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endGroundAdjustScale" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start scale of ground adjusted node (blending between detected ground and inactive position)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endLiquidSimulationVisualHeightMax" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End max. height of visual nodes</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endLiquidSimulationVisualHeightMin" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End min. height of visual nodes</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endMass" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End mass of component</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endReferencePoint" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End reference point</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endRot" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End rotation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endRotLimit" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End rotation limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endRotLimitDamping" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End rot limit damping</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endRotLimitSpring" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End rot limit spring</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endRotMaxLimit" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End rotation max limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endRotMinLimit" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End rotation min limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endScale" type="g_vector_scale">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End scale</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endSlopeCompensationLevel" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End slope compensation level</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endSplinePos" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End spline position</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endSteeringAngle" type="g_angle">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End steering angle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endTime" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End time</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endTipSideEmptyFactor" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End tip side empty factor</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endTorqueDirection" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End torque direction</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endTrans" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End translation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endTransLimit" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End translation limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endTransMaxLimit" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End translation max limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endTransMinLimit" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End translation min limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endVisibility" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Visibility at end time (switched in the middle)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="inputAttacherJointIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Input Attacher Joint Index [1..n]</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="liquidSimulationNode" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Root node of the liquid simulation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="liquidSimulationVisualNodeIndices" type="g_vector_n">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List of visual node indices to affect</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="lowerDistanceToGroundEnd" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Lower distance to ground end</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="lowerDistanceToGroundStart" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Lower distance to ground start</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="lowerRotationOffsetEnd" type="g_angle">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Lower rotation offset end</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="lowerRotationOffsetStart" type="g_angle">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Lower rotation offset start</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="lowerRotLimitScaleEnd" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Lower rotation limit end</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="lowerRotLimitScaleStart" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Lower rotation limit start</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="lowerTransLimitScaleEnd" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Lower translation limit end</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="lowerTransLimitScaleStart" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Lower translation limit start</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="node" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Part node</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="requiredAnimation" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Required animation needs to be in a specific range to play part</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="requiredAnimationRange" type="g_vector_2">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Animation range of required animation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="requiredConfigurationIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Required configuration needs to be in this state to activate the animation part</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="requiredConfigurationName" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">This configuration needs to bet set to #requiredConfigurationIndex</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="rotation" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Rotation  (only for keyframe animations)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="scale" type="g_vector_scale">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Scale  (only for keyframe animations)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="shaderEndValues" type="g_string_list">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End shader values</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="shaderParameter" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Shader parameter</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="shaderParameterPrev" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Shader parameter (prev)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="shaderStartValues" type="g_string_list">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start shader values</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="slopeCompensationNodeIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index in the XML of the slope compensation node</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="spline" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Spline node</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startBrakeFactor" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start brake force factor</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startCenterOfMass" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start center of mass</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startDoorAnimationMaxTime" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Max. time of door animation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startFrictionVelocity" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start friction velocity applied to node</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startGatePos" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start rolling gate position</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startGroundAdjustScale" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start scale of ground adjusted node (blending between detected ground and inactive position)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startLiquidSimulationVisualHeightMax" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start max. height of visual nodes</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startLiquidSimulationVisualHeightMin" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start min. height of visual nodes</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startMass" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start mass of component</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startReferencePoint" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start reference point</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startRot" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start rotation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startRotLimit" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start rotation limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startRotLimitDamping" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start rot limit damping</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startRotLimitSpring" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start rot limit spring</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startRotMaxLimit" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start rotation max limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startRotMinLimit" type="g_vector_rot">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start rotation min limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startScale" type="g_vector_scale">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start scale</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startSlopeCompensationLevel" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start slope compensation level</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startSplinePos" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start spline position</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startSteeringAngle" type="g_angle">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start steering angle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startTime" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start time</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startTipSideEmptyFactor" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start tip side empty factor</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startTorqueDirection" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start torque direction</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startTrans" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start translation</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startTransLimit" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start translation limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startTransMaxLimit" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start translation max limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startTransMinLimit" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start translation min limit</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startVisibility" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Visibility at start time (switched in the middle)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="tangentType" type="g_string" default="linear">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Type of tangent to be used (linear, spline, step)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="time" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Keyframe time (only for keyframe animations)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="translation" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Translation  (only for keyframe animations)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="upperDistanceToGroundEnd" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Upper distance to ground end</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="upperDistanceToGroundStart" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Upper distance to ground start</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="upperRotationOffsetEnd" type="g_angle">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Upper rotation offset end</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="upperRotationOffsetStart" type="g_angle">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Upper rotation offset start</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="upperRotLimitScaleEnd" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Upper rotation limit end</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="upperRotLimitScaleStart" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Upper rotation limit start</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="upperTransLimitScaleEnd" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Upper translation limit end</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="upperTransLimitScaleStart" type="g_vector_3">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Upper translation limit start</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="visibility" type="g_bool">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Visibility</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="wheelIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Wheel index [1..n]</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="sound" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:choice maxOccurs="unbounded">
+                                                    <xs:element name="loopSynthesisLoad" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="modifiedValue" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="type">
+                                                                            <xs:simpleType>
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                                                                    <xs:enumeration value="SPEED" />
+                                                                                    <xs:enumeration value="SUSPENSION" />
+                                                                                    <xs:enumeration value="COMBINE_LOAD" />
+                                                                                    <xs:enumeration value="DRIVING_DIRECTION" />
+                                                                                    <xs:enumeration value="MOTOR_LOAD" />
+                                                                                    <xs:enumeration value="WHEEL_SUSPENSION" />
+                                                                                    <xs:enumeration value="CRUISECONTROL" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                                                                    <xs:enumeration value="MOTOR_RPM_REAL" />
+                                                                                    <xs:enumeration value="FOOTBALL_SPEED" />
+                                                                                    <xs:enumeration value="MOWER_LOAD" />
+                                                                                    <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                                                                    <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                                                                    <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                                                                    <xs:enumeration value="CARRIAGE_SPEED" />
+                                                                                    <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                                                                    <xs:enumeration value="DECELERATE" />
+                                                                                    <xs:enumeration value="ACCELERATE" />
+                                                                                    <xs:enumeration value="TURNED_ON_SPEED" />
+                                                                                    <xs:enumeration value="MOTOR_RPM" />
+                                                                                    <xs:enumeration value="BRAKE_TIME" />
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="value" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:choice>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="loopSynthesisRpm" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="modifiedValue" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="type">
+                                                                            <xs:simpleType>
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                                                                    <xs:enumeration value="SPEED" />
+                                                                                    <xs:enumeration value="SUSPENSION" />
+                                                                                    <xs:enumeration value="COMBINE_LOAD" />
+                                                                                    <xs:enumeration value="DRIVING_DIRECTION" />
+                                                                                    <xs:enumeration value="MOTOR_LOAD" />
+                                                                                    <xs:enumeration value="WHEEL_SUSPENSION" />
+                                                                                    <xs:enumeration value="CRUISECONTROL" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                                                                    <xs:enumeration value="MOTOR_RPM_REAL" />
+                                                                                    <xs:enumeration value="FOOTBALL_SPEED" />
+                                                                                    <xs:enumeration value="MOWER_LOAD" />
+                                                                                    <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                                                                    <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                                                                    <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                                                                    <xs:enumeration value="CARRIAGE_SPEED" />
+                                                                                    <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                                                                    <xs:enumeration value="DECELERATE" />
+                                                                                    <xs:enumeration value="ACCELERATE" />
+                                                                                    <xs:enumeration value="TURNED_ON_SPEED" />
+                                                                                    <xs:enumeration value="MOTOR_RPM" />
+                                                                                    <xs:enumeration value="BRAKE_TIME" />
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="value" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:choice>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="lowpassCutoffFrequency" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="indoor" type="g_float" default="5000">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Indoor lowpass cutoff frequency</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="outdoor" type="g_float" default="5000">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Outdoor lowpass cutoff frequency</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="lowpassGain" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="modifiedValue" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="type">
+                                                                            <xs:simpleType>
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                                                                    <xs:enumeration value="SPEED" />
+                                                                                    <xs:enumeration value="SUSPENSION" />
+                                                                                    <xs:enumeration value="COMBINE_LOAD" />
+                                                                                    <xs:enumeration value="DRIVING_DIRECTION" />
+                                                                                    <xs:enumeration value="MOTOR_LOAD" />
+                                                                                    <xs:enumeration value="WHEEL_SUSPENSION" />
+                                                                                    <xs:enumeration value="CRUISECONTROL" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                                                                    <xs:enumeration value="MOTOR_RPM_REAL" />
+                                                                                    <xs:enumeration value="FOOTBALL_SPEED" />
+                                                                                    <xs:enumeration value="MOWER_LOAD" />
+                                                                                    <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                                                                    <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                                                                    <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                                                                    <xs:enumeration value="CARRIAGE_SPEED" />
+                                                                                    <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                                                                    <xs:enumeration value="DECELERATE" />
+                                                                                    <xs:enumeration value="ACCELERATE" />
+                                                                                    <xs:enumeration value="TURNED_ON_SPEED" />
+                                                                                    <xs:enumeration value="MOTOR_RPM" />
+                                                                                    <xs:enumeration value="BRAKE_TIME" />
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="value" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:choice>
+                                                            <xs:attribute name="indoor" type="g_float" default="0.8">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Indoor lowpass gain</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="outdoor" type="g_float" default="1">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Outdoor lowpass gain</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="lowpassResonance" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="indoor" type="g_float" default="2">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Indoor lowpass resonance</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="outdoor" type="g_float" default="2">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Outdoor lowpass resonance</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="pitch" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="modifiedValue" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="type">
+                                                                            <xs:simpleType>
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                                                                    <xs:enumeration value="SPEED" />
+                                                                                    <xs:enumeration value="SUSPENSION" />
+                                                                                    <xs:enumeration value="COMBINE_LOAD" />
+                                                                                    <xs:enumeration value="DRIVING_DIRECTION" />
+                                                                                    <xs:enumeration value="MOTOR_LOAD" />
+                                                                                    <xs:enumeration value="WHEEL_SUSPENSION" />
+                                                                                    <xs:enumeration value="CRUISECONTROL" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                                                                    <xs:enumeration value="MOTOR_RPM_REAL" />
+                                                                                    <xs:enumeration value="FOOTBALL_SPEED" />
+                                                                                    <xs:enumeration value="MOWER_LOAD" />
+                                                                                    <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                                                                    <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                                                                    <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                                                                    <xs:enumeration value="CARRIAGE_SPEED" />
+                                                                                    <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                                                                    <xs:enumeration value="DECELERATE" />
+                                                                                    <xs:enumeration value="ACCELERATE" />
+                                                                                    <xs:enumeration value="TURNED_ON_SPEED" />
+                                                                                    <xs:enumeration value="MOTOR_RPM" />
+                                                                                    <xs:enumeration value="BRAKE_TIME" />
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="value" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:choice>
+                                                            <xs:attribute name="indoor" type="g_float" default="1">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Indoor pitch</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="outdoor" type="g_float" default="1">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Outdoor pitch</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="randomization" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="isInside" type="g_bool" default="true">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Randomization is applied inside</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="isOutside" type="g_bool" default="true">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Randomization is applied outside</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="maxLowpassGain" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Max lowpass gain</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="maxPitch" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Max pitch</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="maxVolume" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Max volume</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="minLowpassGain" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Max lowpass gain</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="minPitch" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Max pitch</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="minVolume" type="g_float">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Min volume</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="sourceRandomization" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:attribute name="file" type="g_string">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Path to sound sample</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="volume" minOccurs="0" maxOccurs="1">
+                                                        <xs:complexType>
+                                                            <xs:choice maxOccurs="unbounded">
+                                                                <xs:element name="modifier" minOccurs="0" maxOccurs="unbounded">
+                                                                    <xs:complexType>
+                                                                        <xs:attribute name="modifiedValue" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Change that is applied on sample value</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="type">
+                                                                            <xs:simpleType>
+                                                                                <xs:annotation><xs:documentation xml:lang="en">Modifier type</xs:documentation></xs:annotation>
+                                                                                <xs:restriction base="xs:string">
+                                                                                    <xs:enumeration value="DIFFERENTIAL_SPEED" />
+                                                                                    <xs:enumeration value="SPEED" />
+                                                                                    <xs:enumeration value="SUSPENSION" />
+                                                                                    <xs:enumeration value="COMBINE_LOAD" />
+                                                                                    <xs:enumeration value="DRIVING_DIRECTION" />
+                                                                                    <xs:enumeration value="MOTOR_LOAD" />
+                                                                                    <xs:enumeration value="WHEEL_SUSPENSION" />
+                                                                                    <xs:enumeration value="CRUISECONTROL" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_CURVE" />
+                                                                                    <xs:enumeration value="MOTOR_RPM_REAL" />
+                                                                                    <xs:enumeration value="FOOTBALL_SPEED" />
+                                                                                    <xs:enumeration value="MOWER_LOAD" />
+                                                                                    <xs:enumeration value="BOATYARD_MOVING_SPEED" />
+                                                                                    <xs:enumeration value="ROLLERCOASTER_SPEED" />
+                                                                                    <xs:enumeration value="BOATYARD_LAUNCHING_SPEED" />
+                                                                                    <xs:enumeration value="WIND_TURBINE_LOAD" />
+                                                                                    <xs:enumeration value="CARRIAGE_SPEED" />
+                                                                                    <xs:enumeration value="BLOW_OFF_VALVE_STATE" />
+                                                                                    <xs:enumeration value="DECELERATE" />
+                                                                                    <xs:enumeration value="ACCELERATE" />
+                                                                                    <xs:enumeration value="TURNED_ON_SPEED" />
+                                                                                    <xs:enumeration value="MOTOR_RPM" />
+                                                                                    <xs:enumeration value="BRAKE_TIME" />
+                                                                                </xs:restriction>
+                                                                            </xs:simpleType>
+                                                                        </xs:attribute>
+                                                                        <xs:attribute name="value" type="g_float">
+                                                                            <xs:annotation><xs:documentation xml:lang="en">Source value of modifier type</xs:documentation></xs:annotation>
+                                                                        </xs:attribute>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:choice>
+                                                            <xs:attribute name="indoor" type="g_float" default="0.8">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Indoor volume</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                            <xs:attribute name="outdoor" type="g_float" default="1">
+                                                                <xs:annotation><xs:documentation xml:lang="en">Outdoor volume</xs:documentation></xs:annotation>
+                                                            </xs:attribute>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:choice>
+                                                <xs:attribute name="debug" type="g_bool" default="false">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Flag to enable debug rendering</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="direction" type="g_int" default="0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Direction to play the sound (0 = any direction)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endPitchScale" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Pitch scale at the end time</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="endTime" type="g_time">
+                                                    <xs:annotation><xs:documentation xml:lang="en">End play time for loops or used on opposite direction</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="fadeIn" type="g_float" default="0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Fade in time in seconds</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="fadeOut" type="g_float" default="0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Fade out time in seconds</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="file" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to sound sample</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="innerRadius" type="g_float" default="80">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Inner radius</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="isLocalSound" type="g_bool" default="false">
+                                                    <xs:annotation><xs:documentation xml:lang="en">While set for vehicle sounds it will only play for the player currently using the vehicle</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="linkNode" type="g_node_index">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Link node for 3d sound</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="linkNodeOffset" type="g_vector_trans">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Sound source will be offset by this value to the link node</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="loops" type="g_int" default="1">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Number of loops (0 = infinite)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="loopSynthesisRPMRatio" type="g_float" default="1">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Ratio between rpm in the gls file and actual rpm of the motor (e.g. 0.9: max. rpm in the gls file will be reached at 90% of motor rpm)</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="lowpassGainScale" type="g_float" default="1">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Additional lowpass gain that is applied on the volume attributes</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="outerRadius" type="g_float" default="5">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Outer radius</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="parent" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Parent sample for inheritance</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="pitchScale" type="g_float" default="1">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Additional pitch that is applied on the volume attributes</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="priority" default="MEDIUM">
+                                                    <xs:simpleType>
+                                                        <xs:annotation><xs:documentation xml:lang="en">Priority of the sound</xs:documentation></xs:annotation>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="VERY_LOW" />
+                                                            <xs:enumeration value="MEDIUM" />
+                                                            <xs:enumeration value="HIGH" />
+                                                            <xs:enumeration value="LOW" />
+                                                            <xs:enumeration value="VERY_HIGH" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                                <xs:attribute name="startPitchScale" type="g_float">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Pitch scale at the start time</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="startTime" type="g_time" default="0">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Start play time</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="supportsReverb" type="g_bool" default="true">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Flag to disable reverb</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="template" type="g_string">
+                                                    <xs:annotation>
+                                                        <xs:documentation xml:lang="en">Sound template name</xs:documentation>
+                                                        <xs:appinfo>
+                                                            <typeStr>String</typeStr>
+                                                            <giantsAutoCompletion sourceFile="$data/sounds/soundTemplates.xml" prefix="">
+                                                                <path>soundTemplates.template#name</path>
+                                                            </giantsAutoCompletion>
+                                                        </xs:appinfo>
+                                                    </xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="volumeScale" type="g_float" default="1">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Additional scale that is applied on the volume attributes</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="stopTimeNegSound" type="SoundManager_sound" minOccurs="0" maxOccurs="unbounded"/>
+                                        <xs:element name="stopTimePosSound" type="SoundManager_sound" minOccurs="0" maxOccurs="unbounded"/>
+                                    </xs:choice>
+                                    <xs:attribute name="isKeyframe" type="g_bool" default="false">
+                                        <xs:annotation><xs:documentation xml:lang="en">Is static keyframe animation instead of dynamically interpolating animation (Keyframe animations only support trans/rot/scale!)</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="isLeft" type="g_bool" default="false">
+                                        <xs:annotation><xs:documentation xml:lang="en">Load for left crawler</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="looping" type="g_bool" default="false">
+                                        <xs:annotation><xs:documentation xml:lang="en">Animation is looping</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="name" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Name of animation</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="resetOnStart" type="g_bool" default="true">
+                                        <xs:annotation><xs:documentation xml:lang="en">Animation is reset while loading the vehicle</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="soundVolumeFactor" type="g_float" default="1">
+                                        <xs:annotation><xs:documentation xml:lang="en">Sound volume factor that is applied for all sounds in this animation</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="startAnimTime" type="g_float" default="0">
+                                        <xs:annotation><xs:documentation xml:lang="en">Animation is set to this time if resetOnStart is set</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dirtNodes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="dirtNode" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="node" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Nodes that act the same way as wheels and get dirty faster when on field. If not defined everything gets dirty faster.</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="file" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="leftNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Crawler left node in i3d</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="name" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Crawler i3d filename</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="rightNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Crawler right node in i3d</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="objectChange" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:attribute name="centerOfMassActive" type="g_vector_3">
+                            <xs:annotation><xs:documentation xml:lang="en">center of mass if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="centerOfMassInactive" type="g_vector_3">
+                            <xs:annotation><xs:documentation xml:lang="en">center of mass if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="compoundChildActive" type="g_bool">
+                            <xs:annotation><xs:documentation xml:lang="en">compound child state if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="compoundChildInactive" type="g_bool">
+                            <xs:annotation><xs:documentation xml:lang="en">compound child state if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="deleteActive" type="g_bool">
+                            <xs:annotation><xs:documentation xml:lang="en">delete if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="deleteInactive" type="g_bool">
+                            <xs:annotation><xs:documentation xml:lang="en">delete if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="interpolation" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Value will be interpolated</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="interpolationTime" type="g_time" default="1">
+                            <xs:annotation><xs:documentation xml:lang="en">Time for interpolation</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="massActive" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">mass if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="massInactive" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">mass if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingPartUpdateActive" type="g_bool">
+                            <xs:annotation><xs:documentation xml:lang="en">moving part active state if object change active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingPartUpdateInactive" type="g_bool">
+                            <xs:annotation><xs:documentation xml:lang="en">moving part active state if object change inactive</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolRotMaxActive" type="g_angle">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool max. rotation if object change active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolRotMaxInactive" type="g_angle">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool max. rotation if object change inactive</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolRotMinActive" type="g_angle">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool min. rotation if object change active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolRotMinInactive" type="g_angle">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool min. rotation if object change inactive</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolStartRotActive" type="g_angle">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool start rotation if object change inactive</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolStartRotInactive" type="g_angle">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool start rotation if object change inactive</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolStartTransActive" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool start translation if object change inactive</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolStartTransInactive" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool start translation if object change inactive</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolTransMaxActive" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool max. translation if object change active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolTransMaxInactive" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool max. translation if object change inactive</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolTransMinActive" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool min. translation if object change active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="movingToolTransMinInactive" type="g_float">
+                            <xs:annotation><xs:documentation xml:lang="en">Moving tool min. translation if object change inactive</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Object change node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="parentNodeActive" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">parent node if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="parentNodeInactive" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">parent node if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="rigidBodyTypeActive" type="fs25_rigidBodyType">
+                            <xs:annotation><xs:documentation xml:lang="en">rigid body type if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="rigidBodyTypeInactive" type="fs25_rigidBodyType">
+                            <xs:annotation><xs:documentation xml:lang="en">rigid body type if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="rotationActive" type="g_vector_rot">
+                            <xs:annotation><xs:documentation xml:lang="en">rotation if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="rotationInactive" type="g_vector_rot">
+                            <xs:annotation><xs:documentation xml:lang="en">rotation if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="scaleActive" type="g_vector_scale">
+                            <xs:annotation><xs:documentation xml:lang="en">scale if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="scaleInactive" type="g_vector_scale">
+                            <xs:annotation><xs:documentation xml:lang="en">scale if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderParameter" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader parameter name</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderParameterActive" type="g_vector_4">
+                            <xs:annotation><xs:documentation xml:lang="en">shaderParameter if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderParameterInactive" type="g_vector_4">
+                            <xs:annotation><xs:documentation xml:lang="en">shaderParameter if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="shaderParameterSetRecursive" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader parameter is applied to all child nodes recursively</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="sharedShaderParameter" type="g_bool" default="false">
+                            <xs:annotation><xs:documentation xml:lang="en">Shader parameter is applied on all objects with the same material</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="translationActive" type="g_vector_trans">
+                            <xs:annotation><xs:documentation xml:lang="en">translation if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="translationInactive" type="g_vector_trans">
+                            <xs:annotation><xs:documentation xml:lang="en">translation if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="visibilityActive" type="g_bool">
+                            <xs:annotation><xs:documentation xml:lang="en">visibility if object change is active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="visibilityInactive" type="g_bool">
+                            <xs:annotation><xs:documentation xml:lang="en">visibility if object change is in active</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="rotatingParts" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="rotatingPart" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="node" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Rotating node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="radius" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Radius</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="speedScale" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Speed scale</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="scrollerNodes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="scrollerNode" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="isTrackPart" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Is part of track (Track width is set as scale X)</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="maxSpeed" type="g_float">
+                                        <xs:annotation><xs:documentation xml:lang="en">Max. speed in m/s</xs:documentation><xs:appinfo><defaultStr>unlimited</defaultStr></xs:appinfo></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="node" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">Scroller node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="scrollLength" type="g_float" default="1">
+                                        <xs:annotation><xs:documentation xml:lang="en">Scroll length</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="scrollSpeed" type="g_float" default="1">
+                                        <xs:annotation><xs:documentation xml:lang="en">Scroll speed</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="shaderParameterComponent" type="g_int" default="1">
+                                        <xs:annotation><xs:documentation xml:lang="en">Shader paramater component</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="shaderParameterName" type="g_string" default="offsetUV">
+                                        <xs:annotation><xs:documentation xml:lang="en">Shader parameter name</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="shaderParameterNamePrev" type="g_string" default="#shaderParameterName prefixed with 'prev'">
+                                        <xs:annotation><xs:documentation xml:lang="en">Shader parameter name (Prev)</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

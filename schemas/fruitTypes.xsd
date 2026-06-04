@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="fs25_fillType">
+    <xs:annotation><xs:documentation>Fill type name (UPPERCASE) — 176 values (FS25_ResearchProject)</xs:documentation></xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WHEAT"/>
+      <xs:enumeration value="BARLEY"/>
+      <xs:enumeration value="OAT"/>
+      <xs:enumeration value="CANOLA"/>
+      <xs:enumeration value="SORGHUM"/>
+      <xs:enumeration value="SUNFLOWER"/>
+      <xs:enumeration value="SOYBEAN"/>
+      <xs:enumeration value="MAIZE"/>
+      <xs:enumeration value="POTATO"/>
+      <xs:enumeration value="SUGARBEET"/>
+      <xs:enumeration value="BEETROOT"/>
+      <xs:enumeration value="CARROT"/>
+      <xs:enumeration value="PARSNIP"/>
+      <xs:enumeration value="COTTON"/>
+      <xs:enumeration value="RICELONGGRAIN"/>
+      <xs:enumeration value="RICE"/>
+      <xs:enumeration value="GREENBEAN"/>
+      <xs:enumeration value="PEA"/>
+      <xs:enumeration value="SPINACH"/>
+      <xs:enumeration value="SUGARCANE"/>
+      <xs:enumeration value="WOOD"/>
+      <xs:enumeration value="WOODCHIPS"/>
+      <xs:enumeration value="SUGARBEET_CUT"/>
+      <xs:enumeration value="SILAGE"/>
+      <xs:enumeration value="GRASS"/>
+      <xs:enumeration value="MEADOW"/>
+      <xs:enumeration value="GRASS_WINDROW"/>
+      <xs:enumeration value="DRYGRASS"/>
+      <xs:enumeration value="DRYGRASS_WINDROW"/>
+      <xs:enumeration value="STRAW"/>
+      <xs:enumeration value="WHEAT_CUT"/>
+      <xs:enumeration value="BARLEY_CUT"/>
+      <xs:enumeration value="OAT_CUT"/>
+      <xs:enumeration value="CANOLA_CUT"/>
+      <xs:enumeration value="SOYBEAN_CUT"/>
+      <xs:enumeration value="GRAPE"/>
+      <xs:enumeration value="OLIVE"/>
+      <xs:enumeration value="MILK"/>
+      <xs:enumeration value="GOATMILK"/>
+      <xs:enumeration value="BUFFALOMILK"/>
+      <xs:enumeration value="WOOL"/>
+      <xs:enumeration value="EGG"/>
+      <xs:enumeration value="LIQUIDSEEDTREATMENT"/>
+      <xs:enumeration value="HONEY"/>
+      <xs:enumeration value="LETTUCE"/>
+      <xs:enumeration value="TOMATO"/>
+      <xs:enumeration value="STRAWBERRY"/>
+      <xs:enumeration value="SPRING_ONION"/>
+      <xs:enumeration value="NAPACABBAGE"/>
+      <xs:enumeration value="CHILLI"/>
+      <xs:enumeration value="GARLIC"/>
+      <xs:enumeration value="ENOKI"/>
+      <xs:enumeration value="OYSTER"/>
+      <xs:enumeration value="BOARDS"/>
+      <xs:enumeration value="PLANKS"/>
+      <xs:enumeration value="WOODBEAM"/>
+      <xs:enumeration value="PREFABWALL"/>
+      <xs:enumeration value="FLOUR"/>
+      <xs:enumeration value="RICEFLOUR"/>
+      <xs:enumeration value="BREAD"/>
+      <xs:enumeration value="CAKE"/>
+      <xs:enumeration value="MILK_BOTTLED"/>
+      <xs:enumeration value="GOATMILK_BOTTLED"/>
+      <xs:enumeration value="BUFFALOMILK_BOTTLED"/>
+      <xs:enumeration value="BUTTER"/>
+      <xs:enumeration value="CHEESE"/>
+      <xs:enumeration value="BUFFALOMOZZARELLA"/>
+      <xs:enumeration value="GOATCHEESE"/>
+      <xs:enumeration value="CHOCOLATE"/>
+      <xs:enumeration value="POTATOCHIPS"/>
+      <xs:enumeration value="RICEROLLS"/>
+      <xs:enumeration value="FERMENTEDNAPACABBAGE"/>
+      <xs:enumeration value="PRESERVEDCARROTS"/>
+      <xs:enumeration value="PRESERVEDPARSNIP"/>
+      <xs:enumeration value="PRESERVEDBEETROOT"/>
+      <xs:enumeration value="NOODLESOUP"/>
+      <xs:enumeration value="SOUPCANSMIXED"/>
+      <xs:enumeration value="SOUPCANSCARROTS"/>
+      <xs:enumeration value="SOUPCANSPARSNIP"/>
+      <xs:enumeration value="SOUPCANSBEETROOT"/>
+      <xs:enumeration value="SOUPCANSPOTATO"/>
+      <xs:enumeration value="FABRIC"/>
+      <xs:enumeration value="CLOTHES"/>
+      <xs:enumeration value="SUGAR"/>
+      <xs:enumeration value="CEREAL"/>
+      <xs:enumeration value="FURNITURE"/>
+      <xs:enumeration value="CARTONROLL"/>
+      <xs:enumeration value="PAPERROLL"/>
+      <xs:enumeration value="PIANO"/>
+      <xs:enumeration value="WAGON"/>
+      <xs:enumeration value="TOYTRACTOR"/>
+      <xs:enumeration value="SUNFLOWER_OIL"/>
+      <xs:enumeration value="CANOLA_OIL"/>
+      <xs:enumeration value="OLIVE_OIL"/>
+      <xs:enumeration value="RICE_OIL"/>
+      <xs:enumeration value="RAISINS"/>
+      <xs:enumeration value="GRAPEJUICE"/>
+      <xs:enumeration value="CEMENT"/>
+      <xs:enumeration value="BARREL"/>
+      <xs:enumeration value="BATHTUB"/>
+      <xs:enumeration value="BUCKET"/>
+      <xs:enumeration value="ROOFPLATES"/>
+      <xs:enumeration value="ROPE"/>
+      <xs:enumeration value="CANNED_PEAS"/>
+      <xs:enumeration value="CEMENTBRICKS"/>
+      <xs:enumeration value="SPINACH_BAGS"/>
+      <xs:enumeration value="JARRED_GREENBEAN"/>
+      <xs:enumeration value="RICE_BAGS"/>
+      <xs:enumeration value="RICE_BOXES"/>
+      <xs:enumeration value="SEEDS"/>
+      <xs:enumeration value="STONE"/>
+      <xs:enumeration value="MANURE"/>
+      <xs:enumeration value="LIQUIDMANURE"/>
+      <xs:enumeration value="DIGESTATE"/>
+      <xs:enumeration value="FORAGE"/>
+      <xs:enumeration value="FORAGE_MIXING"/>
+      <xs:enumeration value="WATER"/>
+      <xs:enumeration value="CHAFF"/>
+      <xs:enumeration value="TREESAPLINGS"/>
+      <xs:enumeration value="TREE"/>
+      <xs:enumeration value="OILSEEDRADISH"/>
+      <xs:enumeration value="POPLAR"/>
+      <xs:enumeration value="DIESEL"/>
+      <xs:enumeration value="DEF"/>
+      <xs:enumeration value="AIR"/>
+      <xs:enumeration value="ELECTRICCHARGE"/>
+      <xs:enumeration value="METHANE"/>
+      <xs:enumeration value="SNOW"/>
+      <xs:enumeration value="ROADSALT"/>
+      <xs:enumeration value="ROUNDBALE"/>
+      <xs:enumeration value="ROUNDBALE_GRASS"/>
+      <xs:enumeration value="ROUNDBALE_DRYGRASS"/>
+      <xs:enumeration value="ROUNDBALE_COTTON"/>
+      <xs:enumeration value="ROUNDBALE_WOOD"/>
+      <xs:enumeration value="SQUAREBALE"/>
+      <xs:enumeration value="SQUAREBALE_GRASS"/>
+      <xs:enumeration value="SQUAREBALE_DRYGRASS"/>
+      <xs:enumeration value="SQUAREBALE_COTTON"/>
+      <xs:enumeration value="SQUAREBALE_WOOD"/>
+      <xs:enumeration value="BALE_WRAP"/>
+      <xs:enumeration value="BALE_NET"/>
+      <xs:enumeration value="BALE_TWINE"/>
+      <xs:enumeration value="RICESAPLINGS"/>
+      <xs:enumeration value="FERTILIZER"/>
+      <xs:enumeration value="LIQUIDFERTILIZER"/>
+      <xs:enumeration value="PIGFOOD"/>
+      <xs:enumeration value="TARP"/>
+      <xs:enumeration value="LIME"/>
+      <xs:enumeration value="HERBICIDE"/>
+      <xs:enumeration value="SILAGE_ADDITIVE"/>
+      <xs:enumeration value="MINERAL_FEED"/>
+      <xs:enumeration value="WEED"/>
+      <xs:enumeration value="HORSE_PALOMINO"/>
+      <xs:enumeration value="HORSE_BLACK"/>
+      <xs:enumeration value="HORSE_BAY"/>
+      <xs:enumeration value="HORSE_PINTO"/>
+      <xs:enumeration value="HORSE_SEAL_BROWN"/>
+      <xs:enumeration value="HORSE_GRAY"/>
+      <xs:enumeration value="HORSE_DUN"/>
+      <xs:enumeration value="HORSE_CHESTNUT"/>
+      <xs:enumeration value="COW_SWISS_BROWN"/>
+      <xs:enumeration value="COW_HOLSTEIN"/>
+      <xs:enumeration value="COW_LIMOUSIN"/>
+      <xs:enumeration value="COW_ANGUS"/>
+      <xs:enumeration value="COW_WATERBUFFALO"/>
+      <xs:enumeration value="COW_HIGHLAND_CATTLE"/>
+      <xs:enumeration value="SHEEP_LANDRACE"/>
+      <xs:enumeration value="SHEEP_SWISS_MOUNTAIN"/>
+      <xs:enumeration value="SHEEP_STEINSCHAF"/>
+      <xs:enumeration value="SHEEP_BLACK_WELSH"/>
+      <xs:enumeration value="PIG_LANDRACE"/>
+      <xs:enumeration value="PIG_BLACK_PIED"/>
+      <xs:enumeration value="PIG_BERKSHIRE"/>
+      <xs:enumeration value="CHICKEN"/>
+      <xs:enumeration value="CHICKEN_ROOSTER"/>
+      <xs:enumeration value="GOAT"/>
+    </xs:restriction>
+  </xs:simpleType>
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:element name="map">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="fruitTypeCategories" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="fruitTypeCategory" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="g_string">
+                                            <xs:attribute name="name" type="g_string">
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fruitTypeConverters" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="fruitTypeConverter" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="converter" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="factor" type="g_float">
+                                                </xs:attribute>
+                                                <xs:attribute name="from" type="fs25_fillType">
+                                                </xs:attribute>
+                                                <xs:attribute name="to" type="fs25_fillType">
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                    <xs:attribute name="name" type="g_string">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="fruitTypes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="fruitType" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="filename" type="g_string">
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

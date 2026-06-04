@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:simpleType name="g_vector_float">
+        <xs:list itemType="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string">
+        <xs:annotation><xs:appinfo><typeStr>String</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_string_list">
+        <xs:annotation><xs:appinfo><typeStr>One or more strings separated by a single whitespace</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\S+( \S+)*"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_l10n_string">
+        <xs:annotation><xs:appinfo><typeStr>String or l10n key</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_filename">
+        <xs:annotation><xs:appinfo><typeStr>Path to a certain file</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_float">
+        <xs:annotation><xs:appinfo><typeStr>Float</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_angle">
+        <xs:annotation><xs:appinfo><typeStr>Angle</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_time">
+        <xs:annotation><xs:appinfo><typeStr>Time in seconds</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_day_time">
+        <xs:annotation><xs:appinfo><typeStr>Time hh:mm:ss.sss format</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:time"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_int">
+        <xs:annotation><xs:appinfo><typeStr>Integer</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_uint">
+        <xs:annotation><xs:appinfo><typeStr>Integer (unsigned)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:integer"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_bool">
+        <xs:annotation><xs:appinfo><typeStr>Boolean</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="true|false"/>
+            <xs:whiteSpace value="preserve"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_index">
+        <xs:annotation><xs:appinfo><typeStr>Index to i3d node or i3d mapping identifier</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_node_indices">
+        <xs:annotation><xs:appinfo><typeStr>List of indices to i3d nodes or i3d mapping identifiers</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_2">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_3">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_4">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values (x, y, z, w)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_n">
+        <xs:annotation><xs:appinfo><typeStr>Multiple values</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_trans">
+        <xs:annotation><xs:appinfo><typeStr>Translation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_rot_2">
+        <xs:annotation><xs:appinfo><typeStr>Rotation values (x, y)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vector_scale">
+        <xs:annotation><xs:appinfo><typeStr>Scale values (x, y, z)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="g_vector_float">
+            <xs:pattern value="\S+ \S+ \S+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_color">
+        <xs:annotation><xs:appinfo><typeStr>Color values (r, g, b) or brand color id</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="g_vehicle_material">
+        <xs:annotation><xs:appinfo><typeStr>Name of brand material template or color values (r,g,b)</typeStr></xs:appinfo></xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:complexType name="AnimationNode">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element name="node" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:attribute name="node" type="g_node_index">
+                        <xs:annotation><xs:documentation xml:lang="en">Node</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="rotSpeed" type="g_angle">
+                        <xs:annotation><xs:documentation xml:lang="en">Rotation speed</xs:documentation><xs:appinfo><defaultStr>Default rotation speed</defaultStr></xs:appinfo></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="scrollSpeed" type="g_float">
+                        <xs:annotation><xs:documentation xml:lang="en">(ScrollingAnimation) Scroll speed</xs:documentation><xs:appinfo><defaultStr>Default scroll speed</defaultStr></xs:appinfo></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="speedScale" type="g_float" default="1">
+                        <xs:annotation><xs:documentation xml:lang="en">Speed scale</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="spikes" minOccurs="0" maxOccurs="1">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:element name="spike" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="node" type="g_node_index">
+                                    <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikes) Spike node</xs:documentation></xs:annotation>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                    <xs:attribute name="gravityFactor" type="g_float">
+                        <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikesGravity) Factor to adjust how fast the spike adjusts and falls down</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="inverted" type="g_bool" default="false">
+                        <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikes) Min. and max. rotation/translation of spikes are inverted</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="maxRot" type="g_angle">
+                        <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikes) Max. spike rotation</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="maxTrans" type="g_float">
+                        <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikes) Max. spike translation</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="minRot" type="g_angle">
+                        <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikes) Min. spike rotation</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="moveDownRange" type="g_vector_rot_2">
+                        <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikes) Move down range</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="moveUpRange" type="g_vector_rot_2">
+                        <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikes) Move up range</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="rotAxis" type="g_int" default="3">
+                        <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikes) Rotation axis</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                    <xs:attribute name="transAxis" type="g_int" default="3">
+                        <xs:annotation><xs:documentation xml:lang="en">(RotationAnimationSpikes) Translation axis (disables the rotation adjustment of the spike)</xs:documentation></xs:annotation>
+                    </xs:attribute>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+        <xs:attribute name="class" type="g_string" default="RotationAnimation">
+            <xs:annotation><xs:documentation xml:lang="en">Animation class (RotationAnimation | RotationAnimationSpikes | RotationAnimationSpikesGravity | ScrollingAnimation | ShakeAnimation)</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="minAlphaForTurnOff" type="g_float" default="0">
+            <xs:annotation><xs:documentation xml:lang="en">Min. alpha for turn off (speed [0-1])</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="node" type="g_node_index">
+            <xs:annotation><xs:documentation xml:lang="en">Node</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="rotAxis" type="g_float" default="2">
+            <xs:annotation><xs:documentation xml:lang="en">Rotation axis</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="rotSpeed" type="g_angle" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">Rotation speed</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scrollLength" type="g_float" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">(ScrollingAnimation) Scroll length</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="scrollSpeed" type="g_float" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">(ScrollingAnimation) Scroll speed</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="shaderComponentScale" type="g_vector_4" default="1 0 0 0">
+            <xs:annotation><xs:documentation xml:lang="en">Shader parameter name</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="shaderParameterComponent" type="g_float" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">(ScrollingAnimation) Shader parameter component</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="shaderParameterName" type="g_string">
+            <xs:annotation><xs:documentation xml:lang="en">Shader parameter name</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="shaderParameterPrevName" type="g_string" default="automatically calculated from #shaderParameterName">
+            <xs:annotation><xs:documentation xml:lang="en">Prev Shader parameter name</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="shaking" type="g_vector_4" default="0 0 0 0">
+            <xs:annotation><xs:documentation xml:lang="en">(ShakeAnimation) Shaking scale for shader parameters</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="speedFunc" type="g_string">
+            <xs:annotation><xs:documentation xml:lang="en">Lua speed function</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="speedFuncParam" type="g_string">
+            <xs:annotation><xs:documentation xml:lang="en">Additional string parameter that is passed to the speedFunc</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="turnedOffPosition" type="g_float">
+            <xs:annotation><xs:documentation xml:lang="en">(ScrollingAnimation) Target position while turned off</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="turnedOffRotation" type="g_angle">
+            <xs:annotation><xs:documentation xml:lang="en">(RotationAnimation) Target rotation while turned off</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="turnedOffSubDivisions" type="g_float" default="1">
+            <xs:annotation><xs:documentation xml:lang="en">Amount of sub divisions which have the same state</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="turnOffFadeTime" type="g_float" default="2">
+            <xs:annotation><xs:documentation xml:lang="en">Turn off fade time</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="turnOnFadeTime" type="g_float" default="2">
+            <xs:annotation><xs:documentation xml:lang="en">Turn on fade time</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="turnOnOffVariance" type="g_float">
+            <xs:annotation><xs:documentation xml:lang="en">Turn off time variance</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="g_string">
+            <xs:annotation><xs:documentation xml:lang="en">(ScrollingAnimation) Fill type name</xs:documentation></xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:element name="powerTakeOff">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="animationNodes" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="animationNode" type="AnimationNode" minOccurs="0" maxOccurs="unbounded"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="endJoint" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Single Joint) End joint node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="endJoint1" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Double Joint) End joint 1</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="referenceNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Double Joint) End joint 1 reference node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="endJoint2" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Double Joint) End joint 2</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="i3dMappings" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="i3dMapping" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:attribute name="id" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Identifier to be used in xml</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="node" type="g_string">
+                                        <xs:annotation><xs:documentation xml:lang="en">Index path to node in i3d file</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="linkNode" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Link node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="parentFile" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="attributes" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded">
+                                        <xs:element name="clearList" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="keepIndex" type="g_int">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Index of list to keep</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">List to clear but keep one item</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="remove" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path to remove from parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="set" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:attribute name="path" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Path change in parent xml</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                                <xs:attribute name="value" type="g_string">
+                                                    <xs:annotation><xs:documentation xml:lang="en">Target value to set in parent file</xs:documentation></xs:annotation>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="xmlFilename" type="g_string">
+                            <xs:annotation><xs:documentation xml:lang="en">Parent xml filepath used as basis</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="scalePart" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Single|Double Joint) Scale part node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="referenceNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Single|Double Joint) Scale part reference node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="startJoint" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Single Joint) Start joint node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="startJoint1" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Double Joint) Start joint 1</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="startJoint2" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Double Joint) Start joint 2</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="startNode" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">Start node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="translationPart" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="decal" minOccurs="0" maxOccurs="1">
+                                <xs:complexType>
+                                    <xs:attribute name="minOffset" type="g_float" default="0.01">
+                                        <xs:annotation><xs:documentation xml:lang="en">(Single|Double Joint) translation part decal minOffset</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="node" type="g_node_index">
+                                        <xs:annotation><xs:documentation xml:lang="en">(Single|Double Joint) translation part decal node</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="offset" type="g_float" default="0.05">
+                                        <xs:annotation><xs:documentation xml:lang="en">(Single|Double Joint) translation part decal offset</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="size" type="g_float" default="0.1">
+                                        <xs:annotation><xs:documentation xml:lang="en">(Single|Double Joint) translation part decal size</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                        <xs:attribute name="length" type="g_float" default="0.4">
+                            <xs:annotation><xs:documentation xml:lang="en">(Single|Double Joint) translation part length</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="node" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Single|Double Joint) translation part node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="referenceNode" type="g_node_index">
+                            <xs:annotation><xs:documentation xml:lang="en">(Single|Double Joint) translation part reference node</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+            <xs:attribute name="colorMaterialName" type="g_string" default="powerTakeOff_main_mat">
+                <xs:annotation><xs:documentation xml:lang="en">Color material name</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="decalColorMaterialName" type="g_string" default="powerTakeOff_decal_mat">
+                <xs:annotation><xs:documentation xml:lang="en">Decal color material name</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="filename" type="g_string">
+                <xs:annotation><xs:documentation xml:lang="en">Path to i3d file</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isDoubleJoint" type="g_bool" default="false">
+                <xs:annotation><xs:documentation xml:lang="en">Is double joint PTO</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="isSingleJoint" type="g_bool" default="false">
+                <xs:annotation><xs:documentation xml:lang="en">Is single joint PTO</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="maxAngle" type="g_angle" default="45">
+                <xs:annotation><xs:documentation xml:lang="en">Max. angle between start and end</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="minLength" type="g_float" default="0.6">
+                <xs:annotation><xs:documentation xml:lang="en">Minimum length of pto</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="size" type="g_float" default="0.19">
+                <xs:annotation><xs:documentation xml:lang="en">Height of pto</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="zOffset" type="g_float" default="0">
+                <xs:annotation><xs:documentation xml:lang="en">Z axis offset of end node</xs:documentation></xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

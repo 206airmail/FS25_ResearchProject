@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# FS25 packaging
+*.zip
+
+# Superseded, regenerable 20 MB artifact (replaced by fs25_xml_browser.html).
+# Regenerate with: python tools/generate_annotated_html.py
+vehicle_annotated.html
+
+# Node (if the extension ever gains deps)
+node_modules/
