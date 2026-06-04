@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0
+- **Revert to GIANTS default.** New commands “FS25: Revert current file's schema ref to GIANTS
+  default” and “…Revert all schema refs in workspace…”. They rewrite the enriched refs we set
+  (raw-URL or local) back to the standard `https://validation.gdn.giants-software.com/xml/fs25/X.xsd`
+  that ~99% of published mods ship — run before distributing. Only touches refs pointing at our
+  schemas; leaves anything else alone. Type is preserved across repoint↔revert.
+
 ## 0.3.0
 - **Hosted schemas / portable refs.** New `fs25xml.schemaBaseUrl` (defaults to the public
   raw.githubusercontent.com/206airmail/FS25_ResearchProject/main/schemas). Repoint/bind/insert

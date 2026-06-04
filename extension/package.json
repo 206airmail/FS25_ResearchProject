@@ -2,7 +2,7 @@
   "name": "fs25-xml",
   "displayName": "FS25 XML — Farming Simulator 25 modding",
   "description": "Autocomplete + validation for Farming Simulator 25 mod XML (vehicle, placeable, map, modDesc, …) with valid-value dropdowns the stock docs hide: jointType, fillType, fruitType, particleType, effectClass, rigidBodyType, inputAction, brand, store category, material templates.",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "publisher": "fs25researchproject",
   "license": "MIT",
   "engines": { "vscode": "^1.75.0" },
@@ -15,6 +15,8 @@
     "commands": [
       { "command": "fs25xml.bindCurrent", "title": "FS25: Apply enriched schema to current XML file" },
       { "command": "fs25xml.repointWorkspace", "title": "FS25: Repoint all stock schema refs in workspace to enriched" },
+      { "command": "fs25xml.revertCurrent", "title": "FS25: Revert current file's schema ref to GIANTS default" },
+      { "command": "fs25xml.revertWorkspace", "title": "FS25: Revert all schema refs in workspace to GIANTS default (before distributing)" },
       { "command": "fs25xml.insertSchemaRef", "title": "FS25: Insert/repoint schema reference in current file" }
     ],
     "configuration": {

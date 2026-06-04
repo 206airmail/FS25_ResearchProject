@@ -70,6 +70,29 @@ function repointText(text) {
   });
   return [out, n];
 }
+// ---- revert OUR refs (raw-URL or local) back to the standard GIANTS web URL (what 99% of mods ship) ----
+const GIANTS_URL = "https://validation.gdn.giants-software.com/xml/fs25";
+function revertText(text) {
+  const ourUrl = baseUrl();                       // e.g. https://raw.githubusercontent.com/.../schemas (may be "")
+  const ourDir = fwd(schemaDir()) + "/";
+  let n = 0;
+  const out = text.replace(/(noNamespaceSchemaLocation=")([^"]*\/)([A-Za-z0-9_]+\.xsd)(")/g, (m, p1, prefix, typeFile, p4) => {
+    if (!schemaValid(typeFile)) return m;
+    const isOurs = (ourUrl && prefix === ourUrl + "/") || prefix === ourDir ||
+                   prefix.includes("/206airmail/FS25_ResearchProject/");
+    if (!isOurs) return m;                          // leave refs we didn't set
+    n++; return p1 + GIANTS_URL + "/" + typeFile + p4;
+  });
+  return [out, n];
+}
+async function revertDoc(doc, { silent } = {}) {
+  const [out, n] = revertText(doc.getText());
+  if (n > 0) await applyFullText(doc, out);
+  if (!silent) vscode.window.showInformationMessage(
+    n ? `FS25 XML: reverted ${n} ref(s) → GIANTS default.` : "FS25 XML: no enriched refs to revert in this file.");
+  return n;
+}
+
 async function applyFullText(doc, out) {
   const edit = new vscode.WorkspaceEdit();
   edit.replace(doc.uri, new vscode.Range(doc.positionAt(0), doc.positionAt(doc.getText().length)), out);
@@ -129,6 +152,23 @@ function activate(context) {
         if (n > 0) { edited++; refs += n; } else { await bindIfNoRef(doc, { silent: true }); }
       }
       vscode.window.showInformationMessage(`FS25 XML: repointed ${refs} ref(s) across ${edited} file(s).`);
+    }),
+    vscode.commands.registerCommand("fs25xml.revertCurrent", () => {
+      const ed = vscode.window.activeTextEditor; if (ed) revertDoc(ed.document, { silent: false });
+    }),
+    vscode.commands.registerCommand("fs25xml.revertWorkspace", async () => {
+      const files = await vscode.workspace.findFiles("**/*.xml", "**/node_modules/**");
+      const pick = await vscode.window.showWarningMessage(
+        `FS25 XML: revert enriched schema refs in ${files.length} XML file(s) back to the GIANTS default web URL (${GIANTS_URL})? This edits and saves the files — do this before distributing a mod.`,
+        { modal: true }, "Revert");
+      if (pick !== "Revert") return;
+      let edited = 0, refs = 0;
+      for (const uri of files) {
+        const doc = await vscode.workspace.openTextDocument(uri);
+        const n = await revertDoc(doc, { silent: true });
+        if (n > 0) { edited++; refs += n; }
+      }
+      vscode.window.showInformationMessage(`FS25 XML: reverted ${refs} ref(s) across ${edited} file(s) to GIANTS default.`);
     }),
     vscode.commands.registerCommand("fs25xml.insertSchemaRef", async () => {
       const ed = vscode.window.activeTextEditor; if (!ed) return;
