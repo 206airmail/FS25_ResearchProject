@@ -28,6 +28,23 @@ extracts them and makes them usable.
  (.vsix)      (2.5 MB, all 88 types)     (markdown, grep/Ctrl-F)
 ```
 
+## Browse online (GitHub Pages)
+
+`fs25_xml_browser.html` is a single self-contained 2.5 MB file (all the data is embedded), which
+is **too large for GitHub's file viewer** to render in the repo. To use it without downloading,
+it's published via GitHub Pages:
+
+**https://206airmail.github.io/FS25_ResearchProject/**
+
+> **One-time setup to make that link live:** in the repo, go to
+> **Settings → Pages → Build and deployment → Source → "Deploy from a branch"**, pick branch
+> **`main`** and folder **`/ (root)`**, then **Save**. After ~1 minute the link above serves the
+> browser (the bundled `index.html` redirects to `fs25_xml_browser.html`). The `.nojekyll` file
+> tells Pages to serve the files verbatim.
+
+You can still download `fs25_xml_browser.html` and open it directly in a browser — it works fully
+offline, no server needed.
+
 ## Deliverables — pick the format for the task
 
 | Want to… | Use | File |
