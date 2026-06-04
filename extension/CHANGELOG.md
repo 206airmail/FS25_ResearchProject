@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0
+- **Hosted schemas / portable refs.** New `fs25xml.schemaBaseUrl` (defaults to the public
+  raw.githubusercontent.com/206airmail/FS25_ResearchProject/main/schemas). Repoint/bind/insert
+  now write `https://` schema refs that Red Hat XML downloads + caches — so your mod XML stays
+  machine-independent and distributable (no local absolute paths). Clear the URL to use a local
+  `fs25xml.schemaDir` instead. Requires `xml.downloadExternalResources.enabled` (on by default).
+
 ## 0.2.0
 - **Repoint stock schema refs.** GIANTS templates ship an `xsi:noNamespaceSchemaLocation`
   pointing at the stock schema — either a relative `…/shared/xml/schema/X.xsd` (varying depth)

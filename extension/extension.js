@@ -22,8 +22,23 @@ function schemaDir() {
   const s = vscode.workspace.getConfiguration("fs25xml").get("schemaDir");
   return (s && s.trim()) ? s.trim() : SCHEMA_DIR_BUNDLED;
 }
-function schemaExists(name) { return name && fs.existsSync(path.join(schemaDir(), name)); }
 function fwd(p) { return p.replace(/\\/g, "/"); }
+// Set of valid schema filenames (from the bundled schemas dir), used in both local & URL modes.
+let VALID = null;
+function validNames() {
+  if (!VALID) { try { VALID = new Set(fs.readdirSync(SCHEMA_DIR_BUNDLED).filter(f => f.endsWith(".xsd"))); } catch (e) { VALID = new Set(); } }
+  return VALID;
+}
+function schemaValid(name) { return name && validNames().has(name); }
+// Public raw-URL base (portable refs) takes precedence over the local schemaDir if set.
+function baseUrl() {
+  const u = vscode.workspace.getConfiguration("fs25xml").get("schemaBaseUrl");
+  return (u && u.trim()) ? u.trim().replace(/\/$/, "") : "";
+}
+function schemaTarget(name) {
+  const b = baseUrl();
+  return b ? (b + "/" + name) : (fwd(schemaDir()) + "/" + name);
+}
 
 function rootElement(text) {
   const c = text.replace(/<!--[\s\S]*?-->/g, "").replace(/<\?[\s\S]*?\?>/g, "");
@@ -46,12 +61,11 @@ function pickSchema(doc) {
 //   online URL:     https://validation.gdn.giants-software.com/xml/fs25/vehicle.xsd
 const STOCK_RE = /(noNamespaceSchemaLocation=")([^"]*?(?:\/shared\/xml\/schema\/|validation\.gdn\.giants-software\.com\/xml\/fs25\/))([A-Za-z0-9_]+\.xsd)(")/g;
 function repointText(text) {
-  const dir = fwd(schemaDir()).replace(/\/$/, "");
   let n = 0;
   const out = text.replace(STOCK_RE, (m, p1, prefix, typeFile, p4) => {
-    if (!fs.existsSync(path.join(schemaDir(), typeFile))) return m;     // unknown type → leave
-    const target = dir + "/" + typeFile;
-    if (prefix + typeFile === target) return m;                         // already enriched
+    if (!schemaValid(typeFile)) return m;                 // unknown type → leave
+    const target = schemaTarget(typeFile);
+    if (prefix + typeFile === target) return m;           // already pointing at target
     n++; return p1 + target + p4;
   });
   return [out, n];
@@ -74,8 +88,8 @@ async function repointDoc(doc, { silent } = {}) {
 async function bindIfNoRef(doc, { silent } = {}) {
   if (/noNamespaceSchemaLocation/.test(doc.getText())) return false; // has a ref → handled by repoint
   const schema = pickSchema(doc);
-  if (!schemaExists(schema)) return false;
-  const abs = path.join(schemaDir(), schema);
+  if (!schemaValid(schema)) return false;
+  const abs = schemaTarget(schema);
   const ws = vscode.workspace.getWorkspaceFolder(doc.uri);
   const pattern = ws ? vscode.workspace.asRelativePath(doc.uri, false) : fwd(doc.uri.fsPath);
   const cfg = vscode.workspace.getConfiguration("xml");
@@ -119,8 +133,8 @@ function activate(context) {
     vscode.commands.registerCommand("fs25xml.insertSchemaRef", async () => {
       const ed = vscode.window.activeTextEditor; if (!ed) return;
       const doc = ed.document, schema = pickSchema(doc);
-      if (!schemaExists(schema)) { vscode.window.showWarningMessage("FS25 XML: no matching schema for this file."); return; }
-      const abs = fwd(path.join(schemaDir(), schema));
+      if (!schemaValid(schema)) { vscode.window.showWarningMessage("FS25 XML: no matching schema for this file."); return; }
+      const abs = schemaTarget(schema);
       const text = doc.getText();
       const m = text.match(/<([A-Za-z_][\w.\-]*)((?:\s+[^>]*?)?)(\/?)>/);
       if (!m) return;

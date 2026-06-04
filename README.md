@@ -39,7 +39,23 @@ extracts them and makes them usable.
 | Manual schema setup (no extension) | enriched schema + Red Hat XML | `schemas/vehicle.xsd` + `schemas/VSCODE_SETUP.md` |
 | Values in the game's own doc layout (tooltips) | enriched game HTML | `vehicle_annotated.html` |
 
-### VS Code extension (`extension/fs25-xml-0.1.0.vsix`)
+### Hosted schemas (portable `xsi:` refs)
+
+The 88 enriched schemas are served publicly from this repo, so any FS25 XML can point at them
+with a machine-independent URL that Red Hat XML downloads + caches:
+
+```
+https://raw.githubusercontent.com/206airmail/FS25_ResearchProject/main/schemas/<type>.xsd
+```
+
+e.g. add to a vehicle's root element:
+```xml
+<vehicle … xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/206airmail/FS25_ResearchProject/main/schemas/vehicle.xsd">
+```
+The extension's repoint command rewrites GIANTS' stock refs to these URLs automatically.
+
+### VS Code extension (`extension/fs25-xml-0.3.0.vsix`)
 Install: `code --install-extension extension/fs25-xml-0.1.0.vsix` (or Extensions panel →
 "Install from VSIX…"). It bundles all 88 GIANTS 1.19 schemas **value-enriched** with the
 registry value-sets, auto-binds the right one per file (by filename / root element), and
